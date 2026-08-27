@@ -1,0 +1,3082 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="theme-color" content="#0A0D14">
+<meta name="description" content="Suivi de prise de masse à domicile : programme 52 semaines, recettes, courses et analyse.">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Charge — prise de masse 52 semaines</title>
+<style>
+/* ============================================================
+   PALETTE — une nuit de livraison : bitume mouillé, lampadaires
+   sodium, feu vert, phare de vélo.
+   ============================================================ */
+:root{
+  --nuit-0:#0A0D14; --nuit-1:#0F131C; --nuit-2:#161B26; --nuit-3:#1E2532; --nuit-4:#252E3D;
+  --bord:#2A3340; --bord-2:#3A4553;
+  --txt:#EDF1F6; --txt-2:#96A2B3; --txt-3:#626E7E;
+
+  --amb-1:#FFC46B; --amb-2:#FFAE3D; --amb-3:#F08519; --amb-4:#B85F0C; --amb-o:rgba(255,174,61,.13);
+  --vrt-1:#7EE8A8; --vrt-2:#4ADE80; --vrt-3:#22C55E; --vrt-4:#15803D; --vrt-o:rgba(74,222,128,.12);
+  --blu-1:#A5DDFC; --blu-2:#7DD3FC; --blu-3:#38BDF8; --blu-4:#0284C7; --blu-o:rgba(56,189,248,.12);
+  --vio-1:#D5C8FF; --vio-2:#B9A4FB; --vio-3:#8B5CF6; --vio-4:#6D28D9; --vio-o:rgba(139,92,246,.13);
+  --ros-1:#FFA8B0; --ros-2:#FB7185; --ros-3:#E11D48; --ros-o:rgba(251,113,133,.12);
+
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  --mono:ui-monospace,"Roboto Mono","SF Mono",Menlo,Consolas,monospace;
+  --r:14px; --r-s:9px;
+  --pad:16px;
+  --nav-h:60px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--nuit-0);
+  background-image:
+    radial-gradient(1100px 480px at 82% -12%, rgba(255,174,61,.075), transparent 62%),
+    radial-gradient(820px 420px at 8% 102%, rgba(56,189,248,.06), transparent 60%);
+  background-attachment:fixed;
+  color:var(--txt); font-family:var(--sans);
+  font-size:15px; line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom));
+  overscroll-behavior-y:none;
+}
+#app{max-width:560px;margin:0 auto;padding:0 var(--pad)}
+
+/* ---------- Typographie ---------- */
+h1,h2,h3,h4{margin:0;font-weight:800;letter-spacing:-.022em;line-height:1.2}
+h1{font-size:25px} h2{font-size:19px} h3{font-size:15.5px} h4{font-size:13.5px}
+p{margin:0 0 10px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+.eyebrow{
+  font-family:var(--mono);font-size:9.5px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.15em;color:var(--txt-3);
+}
+.sub{color:var(--txt-2);font-size:13px;line-height:1.5}
+.mini{color:var(--txt-3);font-size:11.5px;line-height:1.45}
+.amb{color:var(--amb-2)} .vrt{color:var(--vrt-2)} .blu{color:var(--blu-2)}
+.vio{color:var(--vio-2)} .ros{color:var(--ros-2)} .t2{color:var(--txt-2)} .t3{color:var(--txt-3)}
+
+/* ---------- En-tête ---------- */
+header{padding:calc(env(safe-area-inset-top) + 18px) 0 6px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.marque{display:flex;flex-direction:column;gap:3px}
+.marque .nom{font-size:16px;font-weight:800;letter-spacing:-.03em;display:flex;align-items:center;gap:7px}
+.pastille{width:9px;height:9px;border-radius:3px;background:linear-gradient(150deg,var(--amb-1),var(--amb-4));box-shadow:0 0 11px var(--amb-o)}
+.btn-reglages{
+  background:var(--nuit-2);border:1px solid var(--bord);color:var(--txt-2);
+  width:36px;height:36px;border-radius:11px;display:grid;place-items:center;cursor:pointer;flex:none;font-size:15px
+}
+.btn-reglages:active{background:var(--nuit-3)}
+
+/* ---------- Cartes ---------- */
+.carte{
+  background:linear-gradient(180deg,var(--nuit-2),var(--nuit-1));
+  border:1px solid var(--bord); border-radius:var(--r);
+  padding:15px; margin-bottom:12px; position:relative; overflow:hidden;
+}
+.carte::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:var(--bord)}
+.carte.amber::before{background:linear-gradient(90deg,var(--amb-3),var(--amb-1),transparent 88%)}
+.carte.green::before{background:linear-gradient(90deg,var(--vrt-4),var(--vrt-2),transparent 88%)}
+.carte.blue::before {background:linear-gradient(90deg,var(--blu-4),var(--blu-2),transparent 88%)}
+.carte.violet::before{background:linear-gradient(90deg,var(--vio-4),var(--vio-2),transparent 88%)}
+.carte.rose::before{background:linear-gradient(90deg,var(--ros-3),var(--ros-1),transparent 88%)}
+.carte-tete{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}
+
+/* ---------- Boutons ---------- */
+.btn{
+  font-family:var(--sans);font-size:14px;font-weight:650;
+  background:var(--nuit-3);color:var(--txt);
+  border:1px solid var(--bord-2);border-radius:11px;
+  padding:11px 15px;cursor:pointer;transition:transform .06s,background .13s;
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+}
+.btn:active{transform:scale(.975)}
+.btn.plein{background:linear-gradient(160deg,var(--amb-2),var(--amb-4));border-color:var(--amb-3);color:#1A1206;font-weight:750}
+.btn.vert{background:linear-gradient(160deg,var(--vrt-2),var(--vrt-4));border-color:var(--vrt-3);color:#04180C;font-weight:750}
+.btn.bleu{background:linear-gradient(160deg,var(--blu-3),var(--blu-4));border-color:var(--blu-3);color:#04121C;font-weight:750}
+.btn.large{width:100%}
+.btn.mini{padding:7px 11px;font-size:12.5px;border-radius:9px}
+.btn.fant{background:transparent;border-color:var(--bord)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn-rangee{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ---------- Champs ---------- */
+input,select,textarea{
+  font-family:var(--mono);font-size:15px;
+  background:var(--nuit-0);color:var(--txt);
+  border:1px solid var(--bord);border-radius:10px;padding:10px 11px;width:100%;
+}
+input:focus,select,textarea:focus{outline:2px solid var(--amb-3);outline-offset:1px}
+select{font-family:var(--sans);appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--txt-3) 50%),linear-gradient(135deg,var(--txt-3) 50%,transparent 50%);background-position:calc(100% - 16px) 51%,calc(100% - 11px) 51%;background-size:5px 5px;background-repeat:no-repeat}
+label{display:block;margin-bottom:14px}
+label>span{display:block;margin-bottom:5px;font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.15em;color:var(--txt-3)}
+.grille2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.grille3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px}
+
+/* ---------- Anneau de calories ---------- */
+.anneau-bloc{display:flex;align-items:center;gap:16px}
+.anneau{
+  --p:0; --c1:var(--amb-2); --c2:var(--amb-4);
+  width:106px;height:106px;border-radius:50%;flex:none;position:relative;
+  background:conic-gradient(from -90deg, var(--c1) 0turn, var(--c2) calc(var(--p)*1turn), var(--nuit-3) calc(var(--p)*1turn) 1turn);
+  display:grid;place-items:center;
+  transition:--p .5s;
+}
+.anneau::after{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--nuit-1)}
+.anneau-txt{position:relative;z-index:1;text-align:center;line-height:1.05}
+.anneau-txt .g{font-family:var(--mono);font-size:23px;font-weight:700;letter-spacing:-.04em}
+.anneau-txt .p{font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:.11em;color:var(--txt-3);margin-top:3px}
+
+/* ---------- Barres de macros ---------- */
+.macro{margin-bottom:9px}
+.macro:last-child{margin-bottom:0}
+.macro-tete{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+.macro-tete .n{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.13em;color:var(--txt-3)}
+.macro-tete .v{font-family:var(--mono);font-size:12px;font-weight:600}
+.jauge{height:5px;border-radius:3px;background:var(--nuit-3);overflow:hidden}
+.jauge i{display:block;height:100%;border-radius:3px;transition:width .4s}
+
+/* ---------- La barre : 52 semaines ---------- */
+.barre-an{display:flex;flex-direction:column-reverse;gap:2px;padding:4px 0}
+.sem{
+  height:8px;border-radius:2px;position:relative;
+  background:var(--nuit-3);border:1px solid transparent;
+  transition:width .35s, background .25s;
+}
+.sem.futur{background:transparent;border:1px dashed var(--bord);opacity:.45}
+.sem.vide{background:var(--nuit-3)}
+.sem.partiel{background:linear-gradient(90deg,var(--amb-4),var(--amb-2))}
+.sem.plein{background:linear-gradient(90deg,var(--vrt-4),var(--vrt-2))}
+.sem.deload{background:linear-gradient(90deg,var(--blu-4),var(--blu-2))}
+.sem.now{box-shadow:0 0 0 1px var(--amb-2),0 0 13px var(--amb-o)}
+.barre-compacte{display:flex;gap:1.5px;align-items:flex-end;height:34px}
+.barre-compacte i{flex:1;border-radius:1.5px;background:var(--nuit-3);min-height:4px}
+.barre-legende{display:flex;flex-wrap:wrap;gap:11px;margin-top:9px}
+.lg{display:flex;align-items:center;gap:5px;font-size:10.5px;color:var(--txt-3)}
+.lg b{width:9px;height:9px;border-radius:2px;display:block}
+
+/* ---------- Listes ---------- */
+.ligne{
+  display:flex;align-items:center;gap:11px;padding:11px 0;
+  border-bottom:1px solid var(--bord);cursor:pointer;
+}
+.ligne:last-child{border-bottom:none}
+.ligne .corps{flex:1;min-width:0}
+.ligne .titre{font-weight:640;font-size:14px;letter-spacing:-.012em}
+.ligne .det{font-size:11.5px;color:var(--txt-3);margin-top:2px;font-family:var(--mono)}
+.puce{width:30px;height:30px;border-radius:9px;flex:none;display:grid;place-items:center;font-family:var(--mono);font-size:11px;font-weight:700}
+.puce.amber{background:var(--amb-o);color:var(--amb-2)}
+.puce.green{background:var(--vrt-o);color:var(--vrt-2)}
+.puce.blue{background:var(--blu-o);color:var(--blu-2)}
+.puce.violet{background:var(--vio-o);color:var(--vio-2)}
+.puce.rose{background:var(--ros-o);color:var(--ros-2)}
+
+.coche{
+  width:25px;height:25px;border-radius:8px;flex:none;
+  border:1.5px solid var(--bord-2);display:grid;place-items:center;
+  font-size:13px;color:transparent;transition:.15s;background:var(--nuit-0)
+}
+.coche.on{background:linear-gradient(160deg,var(--vrt-2),var(--vrt-4));border-color:var(--vrt-3);color:#04180C}
+.fait .titre{color:var(--txt-3);text-decoration:line-through;text-decoration-color:var(--vrt-4)}
+
+/* ---------- Chips / segments ---------- */
+.chips{display:flex;gap:6px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none;-ms-overflow-style:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{
+  flex:none;padding:7px 13px;border-radius:20px;font-size:12.5px;font-weight:600;
+  background:var(--nuit-2);border:1px solid var(--bord);color:var(--txt-2);cursor:pointer;white-space:nowrap
+}
+.chip.on{background:var(--amb-o);border-color:var(--amb-3);color:var(--amb-1)}
+.chip.on.v{background:var(--vio-o);border-color:var(--vio-3);color:var(--vio-1)}
+
+/* ---------- Constats d'analyse ---------- */
+.constat{border-left:3px solid var(--bord);padding:12px 0 12px 13px;margin-bottom:13px}
+.constat:last-child{margin-bottom:0}
+.constat.ok{border-color:var(--vrt-3)}
+.constat.action{border-color:var(--amb-3)}
+.constat.alerte{border-color:var(--ros-3)}
+.constat.info{border-color:var(--blu-3)}
+.constat h4{margin-bottom:5px;font-size:14px}
+.constat p{font-size:13px;color:var(--txt-2);margin:0;line-height:1.55}
+.constat .btn{margin-top:10px}
+
+/* ---------- Exercice en séance ---------- */
+.serie{
+  display:grid;grid-template-columns:26px 1fr 1fr 1fr 34px;gap:7px;align-items:center;
+  padding:7px 0;border-bottom:1px solid var(--nuit-3)
+}
+.serie:last-of-type{border-bottom:none}
+.serie .idx{font-family:var(--mono);font-size:11px;color:var(--txt-3);text-align:center}
+.serie input{padding:8px 6px;text-align:center;font-size:14px;border-radius:8px}
+.serie .ok{
+  width:32px;height:32px;border-radius:9px;border:1.5px solid var(--bord-2);
+  background:var(--nuit-0);display:grid;place-items:center;color:transparent;font-size:14px;cursor:pointer
+}
+.serie .ok.on{background:linear-gradient(160deg,var(--vrt-2),var(--vrt-4));border-color:var(--vrt-3);color:#04180C}
+.entete-serie{display:grid;grid-template-columns:26px 1fr 1fr 1fr 34px;gap:7px;margin-bottom:3px}
+.entete-serie span{font-family:var(--mono);font-size:8.5px;text-transform:uppercase;letter-spacing:.11em;color:var(--txt-3);text-align:center}
+
+/* ---------- Minuteur plein écran ---------- */
+#minuteur{
+  position:fixed;inset:0;z-index:60;background:rgba(8,11,17,.975);backdrop-filter:blur(9px);
+  display:none;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:26px
+}
+#minuteur.on{display:flex}
+.cadran{
+  --p:1;width:min(70vw,270px);aspect-ratio:1;border-radius:50%;position:relative;display:grid;place-items:center;
+  background:conic-gradient(from -90deg,var(--amb-2) 0turn,var(--amb-4) calc(var(--p)*1turn),var(--nuit-2) calc(var(--p)*1turn) 1turn);
+}
+.cadran::after{content:"";position:absolute;inset:14px;border-radius:50%;background:var(--nuit-0)}
+.cadran-txt{position:relative;z-index:1;text-align:center}
+.cadran-txt .t{font-family:var(--mono);font-size:54px;font-weight:700;letter-spacing:-.05em;line-height:1}
+.cadran-txt .l{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.16em;color:var(--txt-3);margin-top:7px}
+.tempo-bulle{
+  width:min(56vw,210px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
+  border:2px solid var(--amb-3);transition:transform .1s linear;
+  font-family:var(--mono);font-size:16px;font-weight:700;color:var(--amb-1);text-transform:uppercase;letter-spacing:.1em
+}
+
+/* ---------- Feuille modale ---------- */
+#feuille{position:fixed;inset:0;z-index:50;display:none}
+#feuille.on{display:block}
+.voile{position:absolute;inset:0;background:rgba(5,7,11,.72);backdrop-filter:blur(3px)}
+.panneau{
+  position:absolute;left:0;right:0;bottom:0;max-height:90vh;overflow-y:auto;
+  background:var(--nuit-1);border-top:1px solid var(--bord);
+  border-radius:20px 20px 0 0;padding:18px var(--pad) calc(26px + env(safe-area-inset-bottom));
+  max-width:560px;margin:0 auto;
+  animation:monte .24s cubic-bezier(.22,1,.36,1);
+}
+@keyframes monte{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.poignee{width:34px;height:4px;border-radius:2px;background:var(--bord-2);margin:0 auto 15px}
+
+/* ---------- Navigation ---------- */
+nav{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;
+  background:rgba(12,16,23,.94);backdrop-filter:blur(16px);
+  border-top:1px solid var(--bord);
+  display:flex;padding-bottom:env(safe-area-inset-bottom);
+  max-width:560px;margin:0 auto;
+}
+nav button{
+  flex:1;background:none;border:none;color:var(--txt-3);cursor:pointer;
+  padding:9px 2px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-family:var(--mono);font-size:8.5px;text-transform:uppercase;letter-spacing:.06em;
+  border-top:2px solid transparent;margin-top:-1px;transition:color .15s
+}
+nav button svg{width:20px;height:20px;stroke-width:1.8;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round}
+nav button.on{color:var(--amb-2);border-top-color:var(--amb-2)}
+
+/* ---------- Divers ---------- */
+.vide-etat{text-align:center;padding:34px 16px;color:var(--txt-3)}
+.vide-etat .g{font-size:30px;margin-bottom:9px;opacity:.6}
+.pillule{
+  display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:20px;
+  font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;font-weight:600
+}
+.pillule.amber{background:var(--amb-o);color:var(--amb-2)}
+.pillule.green{background:var(--vrt-o);color:var(--vrt-2)}
+.pillule.blue{background:var(--blu-o);color:var(--blu-2)}
+.pillule.violet{background:var(--vio-o);color:var(--vio-2)}
+.pillule.rose{background:var(--ros-o);color:var(--ros-2)}
+.pillule.gris{background:var(--nuit-3);color:var(--txt-3)}
+.sep{height:1px;background:var(--bord);margin:14px 0}
+.notes{list-style:none;padding:0;margin:0}
+.notes li{position:relative;padding-left:17px;margin-bottom:7px;font-size:13px;color:var(--txt-2);line-height:1.5}
+.notes li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:2px;background:var(--amb-3)}
+.notes.ros li::before{background:var(--ros-3)}
+.notes.vrt li::before{background:var(--vrt-3)}
+.toast{
+  position:fixed;left:50%;bottom:calc(var(--nav-h) + 18px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);z-index:70;
+  background:var(--nuit-3);border:1px solid var(--bord-2);border-radius:11px;
+  padding:10px 16px;font-size:13px;font-weight:600;
+  box-shadow:0 8px 26px rgba(0,0,0,.55);
+  opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;white-space:nowrap
+}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(-5px)}
+.scroll-x{overflow-x:auto;scrollbar-width:none}
+.scroll-x::-webkit-scrollbar{display:none}
+
+/* ---------- Figures d'exercice ---------- */
+.fig{width:100%;height:auto;display:block}
+.f-sol{stroke:var(--bord-2);stroke-width:1;stroke-linecap:round}
+.f-prop{fill:var(--nuit-4);stroke:var(--bord-2);stroke-width:.7}
+.f-prop-l{stroke:var(--bord-2);stroke-width:1.5;stroke-linecap:round}
+.f-loin{opacity:.3}
+.f-b2,.f-j2{fill:none;stroke:var(--txt-2);stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round}
+.f-torse{stroke:var(--amb-2);stroke-width:5.4;stroke-linecap:round}
+.f-cou{stroke:var(--amb-2);stroke-width:3.4;stroke-linecap:round}
+.f-b1,.f-j1{fill:none;stroke:var(--amb-2);stroke-width:4.2;stroke-linecap:round;stroke-linejoin:round}
+.f-tete{fill:var(--amb-1)}
+.fig-boite{
+  border-radius:12px;padding:9px 4px;overflow:hidden;position:relative;
+  background:radial-gradient(78% 96% at 50% 34%, var(--nuit-3), var(--nuit-0) 76%);
+  border:1px solid var(--bord);
+}
+.fig-boite.mini{padding:3px 0;border-radius:9px;width:74px;flex:none}
+.fig-boite .etiq{position:absolute;top:7px;left:9px;font-family:var(--mono);font-size:8.5px;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--txt-3)}
+.fg-green .f-torse,.fg-green .f-cou,.fg-green .f-b1,.fg-green .f-j1{stroke:var(--vrt-2)}
+.fg-green .f-tete{fill:var(--vrt-1)}
+.fg-blue .f-torse,.fg-blue .f-cou,.fg-blue .f-b1,.fg-blue .f-j1{stroke:var(--blu-2)}
+.fg-blue .f-tete{fill:var(--blu-1)}
+.fg-violet .f-torse,.fg-violet .f-cou,.fg-violet .f-b1,.fg-violet .f-j1{stroke:var(--vio-2)}
+.fg-violet .f-tete{fill:var(--vio-1)}
+.galerie{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.galerie .case{cursor:pointer}
+.galerie .nom{font-size:10px;line-height:1.25;font-weight:600;color:var(--txt-2);
+  margin-top:5px;text-align:center;min-height:25px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:focus-visible{outline:2px solid var(--amb-2);outline-offset:2px}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="marque">
+      <div class="eyebrow" id="hdr-sem">Semaine 1 · Bloc 1</div>
+      <div class="nom"><span class="pastille"></span>Charge</div>
+    </div>
+    <button class="btn-reglages" onclick="ouvrirReglages()" aria-label="Réglages">⚙</button>
+  </header>
+  <main id="vue"></main>
+</div>
+
+<nav id="nav"></nav>
+
+<div id="feuille"><div class="voile" onclick="fermerFeuille()"></div><div class="panneau" id="panneau"></div></div>
+
+<div id="minuteur">
+  <div class="eyebrow" id="min-titre">Repos</div>
+  <div class="cadran" id="cadran"><div class="cadran-txt"><div class="t" id="min-t">02:00</div><div class="l" id="min-l">restant</div></div></div>
+  <div class="btn-rangee">
+    <button class="btn fant" onclick="minAjouter(-15)">−15 s</button>
+    <button class="btn fant" onclick="minAjouter(30)">+30 s</button>
+    <button class="btn plein" onclick="minStop()">Terminer</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   BASE ALIMENTS — valeurs pour 100 g, prix indicatif €/kg
+   r = rayon, k = kcal, p = protéines, g = glucides, l = lipides
+   ============================================================ */
+const ALIMENTS = {
+  /* --- Épicerie sèche --- */
+  avoine:      {n:"Flocons d'avoine",       r:"Épicerie", k:380, p:13,  g:60, l:7,   prix:2.00},
+  riz:         {n:"Riz",                    r:"Épicerie", k:355, p:7,   g:78, l:1,   prix:1.70},
+  pates:       {n:"Pâtes",                  r:"Épicerie", k:360, p:12,  g:71, l:1.5, prix:1.50},
+  semoule:     {n:"Semoule",                r:"Épicerie", k:350, p:12,  g:73, l:1,   prix:1.80},
+  farine:      {n:"Farine",                 r:"Épicerie", k:340, p:10,  g:71, l:1,   prix:1.00},
+  pain:        {n:"Pain complet",           r:"Épicerie", k:250, p:9,   g:45, l:3,   prix:2.50},
+  lentilles:   {n:"Lentilles sèches",       r:"Épicerie", k:340, p:24,  g:50, l:1.5, prix:2.80},
+  poisChiches: {n:"Pois chiches secs",      r:"Épicerie", k:360, p:19,  g:55, l:6,   prix:2.60},
+  hOlive:      {n:"Huile d'olive",          r:"Épicerie", k:900, p:0,   g:0,  l:100, prix:7.00},
+  hColza:      {n:"Huile de colza",         r:"Épicerie", k:900, p:0,   g:0,  l:100, prix:3.50},
+  bCacahuete:  {n:"Beurre de cacahuète",    r:"Épicerie", k:600, p:25,  g:20, l:50,  prix:6.00},
+  amandes:     {n:"Amandes",                r:"Épicerie", k:600, p:21,  g:8,  l:52,  prix:12.00},
+  cacahuetes:  {n:"Cacahuètes",             r:"Épicerie", k:570, p:25,  g:10, l:48,  prix:6.00},
+  cajou:       {n:"Noix de cajou",          r:"Épicerie", k:580, p:18,  g:27, l:44,  prix:14.00},
+  dattes:      {n:"Dattes",                 r:"Épicerie", k:280, p:2,   g:65, l:0.4, prix:6.00},
+  abricotsSecs:{n:"Abricots secs",          r:"Épicerie", k:240, p:3,   g:55, l:0.5, prix:7.00},
+  raisinsSecs: {n:"Raisins secs",           r:"Épicerie", k:300, p:3,   g:70, l:0.5, prix:4.00},
+  miel:        {n:"Miel",                   r:"Épicerie", k:320, p:0.3, g:80, l:0,   prix:8.00},
+  cacao:       {n:"Cacao en poudre non sucré", r:"Épicerie", k:350, p:20, g:15, l:12, prix:12.00},
+  chocoNoir:   {n:"Chocolat noir 70 %",     r:"Épicerie", k:550, p:8,   g:33, l:40,  prix:10.00},
+  sauceTomate: {n:"Sauce tomate",           r:"Épicerie", k:40,  p:1.5, g:6,  l:1,   prix:2.00},
+  cannelle:    {n:"Cannelle",               r:"Épicerie", k:250, p:4,   g:55, l:1,   prix:30.00},
+
+  /* --- Frais / crèmerie --- */
+  laitEntier:  {n:"Lait entier",            r:"Frais", k:65,  p:3.3, g:4.7, l:3.6, prix:1.15},
+  oeuf:        {n:"Œufs (1 œuf ≈ 55 g)",    r:"Frais", k:143, p:13,  g:1,   l:10,  prix:5.00},
+  frBlanc:     {n:"Fromage blanc 3 %",      r:"Frais", k:75,  p:8,   g:4,   l:3,   prix:2.50},
+  skyr:        {n:"Skyr / fromage blanc 0 %", r:"Frais", k:63, p:11, g:4,   l:0.2, prix:4.50},
+  yaourt:      {n:"Yaourt nature",          r:"Frais", k:60,  p:4,   g:5,   l:3,   prix:1.80},
+  emmental:    {n:"Emmental râpé",          r:"Frais", k:380, p:28,  g:0,   l:30,  prix:9.00},
+  beurre:      {n:"Beurre",                 r:"Frais", k:750, p:0.7, g:0.7, l:82,  prix:9.00},
+  cremeFraiche:{n:"Crème fraîche",          r:"Frais", k:300, p:2.5, g:3,   l:30,  prix:4.00},
+
+  /* --- Boucherie --- */
+  poulet:      {n:"Filet de poulet",        r:"Boucherie", k:165, p:31, g:0, l:3.6, prix:8.50},
+  cuissePoulet:{n:"Cuisse de poulet",       r:"Boucherie", k:180, p:25, g:0, l:9,   prix:5.00},
+  dinde:       {n:"Escalope de dinde",      r:"Boucherie", k:135, p:29, g:0, l:1.5, prix:10.00},
+  steakHache:  {n:"Steak haché 5 %",        r:"Boucherie", k:130, p:21, g:0, l:5,   prix:9.00},
+  jambon:      {n:"Jambon blanc",           r:"Boucherie", k:110, p:19, g:1, l:3,   prix:11.00},
+
+  /* --- Poissonnerie / conserves --- */
+  thon:        {n:"Thon en boîte (égoutté)",r:"Conserves", k:116, p:26, g:0, l:1,  prix:8.00},
+  sardines:    {n:"Sardines en boîte",      r:"Conserves", k:217, p:25, g:0, l:13, prix:8.00},
+  maquereau:   {n:"Maquereau en boîte",     r:"Conserves", k:205, p:24, g:0, l:12, prix:7.00},
+  saumon:      {n:"Saumon",                 r:"Conserves", k:200, p:20, g:0, l:13, prix:18.00},
+
+  /* --- Fruits & légumes --- */
+  pdt:         {n:"Pommes de terre",        r:"Fruits & légumes", k:80, p:2,   g:17, l:0.1, prix:1.20},
+  patateDouce: {n:"Patate douce",           r:"Fruits & légumes", k:86, p:1.6, g:20, l:0.1, prix:2.50},
+  banane:      {n:"Bananes",                r:"Fruits & légumes", k:90, p:1.1, g:21, l:0.3, prix:1.80},
+  pomme:       {n:"Pommes",                 r:"Fruits & légumes", k:52, p:0.3, g:14, l:0.2, prix:2.20},
+  oignon:      {n:"Oignons",                r:"Fruits & légumes", k:40, p:1.1, g:8,  l:0.1, prix:1.50},
+  ail:         {n:"Ail",                    r:"Fruits & légumes", k:150,p:6,   g:30, l:0.5, prix:8.00},
+  tomate:      {n:"Tomates",                r:"Fruits & légumes", k:18, p:0.9, g:3.5,l:0.2, prix:2.50},
+  courgette:   {n:"Courgettes",             r:"Fruits & légumes", k:17, p:1.2, g:3,  l:0.3, prix:2.00},
+  carotte:     {n:"Carottes",               r:"Fruits & légumes", k:40, p:0.9, g:8,  l:0.2, prix:1.30},
+  poivron:     {n:"Poivrons",               r:"Fruits & légumes", k:26, p:1,   g:5,  l:0.3, prix:3.50},
+  citron:      {n:"Citron",                 r:"Fruits & légumes", k:29, p:1.1, g:9,  l:0.3, prix:3.00},
+
+  /* --- Surgelés --- */
+  legumesSurg: {n:"Légumes surgelés (mélange)", r:"Surgelés", k:35, p:2,  g:5, l:0.3, prix:1.60},
+  brocoli:     {n:"Brocoli surgelé",        r:"Surgelés", k:34, p:2.8, g:4, l:0.4, prix:2.50},
+  epinards:    {n:"Épinards surgelés",      r:"Surgelés", k:25, p:3,   g:1, l:0.4, prix:1.80},
+  haricotsV:   {n:"Haricots verts surgelés",r:"Surgelés", k:31, p:1.8, g:3, l:0.2, prix:2.00},
+
+  /* --- Compléments --- */
+  whey:        {n:"Whey (protéine en poudre)", r:"Compléments", k:400, p:80, g:8,  l:6, prix:22.00},
+  laitPoudre:  {n:"Lait écrémé en poudre",  r:"Compléments", k:360, p:35, g:52, l:1, prix:9.00},
+  creatine:    {n:"Créatine monohydrate",   r:"Compléments", k:0,   p:0,  g:0,  l:0, prix:30.00}
+};
+
+/* Aliments écartés par goût — l'app ne les proposera jamais */
+const EXCLUS = ["endive", "céleri", "celeri"];
+/* ============================================================
+   RECETTES — les macros et le coût sont CALCULÉS, jamais écrits
+   m = moment · t = minutes · mix = besoin d'un mixeur
+   ing = [idAliment, grammes]
+   ============================================================ */
+const RECETTES = [
+
+/* ---------------- MATIN ---------------- */
+{id:"porridge", n:"Porridge du plan", m:"matin", t:8, mix:false,
+ ing:[["avoine",100],["laitEntier",300],["banane",120],["bCacahuete",15]],
+ et:["Verse l'avoine et le lait dans une casserole, feu moyen.",
+     "Remue 4 à 5 min jusqu'à épaississement.",
+     "Hors du feu, ajoute le beurre de cacahuète et mélange.",
+     "Coupe la banane dessus."],
+ as:"Version froide la veille au soir : même chose dans un bocal, au frigo. Tu le manges direct au réveil, aucune excuse."},
+
+{id:"porridgeChoco", n:"Porridge cacao-dattes", m:"matin", t:8, mix:false,
+ ing:[["avoine",90],["laitEntier",300],["cacao",10],["dattes",40],["amandes",15]],
+ et:["Chauffe le lait avec le cacao en fouettant pour éviter les grumeaux.",
+     "Ajoute l'avoine, cuis 4 min.",
+     "Coupe les dattes en morceaux, ajoute-les avec les amandes concassées."],
+ as:"Les dattes remplacent le sucre et apportent 65 g de glucides aux 100 g. Excellent avant une tournée."},
+
+{id:"oeufsPain", n:"Œufs brouillés, pain, emmental", m:"matin", t:10, mix:false,
+ ing:[["oeuf",165],["pain",100],["emmental",25],["beurre",10],["banane",120]],
+ et:["Bats les 3 œufs à la fourchette avec une pincée de sel.",
+     "Beurre chaud à feu doux, verse les œufs, remue en continu.",
+     "Coupe le feu quand ils sont encore crémeux, ajoute l'emmental.",
+     "Sers sur le pain grillé, banane à côté."],
+ as:"Feu doux et retrait précoce : des œufs trop cuits deviennent caoutchouteux et passent mal quand on n'a pas faim."},
+
+{id:"bowlSkyr", n:"Bowl skyr, avoine, fruits secs", m:"matin", t:3, mix:false,
+ ing:[["skyr",250],["avoine",50],["abricotsSecs",30],["amandes",20],["miel",15]],
+ et:["Verse le skyr dans un bol.",
+     "Ajoute l'avoine crue, les abricots coupés, les amandes.",
+     "Filet de miel, mélange."],
+ as:"Le petit-déj le plus rapide de la liste. Pour les matins où tu es en retard — mieux que rien, toujours."},
+
+{id:"pancakes", n:"Pancakes avoine-banane", m:"matin", t:15, mix:true,
+ ing:[["avoine",80],["oeuf",110],["banane",120],["whey",20],["laitEntier",100],["hColza",5]],
+ et:["Mixe tous les ingrédients sauf l'huile jusqu'à obtenir une pâte lisse.",
+     "Laisse reposer 5 min, la pâte épaissit.",
+     "Poêle huilée à feu moyen, une louche par pancake.",
+     "Retourne quand des bulles apparaissent en surface."],
+ as:"Fais la pâte pour 2 jours d'un coup. Elle se garde 48 h au frigo."},
+
+/* ---------------- MIDI ---------------- */
+{id:"rizPoulet", n:"Riz, poulet, légumes", m:"midi", t:25, mix:false,
+ ing:[["riz",130],["poulet",110],["hOlive",15],["legumesSurg",150]],
+ et:["Riz à l'eau bouillante salée, 11 min.",
+     "Poulet coupé en lanières, poêle bien chaude, 6 à 8 min.",
+     "Ajoute les légumes surgelés directement dans la poêle, 5 min.",
+     "Réunis le tout, huile d'olive à cru par-dessus."],
+ as:"LE repas de base du plan. Multiplie par 5 le dimanche et tu as tes déjeuners de la semaine."},
+
+{id:"bolo", n:"Pâtes bolognaise", m:"midi", t:25, mix:false,
+ ing:[["pates",120],["steakHache",130],["sauceTomate",150],["oignon",50],["hOlive",10],["emmental",20]],
+ et:["Fais revenir l'oignon émincé dans l'huile 3 min.",
+     "Ajoute la viande, écrase-la à la cuillère, 6 min.",
+     "Verse la sauce tomate, laisse mijoter 10 min à couvert.",
+     "Pâtes al dente, mélange, emmental par-dessus."],
+ as:"La sauce se congèle très bien en portions. Prépare-en 5 d'un coup."},
+
+{id:"rizCantonais", n:"Riz cantonais protéiné", m:"midi", t:20, mix:false,
+ ing:[["riz",120],["oeuf",110],["jambon",80],["legumesSurg",120],["hColza",10]],
+ et:["Utilise du riz déjà cuit de la veille (il ne colle pas).",
+     "Œufs brouillés dans la poêle, réserve.",
+     "Fais sauter légumes et jambon 5 min, ajoute le riz.",
+     "Remets les œufs, mélange 2 min à feu vif."],
+ as:"Fait exprès pour recycler un reste de riz. Zéro gaspillage."},
+
+{id:"curryLentilles", n:"Curry de lentilles au riz", m:"midi", t:35, mix:false,
+ ing:[["lentilles",90],["riz",90],["oignon",60],["carotte",80],["hOlive",15],["oeuf",110]],
+ et:["Fais revenir oignon et carotte en dés 5 min dans l'huile.",
+     "Ajoute les lentilles rincées et 3 fois leur volume d'eau, curry, sel.",
+     "Laisse mijoter 25 min à couvert.",
+     "Riz à côté, œufs durs coupés en deux par-dessus."],
+ as:"Le repas le moins cher de la liste : environ 1,20 € l'assiette pour près de 1 000 kcal."},
+
+{id:"pdtDinde", n:"Pommes de terre, dinde, brocoli", m:"midi", t:30, mix:false,
+ ing:[["pdt",450],["dinde",130],["hOlive",15],["brocoli",150]],
+ et:["Pommes de terre en cubes, four 200 °C, 25 min (ou poêle 15 min à couvert).",
+     "Dinde en escalope, poêle chaude, 3 min par face.",
+     "Brocoli 6 min à la vapeur ou à l'eau.",
+     "Huile d'olive à cru sur l'ensemble."],
+ as:"Le repas le plus protéiné du plan pour son volume. Utile les jours où tu es en retard sur les protéines."},
+
+{id:"saladePoisChiches", n:"Salade pois chiches-thon", m:"midi", t:12, mix:false,
+ ing:[["poisChiches",90],["thon",100],["hOlive",15],["tomate",150],["oignon",40],["pain",60]],
+ et:["Utilise des pois chiches déjà cuits (trempés la veille, ou en conserve).",
+     "Mélange avec le thon égoutté, les tomates en dés, l'oignon émincé fin.",
+     "Huile d'olive, sel, poivre, un peu de citron.",
+     "Pain à côté."],
+ as:"Se transporte parfaitement dans une boîte. Le repas à emporter pendant les tournées."},
+
+/* ---------------- SOIR ---------------- */
+{id:"pdtSardines", n:"Pommes de terre, sardines", m:"soir", t:25, mix:false,
+ ing:[["pdt",300],["sardines",100],["hOlive",15]],
+ et:["Pommes de terre en cubes à l'eau bouillante 15 min, ou au four 25 min.",
+     "Égoutte les sardines, écrase-les grossièrement à la fourchette.",
+     "Mélange le tout, huile d'olive, poivre."],
+ as:"Le dîner de référence du plan. Sardines = oméga-3, calcium des arêtes, et 25 g de protéines pour 1 € la boîte."},
+
+{id:"omelettePdt", n:"Omelette et pommes de terre sautées", m:"soir", t:20, mix:false,
+ ing:[["oeuf",165],["pdt",350],["hOlive",15],["oignon",50],["emmental",20]],
+ et:["Pommes de terre en fines rondelles, poêle à couvert 12 min.",
+     "Ajoute l'oignon, découvre, laisse dorer 4 min.",
+     "Verse les œufs battus par-dessus, emmental.",
+     "Couvre 3 min à feu doux jusqu'à prise."],
+ as:"Un des repas les moins chers qui existe. Environ 1,50 € pour 750 kcal."},
+
+{id:"semoulePoulet", n:"Semoule, cuisse de poulet, légumes", m:"soir", t:25, mix:false,
+ ing:[["semoule",100],["cuissePoulet",150],["legumesSurg",200],["hOlive",10]],
+ et:["Cuisse de poulet au four 200 °C, 30 min, ou poêle à couvert 20 min.",
+     "Semoule : volume égal d'eau bouillante, couvre, 5 min, égrène à la fourchette.",
+     "Légumes sautés 6 min.",
+     "Assemble, huile à cru."],
+ as:"La cuisse coûte 40 % moins cher que le filet et contient plus de lipides — donc plus de calories. Parfait pour toi."},
+
+{id:"patesThon", n:"Pâtes au thon", m:"soir", t:15, mix:false,
+ ing:[["pates",110],["thon",120],["hOlive",15],["sauceTomate",100],["ail",5]],
+ et:["Pâtes à l'eau bouillante salée.",
+     "Ail écrasé dans l'huile chaude 30 s, ajoute la sauce tomate.",
+     "Ajoute le thon égoutté, chauffe 2 min sans faire bouillir.",
+     "Mélange avec les pâtes égouttées."],
+ as:"15 minutes montre en main, ingrédients tous en placard. Le repas des soirs où tu rentres tard de tournée."},
+
+{id:"patateMaquereau", n:"Patate douce, maquereau, épinards", m:"soir", t:30, mix:false,
+ ing:[["patateDouce",350],["maquereau",100],["epinards",150],["hOlive",10]],
+ et:["Patate douce en cubes, four 200 °C, 25 min.",
+     "Épinards surgelés à la poêle avec l'huile, 6 min.",
+     "Maquereau égoutté, ajouté hors du feu."],
+ as:"Le maquereau est le poisson gras le moins cher du rayon. Deux fois par semaine minimum."},
+
+{id:"rizOeufs", n:"Riz, œufs, emmental (urgence)", m:"soir", t:15, mix:false,
+ ing:[["riz",120],["oeuf",165],["emmental",30],["hColza",10]],
+ et:["Riz à l'eau, 11 min.",
+     "Œufs brouillés à part.",
+     "Mélange riz + œufs + emmental + huile, sel, poivre."],
+ as:"Le repas de secours absolu. 3 ingrédients de placard, 866 kcal. À faire plutôt que de sauter le dîner. Toujours."},
+
+{id:"patesCarbo", n:"Pâtes crème-jambon", m:"soir", t:15, mix:false,
+ ing:[["pates",120],["jambon",100],["cremeFraiche",60],["emmental",25],["oeuf",55]],
+ et:["Pâtes al dente.",
+     "Jambon en lanières dans la poêle 2 min.",
+     "Hors du feu, crème + œuf battu + emmental, mélange vite avec les pâtes chaudes.",
+     "La chaleur des pâtes cuit l'œuf, pas la poêle."],
+ as:"Presque 900 kcal dans une assiette normale. Le repas à ressortir quand la balance stagne."},
+
+/* ---------------- SHAKES ---------------- */
+{id:"shakePlan", n:"Shake du plan", m:"shake", t:3, mix:true,
+ ing:[["avoine",70],["whey",25],["laitEntier",200],["banane",120],["bCacahuete",10]],
+ et:["Mixe l'avoine seule 15 s pour la réduire en poudre.",
+     "Ajoute lait, banane, whey, beurre de cacahuète.",
+     "Mixe 30 s. Bois dans les 10 minutes."],
+ as:"C'est le repas central de ton plan. Il passe en 3 minutes là où l'équivalent solide t'occuperait 2 heures."},
+
+{id:"shakeChoco", n:"Shake chocolat-cacahuète", m:"shake", t:3, mix:true,
+ ing:[["laitEntier",300],["whey",30],["bCacahuete",25],["cacao",8],["banane",120],["avoine",40]],
+ et:["Tout dans le blender.",
+     "Mixe 30 s.",
+     "Ajoute de l'eau si c'est trop épais."],
+ as:"753 kcal qui ont le goût d'un milkshake. C'est le levier n°1 quand tu n'as pas faim."},
+
+{id:"shakeSansMixeur", n:"Shake au shaker (sans mixeur)", m:"shake", t:2, mix:false,
+ ing:[["laitEntier",350],["whey",30],["bCacahuete",20],["miel",20]],
+ et:["Verse le lait dans le shaker en premier, la poudre ensuite (sinon ça colle au fond).",
+     "Fais fondre le beurre de cacahuète 15 s au micro-ondes pour qu'il se dilue.",
+     "Secoue 20 s."],
+ as:"Aucun mixeur nécessaire. À faire tant que tu n'as pas acheté de blender."},
+
+{id:"shakeUrgence", n:"Poudre à emporter (tournée)", m:"shake", t:1, mix:false,
+ ing:[["laitPoudre",60],["avoine",50],["bCacahuete",15]],
+ et:["À la maison : mets la poudre de lait et l'avoine dans un sachet ou un shaker vide.",
+     "Glisse le shaker dans le sac de livraison.",
+     "Sur place : ajoute 400 ml d'eau froide, secoue 20 s.",
+     "Le beurre de cacahuète se rajoute à la maison, ou se remplace par une poignée de cacahuètes à croquer."],
+ as:"Le lait en poudre coûte 9 €/kg pour 35 g de protéines aux 100 g. C'est ta whey du pauvre, et elle se transporte sans frigo."},
+
+{id:"shakeSoir", n:"Shake du soir", m:"shake", t:2, mix:false,
+ ing:[["skyr",250],["laitEntier",150],["amandes",20],["miel",15],["cannelle",2]],
+ et:["Mélange le skyr et le lait à la cuillère jusqu'à obtenir une texture buvable.",
+     "Miel, cannelle.",
+     "Amandes à croquer à côté."],
+ as:"Protéines à digestion lente avant le coucher : un flux d'acides aminés pendant les 7 heures de sommeil."},
+
+/* ---------------- COLLATIONS ---------------- */
+{id:"mixOleagineux", n:"Mix oléagineux et fruits secs", m:"collation", t:1, mix:false,
+ ing:[["amandes",25],["cajou",20],["raisinsSecs",30]],
+ et:["Prépare 7 sachets d'un coup le dimanche.",
+     "Un dans le sac de livraison, un dans la veste, un au boulot."],
+ as:"356 kcal dans une poche. La collation la plus dense en calories par gramme transporté."},
+
+{id:"tartinesBC", n:"Tartines beurre de cacahuète-banane", m:"collation", t:3, mix:false,
+ ing:[["pain",80],["bCacahuete",30],["banane",100],["miel",10]],
+ et:["Grille le pain.",
+     "Étale le beurre de cacahuète pendant que c'est chaud, il s'étale mieux.",
+     "Rondelles de banane, filet de miel."],
+ as:"À manger 45 min avant une tournée : glucides rapides et lents ensemble."},
+
+{id:"skyrMiel", n:"Skyr, miel, amandes", m:"collation", t:1, mix:false,
+ ing:[["skyr",250],["miel",20],["amandes",20]],
+ et:["Mélange le miel dans le skyr.",
+     "Amandes par-dessus."],
+ as:"32 g de protéines pour 342 kcal. La collation à privilégier quand tu as déjà atteint tes calories mais pas tes protéines."},
+
+{id:"sandwichVelo", n:"Sandwich de tournée", m:"collation", t:5, mix:false,
+ ing:[["pain",120],["jambon",60],["emmental",30],["beurre",10]],
+ et:["Beurre les deux faces — c'est 75 kcal gratuites.",
+     "Jambon, emmental.",
+     "Emballe dans du papier alu, ça tient toute la soirée dans le sac."],
+ as:"Prépare-le AVANT de partir. Une fois sur le vélo, tu ne t'arrêteras pas pour manger, et 555 kcal partiront à la poubelle."}
+];
+/* ============================================================
+   EXERCICES
+   pat = patron de mouvement · niv = 1 débutant → 3 avancé
+   exec = exécution · err = erreurs fréquentes · uni = unilatéral
+   ============================================================ */
+const PATRONS = {
+  pouH:   {n:"Poussée horizontale", c:"amber"},
+  pouV:   {n:"Poussée verticale",   c:"amber"},
+  tirH:   {n:"Tirage horizontal",   c:"blue"},
+  tirV:   {n:"Tirage vertical",     c:"blue"},
+  genou:  {n:"Dominante genou",     c:"green"},
+  hanche: {n:"Dominante hanche",    c:"green"},
+  mollet: {n:"Mollets",             c:"green"},
+  gainage:{n:"Gainage",             c:"violet"},
+  bras:   {n:"Bras et épaules",     c:"violet"}
+};
+
+const EXOS = {
+
+/* ============ POUSSÉE HORIZONTALE ============ */
+pompesInclinees: {n:"Pompes inclinées", pat:"pouH", niv:1, repos:120, tempo:"3-1-X",
+ mus:["Pectoraux","Triceps","Épaules avant"], mat:["Table ou plan de travail"],
+ exec:["Mains sur le bord d'une table, écartées un peu plus large que les épaules.",
+       "Recule les pieds jusqu'à former une ligne droite des talons à la tête.",
+       "Serre les fessiers et les abdos : le corps est une planche rigide.",
+       "Descends en 3 secondes jusqu'à ce que la poitrine frôle la table.",
+       "Marque 1 seconde en bas, puis remonte en poussant fort."],
+ err:["Les hanches qui s'affaissent — ton bas du dos encaisse. Serre les fessiers.",
+      "Les coudes qui partent à 90° sur les côtés — mets-les à 45° du buste.",
+      "Descente partielle — l'amplitude complète est ce qui fait grossir le muscle."],
+ prog:"pompesSol"},
+
+pompesSol: {n:"Pompes au sol", pat:"pouH", niv:1, repos:120, tempo:"3-1-X",
+ mus:["Pectoraux","Triceps","Épaules avant"], mat:[],
+ exec:["Mains au sol légèrement plus larges que les épaules, doigts vers l'avant.",
+       "Corps en ligne droite, regard 30 cm devant les mains.",
+       "Descends en 3 secondes, poitrine à 2 cm du sol.",
+       "1 seconde de pause en bas — sans relâcher la tension.",
+       "Remonte de façon explosive, sans verrouiller les coudes en haut."],
+ err:["La tête qui plonge en avant avant la poitrine.",
+      "Le rebond en bas — il vole la moitié du travail.",
+      "Les omoplates figées : laisse-les glisser naturellement."],
+ reg:"pompesInclinees", prog:"pompesDeclinees"},
+
+pompesDeclinees: {n:"Pompes déclinées", pat:"pouH", niv:2, repos:150, tempo:"3-1-X",
+ mus:["Pectoraux haut","Épaules avant","Triceps"], mat:["Chaise ou lit"],
+ exec:["Pieds surélevés sur une chaise (30-45 cm), mains au sol.",
+       "Plus les pieds sont hauts, plus la charge sur les épaules augmente.",
+       "Même exécution que les pompes classiques, gainage encore plus strict.",
+       "Descends en 3 s, pause 1 s, remonte fort."],
+ err:["Cambrer le bas du dos parce que la position est plus dure.",
+      "Monter les pieds trop haut trop vite — progresse de 10 cm à la fois."],
+ reg:"pompesSol", prog:"pompesArcher"},
+
+pompesDiamant: {n:"Pompes diamant", pat:"pouH", niv:2, repos:120, tempo:"3-1-X",
+ mus:["Triceps","Pectoraux interne"], mat:[],
+ exec:["Mains jointes sous la poitrine, pouces et index formant un triangle.",
+       "Coudes serrés le long du corps pendant toute la descente.",
+       "Descends jusqu'à toucher les mains avec la poitrine.",
+       "Remonte en poussant par les triceps."],
+ err:["Écarter les coudes — ça transfère le travail sur les pectoraux et vide l'exercice de son intérêt.",
+      "Placer les mains trop haut, au niveau du visage."],
+ reg:"pompesSol"},
+
+pompesArcher: {n:"Pompes archer", pat:"pouH", niv:3, repos:150, tempo:"3-1-X", uni:true,
+ mus:["Pectoraux","Triceps","Gainage"], mat:[],
+ exec:["Mains très écartées, bien plus larges que les épaules.",
+       "Descends en pliant un seul bras, l'autre reste tendu et glisse sur le côté.",
+       "Ta poitrine descend vers la main pliée.",
+       "Remonte, puis alterne le côté."],
+ err:["Tourner le buste au lieu de le garder face au sol.",
+      "Plier le bras tendu — il doit rester quasi verrouillé."],
+ reg:"pompesDeclinees"},
+
+pompesLestees: {n:"Pompes lestées (sac à dos)", pat:"pouH", niv:2, repos:150, tempo:"3-1-X", lest:true,
+ mus:["Pectoraux","Triceps","Épaules avant"], mat:["Sac à dos chargé"],
+ exec:["Charge le sac et sangle-le serré au niveau des épaules et de la taille.",
+       "Position de pompe classique — le sac repose au milieu du dos.",
+       "Même exécution, gainage renforcé pour compenser le poids.",
+       "Augmente de 2,5 kg dès que tu tiens le haut de ta fourchette de reps."],
+ err:["Un sac mal sanglé qui glisse vers la nuque en cours de série.",
+      "Passer de 0 à 15 kg d'un coup."],
+ reg:"pompesSol"},
+
+/* ============ POUSSÉE VERTICALE ============ */
+pikeIncline: {n:"Pike push-up incliné", pat:"pouV", niv:1, repos:120, tempo:"3-1-X",
+ mus:["Épaules","Triceps","Trapèzes"], mat:["Table"],
+ exec:["Mains sur une table, recule les pieds et lève les hanches : ton corps forme un V inversé.",
+       "Regard entre les mains, dos droit.",
+       "Plie les coudes pour amener le sommet du crâne vers la table.",
+       "Le trajet de la tête forme un triangle DEVANT les mains, pas entre elles.",
+       "Remonte en poussant par les épaules."],
+ err:["Descendre la tête entre les mains — ça écrase les cervicales.",
+      "Perdre la position en V et se transformer en pompe classique."],
+ prog:"pikeSol"},
+
+pikeSol: {n:"Pike push-up au sol", pat:"pouV", niv:2, repos:120, tempo:"3-1-X",
+ mus:["Épaules","Triceps","Trapèzes"], mat:[],
+ exec:["Position de pompe, puis marche avec les pieds vers les mains jusqu'à former un V serré.",
+       "Hanches le plus haut possible, jambes tendues si ta souplesse le permet.",
+       "Descends le sommet du crâne vers un point situé devant les mains.",
+       "Effleure le sol, pause 1 s, remonte."],
+ err:["Un V trop ouvert : l'exercice redevient une pompe.",
+      "Poser le front au sol — c'est le sommet du crâne qui va devant."],
+ reg:"pikeIncline", prog:"pikePiedsSureleves"},
+
+pikePiedsSureleves: {n:"Pike push-up pieds surélevés", pat:"pouV", niv:2, repos:150, tempo:"3-1-X",
+ mus:["Épaules","Triceps"], mat:["Chaise"],
+ exec:["Pieds sur une chaise, mains au sol, hanches à la verticale au-dessus des épaules.",
+       "Le corps forme presque une ligne verticale — tu portes une grande partie de ton poids.",
+       "Descends lentement, sommet du crâne devant les mains.",
+       "Remonte à la verticale."],
+ err:["Laisser les hanches partir en arrière pour tricher.",
+      "Bloquer sa respiration : inspire en descendant, souffle en poussant."],
+ reg:"pikeSol", prog:"hspuMur"},
+
+hspuMur: {n:"Handstand push-up assisté au mur", pat:"pouV", niv:3, repos:180, tempo:"3-1-X",
+ mus:["Épaules","Triceps","Gainage"], mat:["Mur","Tapis"],
+ exec:["Mains à 20 cm du mur, monte en appui tendu renversé, talons contre le mur.",
+       "Gaine fort : abdos et fessiers serrés, pas de cambrure.",
+       "Descends la tête vers le sol en 3 s, effleure un coussin.",
+       "Remonte en poussant. Si tu ne remontes pas, redescends en roulade contrôlée."],
+ err:["Se lancer sans avoir tenu 30 s en appui statique au préalable.",
+      "Cambrer le bas du dos — la ligne doit être droite du poignet au talon."],
+ reg:"pikePiedsSureleves"},
+
+/* ============ TIRAGE HORIZONTAL ============ */
+rowingServiette: {n:"Rowing à la serviette (porte)", pat:"tirH", niv:1, repos:90, tempo:"2-1-X",
+ mus:["Dos","Biceps","Arrière d'épaule"], mat:["Serviette","Porte solide"],
+ exec:["Passe une serviette autour d'une poignée de porte fermée, saisis les deux extrémités.",
+       "Recule les pieds, jambes tendues, bras tendus, buste incliné en arrière.",
+       "Tire ton buste vers la porte en amenant les coudes vers l'arrière.",
+       "Serre les omoplates 1 s en fin de tirage.",
+       "Redescends en 2 s, contrôlé."],
+ err:["Tirer avec les bras seulement — pense à ramener les COUDES vers les hanches.",
+      "Utiliser une porte qui s'ouvre vers toi. Vérifie toujours."],
+ prog:"rowingTable"},
+
+rowingTable: {n:"Rowing inversé sous table", pat:"tirH", niv:1, repos:120, tempo:"3-1-X",
+ mus:["Dos","Biceps","Arrière d'épaule"], mat:["Table solide"],
+ exec:["Allonge-toi sous une table stable, saisis le bord à largeur d'épaules.",
+       "Genoux fléchis, pieds au sol pour commencer (version facile).",
+       "Corps en ligne droite des genoux à la tête.",
+       "Tire la poitrine vers le bord de la table, coudes vers l'arrière.",
+       "Omoplates serrées et abaissées en haut, 1 s de pause."],
+ err:["Tirer le ventre au lieu de la poitrine.",
+      "Laisser les hanches tomber en cours de série.",
+      "Table légère qui bascule — teste toujours avant de charger."],
+ prog:"rowingTablePieds"},
+
+rowingTablePieds: {n:"Rowing inversé pieds surélevés", pat:"tirH", niv:2, repos:120, tempo:"3-1-X",
+ mus:["Dos","Biceps","Arrière d'épaule"], mat:["Table","Chaise"],
+ exec:["Même position, mais talons posés sur une chaise.",
+       "Le corps est horizontal : la charge relative augmente nettement.",
+       "Tire, serre les omoplates, redescends en 3 s."],
+ err:["Cambrer pour gagner de l'amplitude.",
+      "Prise trop serrée qui transfère tout sur les biceps."],
+ reg:"rowingTable", prog:"rowingUnBras"},
+
+rowingUnBras: {n:"Rowing inversé à un bras", pat:"tirH", niv:3, repos:150, tempo:"3-1-X", uni:true,
+ mus:["Dos","Biceps","Gainage anti-rotation"], mat:["Table"],
+ exec:["Sous la table, une seule main sur le bord, l'autre bras croisé sur la poitrine.",
+       "Pieds écartés pour la stabilité.",
+       "Tire sans laisser le buste tourner — c'est le vrai défi.",
+       "Fais toutes les reps d'un côté avant de changer."],
+ err:["Le buste qui pivote pour aider — garde les épaules parallèles au sol.",
+      "Aller trop vite : l'anti-rotation demande du contrôle."],
+ reg:"rowingTablePieds"},
+
+rowingSacUnBras: {n:"Rowing sac à dos à un bras", pat:"tirH", niv:2, repos:90, tempo:"3-1-X", uni:true, lest:true,
+ mus:["Dos","Biceps"], mat:["Sac à dos chargé","Chaise"],
+ exec:["Une main et un genou en appui sur une chaise, dos plat, parallèle au sol.",
+       "Sac à dos tenu par la sangle avec l'autre main, bras tendu.",
+       "Tire le sac vers ta hanche, coude qui frôle les côtes.",
+       "Pause 1 s en haut, descends en 3 s."],
+ err:["Tourner le buste pour arracher la charge.",
+      "Tirer vers l'épaule au lieu de la hanche."]},
+
+/* ============ TIRAGE VERTICAL ============ */
+tractionsNegatives: {n:"Tractions négatives", pat:"tirV", niv:1, repos:150, tempo:"5-0-X",
+ mus:["Dos","Biceps"], mat:["Barre de traction"],
+ exec:["Monte en position haute en t'aidant d'une chaise, menton au-dessus de la barre.",
+       "Retire les pieds et descends le plus lentement possible : vise 5 secondes.",
+       "Contrôle jusqu'à bras complètement tendus.",
+       "Remonte avec la chaise et recommence."],
+ err:["Se laisser tomber les 2 derniers tiers — c'est justement là que le travail compte.",
+      "Lâcher les omoplates d'un coup en fin de descente : risque pour l'épaule."],
+ prog:"tractionsAssistees"},
+
+tractionsAssistees: {n:"Tractions assistées (élastique ou pieds)", pat:"tirV", niv:1, repos:150, tempo:"3-1-X",
+ mus:["Dos","Biceps"], mat:["Barre de traction","Élastique ou chaise"],
+ exec:["Élastique passé sur la barre, un genou ou un pied dedans. Ou pointe de pied sur une chaise.",
+       "Prise pronation, mains à largeur d'épaules.",
+       "Commence par abaisser les épaules, puis tire les coudes vers le sol.",
+       "Menton au-dessus de la barre, pause, descends en 3 s bras tendus."],
+ err:["Démarrer épaules collées aux oreilles — abaisse-les d'abord.",
+      "Se balancer pour prendre de l'élan.",
+      "Amplitude partielle : bras complètement tendus en bas, toujours."],
+ reg:"tractionsNegatives", prog:"tractionsPronation"},
+
+tractionsPronation: {n:"Tractions pronation", pat:"tirV", niv:2, repos:180, tempo:"3-1-X",
+ mus:["Grand dorsal","Biceps","Trapèzes"], mat:["Barre de traction"],
+ exec:["Prise pronation (paumes vers l'avant), légèrement plus large que les épaules.",
+       "Bras tendus en position de départ, corps immobile.",
+       "Abaisse les épaules puis tire jusqu'à passer le menton au-dessus de la barre.",
+       "Descente contrôlée en 3 s."],
+ err:["Le kipping (balancement des jambes).",
+      "S'arrêter au niveau du nez — passe le menton ou la rep ne compte pas."],
+ reg:"tractionsAssistees", prog:"tractionsLestees"},
+
+tractionsSupination: {n:"Tractions supination", pat:"tirV", niv:2, repos:180, tempo:"3-1-X",
+ mus:["Biceps","Grand dorsal"], mat:["Barre de traction"],
+ exec:["Paumes tournées vers toi, mains à largeur d'épaules.",
+       "Position plus favorable aux biceps : tu en feras plus qu'en pronation.",
+       "Tire jusqu'à la barre au niveau de la poitrine haute.",
+       "Descente 3 s complète."],
+ err:["Cambrer excessivement le dos pour tricher.",
+      "Poignets pliés vers l'arrière — garde-les alignés avec l'avant-bras."],
+ reg:"tractionsAssistees"},
+
+tractionsLestees: {n:"Tractions lestées", pat:"tirV", niv:3, repos:180, tempo:"3-1-X", lest:true,
+ mus:["Grand dorsal","Biceps"], mat:["Barre de traction","Sac à dos chargé"],
+ exec:["Sac à dos porté normalement, bien sanglé.",
+       "Traction stricte, aucun balancement.",
+       "Le lest amplifie tout : la technique doit être irréprochable avant d'en arriver là.",
+       "+2,5 kg quand tu atteins 8 reps propres."],
+ err:["Ajouter du poids avant de maîtriser 10 tractions strictes à vide.",
+      "Sac trop bas qui tire sur les lombaires."],
+ reg:"tractionsPronation"},
+
+/* ============ DOMINANTE GENOU ============ */
+squatChaise: {n:"Squat sur chaise", pat:"genou", niv:1, repos:120, tempo:"3-1-X",
+ mus:["Quadriceps","Fessiers"], mat:["Chaise"],
+ exec:["Debout devant une chaise, pieds largeur de hanches, pointes légèrement ouvertes.",
+       "Descends en 3 s en poussant les hanches vers l'arrière.",
+       "Effleure l'assise sans t'asseoir vraiment — garde la tension.",
+       "Remonte en poussant dans les talons, fessiers serrés en haut."],
+ err:["Les genoux qui rentrent vers l'intérieur — pousse-les vers l'extérieur.",
+      "Les talons qui décollent — recule un peu les pieds ou écarte-les.",
+      "S'asseoir complètement et perdre la tension."],
+ prog:"squatLibre"},
+
+squatLibre: {n:"Squat au poids du corps", pat:"genou", niv:1, repos:120, tempo:"3-1-X",
+ mus:["Quadriceps","Fessiers"], mat:[],
+ exec:["Pieds largeur de hanches, bras tendus devant pour l'équilibre.",
+       "Descends en 3 s jusqu'à ce que les cuisses passent sous la parallèle.",
+       "Genoux dans l'axe des pieds, talons au sol, buste le plus vertical possible.",
+       "1 s en bas, remonte en poussant le sol."],
+ err:["S'arrêter au-dessus de la parallèle : la moitié du muscle ne travaille pas.",
+      "Le dos qui s'arrondit en bas.",
+      "Le regard au plafond — regarde droit devant."],
+ reg:"squatChaise", prog:"fenteArriere"},
+
+fenteArriere: {n:"Fente arrière", pat:"genou", niv:2, repos:120, tempo:"3-1-X", uni:true,
+ mus:["Quadriceps","Fessiers"], mat:[],
+ exec:["Debout, fais un grand pas en arrière.",
+       "Descends en 3 s jusqu'à ce que le genou arrière frôle le sol.",
+       "Le tibia avant reste vertical, le poids est sur le talon avant.",
+       "Pousse sur la jambe avant pour revenir debout.",
+       "Toutes les reps d'un côté, puis l'autre."],
+ err:["Un pas trop court qui met tout le stress sur le genou avant.",
+      "Le buste qui bascule en avant.",
+      "Cogner le genou arrière au sol."],
+ reg:"squatLibre", prog:"splitBulgare"},
+
+splitBulgare: {n:"Squat bulgare", pat:"genou", niv:2, repos:150, tempo:"3-1-X", uni:true,
+ mus:["Quadriceps","Fessiers"], mat:["Chaise"],
+ exec:["Pied arrière posé sur une chaise (cou-de-pied ou pointe), pied avant à un grand pas devant.",
+       "Descends verticalement en 3 s, genou arrière vers le sol.",
+       "Buste légèrement penché en avant pour cibler les fessiers, vertical pour les quadriceps.",
+       "Pousse dans le talon avant pour remonter."],
+ err:["Pied avant trop proche de la chaise — recule-le jusqu'à ce que le tibia reste vertical.",
+      "Perdre l'équilibre : pose un doigt sur un mur, ce n'est pas de la triche.",
+      "Chaise trop haute pour commencer — 40 cm suffisent."],
+ reg:"fenteArriere", prog:"pistolAssiste"},
+
+fenteMarchee: {n:"Fentes marchées", pat:"genou", niv:2, repos:120, tempo:"2-1-X", uni:true,
+ mus:["Quadriceps","Fessiers"], mat:[],
+ exec:["Grand pas en avant, descends jusqu'au genou arrière proche du sol.",
+       "Pousse dans le talon avant et enchaîne directement le pas suivant.",
+       "Garde le buste droit et le regard devant.",
+       "Compte les reps par jambe."],
+ err:["Des pas trop petits qui transforment ça en marche accélérée.",
+      "Se pencher en avant pour compenser la fatigue."],
+ reg:"fenteArriere"},
+
+stepUp: {n:"Step-up sur chaise", pat:"genou", niv:2, repos:120, tempo:"2-1-X", uni:true,
+ mus:["Quadriceps","Fessiers"], mat:["Chaise solide"],
+ exec:["Pied entier posé sur une chaise stable (40-45 cm).",
+       "Monte en poussant UNIQUEMENT avec la jambe du dessus.",
+       "Ne pousse pas avec le pied resté au sol — c'est l'erreur qui vide l'exercice.",
+       "Redescends en 3 s en contrôlant."],
+ err:["S'aider d'une impulsion de la jambe au sol.",
+      "Se laisser tomber à la descente."],
+ reg:"fenteArriere"},
+
+pistolAssiste: {n:"Pistol squat assisté", pat:"genou", niv:3, repos:150, tempo:"3-1-X", uni:true,
+ mus:["Quadriceps","Fessiers","Équilibre"], mat:["Porte ou chaise"],
+ exec:["Tiens un montant de porte d'une main, une jambe tendue devant.",
+       "Descends sur la jambe d'appui en t'aidant le moins possible de la main.",
+       "Descends jusqu'en bas, talon toujours au sol.",
+       "Remonte en poussant, la jambe libre reste tendue devant."],
+ err:["Tirer sur la porte à pleine force — l'aide doit diminuer semaine après semaine.",
+      "Talon qui décolle : travaille ta mobilité de cheville d'abord."],
+ reg:"splitBulgare"},
+
+squatLeste: {n:"Squat lesté (sac à dos)", pat:"genou", niv:2, repos:150, tempo:"3-1-X", lest:true,
+ mus:["Quadriceps","Fessiers"], mat:["Sac à dos chargé"],
+ exec:["Sac à dos porté normalement, sangles serrées.",
+       "Squat complet, cuisses sous la parallèle.",
+       "Le lest recule ton centre de gravité : garde le buste plus droit que d'habitude.",
+       "+2,5 kg à chaque fois que tu tiens 15 reps propres."],
+ err:["Sac qui glisse et déséquilibre en pleine série.",
+      "Réduire l'amplitude parce que c'est plus lourd."],
+ reg:"squatLibre"},
+
+/* ============ DOMINANTE HANCHE ============ */
+gluteBridge: {n:"Glute bridge", pat:"hanche", niv:1, repos:90, tempo:"2-2-X",
+ mus:["Fessiers","Ischio-jambiers"], mat:[],
+ exec:["Allongé sur le dos, genoux fléchis, pieds à plat proches des fessiers.",
+       "Bascule le bassin en rétroversion (colle le bas du dos au sol).",
+       "Monte les hanches en serrant fort les fessiers.",
+       "Tiens 2 s en haut, corps aligné genoux-hanches-épaules.",
+       "Redescends sans toucher le sol."],
+ err:["Monter avec le bas du dos au lieu des fessiers — d'où la rétroversion préalable.",
+      "Pieds trop loin : ce sont les ischios qui prennent tout.",
+      "Ne pas serrer en haut. La contraction volontaire est l'exercice."],
+ prog:"gluteBridgeUni"},
+
+gluteBridgeUni: {n:"Glute bridge unilatéral", pat:"hanche", niv:2, repos:90, tempo:"2-2-X", uni:true,
+ mus:["Fessiers","Ischio-jambiers"], mat:[],
+ exec:["Même position, une jambe tendue vers le plafond.",
+       "Monte en poussant uniquement dans le talon au sol.",
+       "Garde le bassin horizontal — il ne doit pas s'incliner.",
+       "2 s en haut, descente contrôlée."],
+ err:["Le bassin qui bascule du côté de la jambe levée.",
+      "Cambrer pour aller plus haut."],
+ reg:"gluteBridge", prog:"hipThrust"},
+
+hipThrust: {n:"Hip thrust épaules surélevées", pat:"hanche", niv:2, repos:120, tempo:"2-2-X",
+ mus:["Fessiers"], mat:["Canapé ou lit"],
+ exec:["Haut du dos appuyé contre le bord d'un canapé, pieds au sol devant.",
+       "Menton rentré vers la poitrine pendant tout le mouvement.",
+       "Monte les hanches jusqu'à l'alignement genoux-hanches-épaules.",
+       "Serre 2 s, descends en contrôlant."],
+ err:["Regarder le plafond en montant — le menton reste rentré.",
+      "Hyperextension lombaire en haut : arrête-toi à l'alignement.",
+      "Pieds trop près : les quadriceps prennent le relais."],
+ reg:"gluteBridgeUni", prog:"hipThrustUni"},
+
+hipThrustUni: {n:"Hip thrust unilatéral", pat:"hanche", niv:3, repos:120, tempo:"2-2-X", uni:true,
+ mus:["Fessiers"], mat:["Canapé"],
+ exec:["Position de hip thrust, une jambe levée genou à la poitrine.",
+       "Pousse dans le talon de la jambe au sol.",
+       "Bassin strictement horizontal.",
+       "2 s de contraction en haut."],
+ err:["Rotation du bassin.",
+      "Amplitude réduite par manque de force — repasse en bilatéral si besoin."],
+ reg:"hipThrust"},
+
+sdtRoumainUni: {n:"Soulevé de terre roumain sur une jambe", pat:"hanche", niv:2, repos:120, tempo:"3-1-X", uni:true,
+ mus:["Ischio-jambiers","Fessiers","Lombaires"], mat:["Sac à dos (optionnel)"],
+ exec:["Debout sur une jambe, genou très légèrement fléchi (pas verrouillé).",
+       "Penche le buste en avant en envoyant la jambe libre vers l'arrière.",
+       "Le dos reste PLAT — c'est la hanche qui bouge, pas la colonne.",
+       "Descends jusqu'à sentir un étirement fort à l'arrière de la cuisse.",
+       "Remonte en serrant le fessier."],
+ err:["Arrondir le dos — arrête la descente avant ce point.",
+      "Plier le genou d'appui : ce serait un squat, pas une charnière de hanche.",
+      "Ouvrir la hanche sur le côté."],
+ prog:"nordicAssiste"},
+
+nordicAssiste: {n:"Nordic curl assisté", pat:"hanche", niv:3, repos:150, tempo:"5-0-X",
+ mus:["Ischio-jambiers"], mat:["Canapé","Tapis"],
+ exec:["À genoux sur un tapis, talons bloqués sous un canapé.",
+       "Corps droit des genoux à la tête, mains devant prêtes à rattraper.",
+       "Descends le plus lentement possible en résistant, vise 5 s.",
+       "Rattrape-toi avec les mains, pousse pour revenir, recommence."],
+ err:["Casser la hanche en descendant — le corps reste une planche.",
+      "Descendre trop vite dès le début. Commence par 20° d'amplitude."],
+ reg:"sdtRoumainUni"},
+
+/* ============ MOLLETS ============ */
+molletsMarche: {n:"Mollets sur une marche", pat:"mollet", niv:1, repos:60, tempo:"3-2-X",
+ mus:["Mollets"], mat:["Marche ou livre épais"],
+ exec:["Pointes de pieds sur le bord d'une marche, talons dans le vide.",
+       "Descends les talons le plus bas possible, 3 s.",
+       "Monte sur la pointe le plus haut possible.",
+       "Tiens 2 s en haut — c'est là que le mollet travaille."],
+ err:["Rebondir en bas.",
+      "Amplitude courte : les mollets ne répondent qu'à l'amplitude complète et au volume."],
+ prog:"molletsUni"},
+
+molletsUni: {n:"Mollets à une jambe", pat:"mollet", niv:2, repos:60, tempo:"3-2-X", uni:true,
+ mus:["Mollets"], mat:["Marche"],
+ exec:["Une seule pointe de pied sur la marche, autre pied croisé derrière.",
+       "Main sur un mur pour l'équilibre uniquement.",
+       "Descente 3 s, montée complète, pause 2 s."],
+ err:["S'aider du bras pour remonter.",
+      "Négliger la phase basse d'étirement."],
+ reg:"molletsMarche"},
+
+/* ============ GAINAGE ============ */
+plancheGenoux: {n:"Planche sur les genoux", pat:"gainage", niv:1, repos:60, tempo:"iso",
+ mus:["Abdominaux","Gainage profond"], mat:["Tapis"],
+ exec:["Avant-bras au sol, coudes sous les épaules, genoux au sol.",
+       "Bascule le bassin en rétroversion : colle le bas du dos.",
+       "Serre les fessiers ET les abdominaux en même temps.",
+       "Respire normalement — ne bloque jamais ton souffle."],
+ err:["Les fesses trop hautes, ce qui rend l'exercice inutile.",
+      "Le dos creux : signe que les abdos ont lâché, arrête la série."],
+ prog:"planche"},
+
+planche: {n:"Planche sur avant-bras", pat:"gainage", niv:1, repos:60, tempo:"iso",
+ mus:["Abdominaux","Gainage profond","Épaules"], mat:["Tapis"],
+ exec:["Avant-bras au sol, coudes exactement sous les épaules, pieds écartés largeur de hanches.",
+       "Ligne droite talons-fessiers-épaules-tête.",
+       "Rétroversion du bassin, fessiers serrés, abdos contractés.",
+       "Regard vers le sol, nuque dans le prolongement du dos."],
+ err:["Tenir 3 minutes en position molle : mieux vaut 30 s parfaites.",
+      "Bloquer la respiration.",
+      "Épaules qui montent vers les oreilles."],
+ reg:"plancheGenoux", prog:"hollowHold"},
+
+plancheLaterale: {n:"Planche latérale", pat:"gainage", niv:2, repos:60, tempo:"iso", uni:true,
+ mus:["Obliques","Gainage latéral"], mat:["Tapis"],
+ exec:["Sur le côté, coude sous l'épaule, pieds superposés.",
+       "Monte les hanches jusqu'à former une ligne droite.",
+       "Bras libre le long du corps ou tendu vers le plafond.",
+       "Ne laisse pas le bassin s'affaisser."],
+ err:["Basculer vers l'avant ou l'arrière.",
+      "Hanche basse en fin de série — arrête plutôt que de tenir mal."],
+ reg:"planche"},
+
+hollowHold: {n:"Hollow hold", pat:"gainage", niv:2, repos:60, tempo:"iso",
+ mus:["Abdominaux","Fléchisseurs de hanche"], mat:["Tapis"],
+ exec:["Allongé sur le dos, bas du dos PLAQUÉ au sol en permanence.",
+       "Décolle les omoplates et les jambes tendues de quelques centimètres.",
+       "Bras tendus derrière la tête si tu peux tenir la position.",
+       "Dès que le bas du dos décolle, plie les genoux pour raccourcir le levier."],
+ err:["Le creux lombaire — c'est le critère d'arrêt de la série, sans exception.",
+      "Monter les jambes trop haut, ce qui rend l'exercice trop facile."],
+ reg:"planche"},
+
+deadBug: {n:"Dead bug", pat:"gainage", niv:1, repos:60, tempo:"2-0-2",
+ mus:["Abdominaux profonds","Coordination"], mat:["Tapis"],
+ exec:["Sur le dos, bras tendus vers le plafond, genoux à 90° au-dessus des hanches.",
+       "Bas du dos plaqué au sol pendant tout le mouvement.",
+       "Tends lentement le bras droit derrière la tête ET la jambe gauche vers le sol.",
+       "Reviens, puis alterne."],
+ err:["Le bas du dos qui décolle : réduis l'amplitude.",
+      "Aller vite — c'est un exercice de contrôle, pas de vitesse."],
+ prog:"hollowHold"},
+
+/* ============ BRAS ET ÉPAULES ============ */
+dipsChaises: {n:"Dips entre deux chaises", pat:"bras", niv:2, repos:120, tempo:"3-1-X",
+ mus:["Triceps","Pectoraux bas","Épaules"], mat:["2 chaises"],
+ exec:["Mains sur deux chaises stables et lestées, bras tendus.",
+       "Jambes tendues devant (facile) ou fléchies sous toi (plus dur).",
+       "Descends en 3 s jusqu'à ce que le bras forme un angle de 90°.",
+       "Ne descends PAS plus bas : l'épaule y est très vulnérable.",
+       "Remonte en poussant par les triceps."],
+ err:["Descendre trop bas — c'est la blessure d'épaule classique.",
+      "Chaises instables : teste-les à vide, lourdement.",
+      "Épaules qui montent aux oreilles."]},
+
+dipsBanc: {n:"Dips sur banc (triceps)", pat:"bras", niv:1, repos:90, tempo:"3-1-X",
+ mus:["Triceps"], mat:["Chaise"],
+ exec:["Dos à une chaise, mains sur le bord derrière toi, doigts vers l'avant.",
+       "Jambes tendues devant, talons au sol.",
+       "Descends en pliant les coudes vers l'arrière, 3 s.",
+       "Coudes serrés, ne les laisse pas s'écarter.",
+       "Remonte en poussant."],
+ err:["Éloigner les fessiers de la chaise — reste collé au bord.",
+      "Descendre au-delà de 90° au coude."],
+ prog:"dipsChaises"},
+
+curlSac: {n:"Curl biceps avec sac à dos", pat:"bras", niv:1, repos:90, tempo:"3-1-X", lest:true,
+ mus:["Biceps","Avant-bras"], mat:["Sac à dos chargé"],
+ exec:["Tiens le sac par la sangle du bas à deux mains, bras tendus devant les cuisses.",
+       "Coudes collés au corps, immobiles.",
+       "Monte le sac vers la poitrine en 1 s, serre les biceps.",
+       "Descends en 3 s en contrôlant."],
+ err:["Balancer le buste pour lancer la charge.",
+      "Décoller les coudes vers l'avant.",
+      "Descente non contrôlée."]},
+
+extTriceps: {n:"Extension triceps au sol", pat:"bras", niv:1, repos:90, tempo:"3-1-X",
+ mus:["Triceps"], mat:[],
+ exec:["Position de pompe mais mains proches, sous les épaules.",
+       "Le mouvement se fait UNIQUEMENT aux coudes : descends le front vers les mains.",
+       "Les hanches restent immobiles, corps gainé.",
+       "Pousse pour revenir, sans bouger les épaules."],
+ err:["Transformer le mouvement en pompe classique.",
+      "Bouger le bassin pour aider."]},
+
+elevLaterales: {n:"Élévations latérales (bouteilles ou sac)", pat:"bras", niv:1, repos:60, tempo:"2-1-2",
+ mus:["Épaules latérales"], mat:["2 bouteilles d'eau ou sacs"],
+ exec:["Une bouteille pleine dans chaque main, bras le long du corps.",
+       "Monte les bras sur les côtés jusqu'à l'horizontale, coudes très légèrement fléchis.",
+       "Imagine que tu verses de l'eau : petit doigt légèrement plus haut que le pouce.",
+       "Descends en 2 s."],
+ err:["Monter au-dessus de l'horizontale — le trapèze prend le relais.",
+      "Utiliser l'élan du buste.",
+      "Charge trop lourde : ce muscle répond aux séries longues et légères."]},
+
+facePull: {n:"Face pull à la serviette", pat:"bras", niv:1, repos:60, tempo:"2-1-2",
+ mus:["Arrière d'épaule","Trapèzes moyens","Rotateurs"], mat:["Serviette","Porte"],
+ exec:["Serviette autour d'une poignée, une extrémité dans chaque main, bras tendus à hauteur de visage.",
+       "Recule pour créer de la tension, buste incliné en arrière.",
+       "Tire la serviette vers ton visage en écartant les mains.",
+       "Coudes hauts, omoplates serrées, 1 s de pause."],
+ err:["Tirer vers la poitrine au lieu du visage.",
+      "Coudes qui tombent."],
+ note:"L'exercice le plus important pour compenser les heures penché sur un guidon. Ne le saute jamais."}
+};
+/* ============================================================
+   PROGRAMME 52 SEMAINES — 5 blocs
+   s = [semaineDebut, semaineFin] · ex = [idExo, séries, repMin, repMax]
+   ============================================================ */
+const DELOADS = [8, 16, 24, 32, 40, 48];
+
+const BLOCS = [
+{id:1, n:"Fondations", s:[1,8], freq:3, format:"Full Body",
+ jours:"Lundi · Mercredi · Vendredi", rir:"3-4 puis 2-3", vol:"4 à 8 séries/muscle",
+ mat:"Aucun matériel",
+ obj:"Apprendre les mouvements, réveiller le système nerveux, installer la routine des 3 séances. Tu vas trouver ça trop facile — c'est voulu.",
+ regle:"Semaines 1 et 2 : fais 2 séries au lieu de 3, et arrête-toi très loin de l'échec. Des courbatures de 5 jours te feraient rater les séances suivantes.",
+ seances:[
+  {id:"1A", n:"Séance A", ex:[
+    ["squatChaise",3,8,12],["pompesInclinees",3,6,12],["rowingTable",3,6,10],
+    ["gluteBridge",2,12,15],["plancheGenoux",3,20,40]]},
+  {id:"1B", n:"Séance B", ex:[
+    ["fenteArriere",3,8,10],["pikeIncline",3,6,10],["rowingServiette",3,10,15],
+    ["hipThrust",3,10,15],["molletsMarche",3,15,20],["deadBug",3,8,10]]}
+ ]},
+
+{id:2, n:"Accumulation", s:[9,16], freq:3, format:"Full Body",
+ jours:"Lundi · Mercredi · Vendredi", rir:"2", vol:"8 à 12 séries/muscle",
+ mat:"Barre de traction",
+ obj:"Monter le volume, passer aux pompes au sol et aux premières tractions. C'est le bloc où les changements deviennent visibles sur les photos.",
+ regle:"Applique le tempo 3-1-X partout : 3 s de descente, 1 s de pause en position étirée, remontée explosive. C'est ta façon d'ajouter du poids sans poids.",
+ seances:[
+  {id:"2A", n:"Séance A", ex:[
+    ["squatLibre",3,10,15],["pompesSol",3,6,12],["tractionsAssistees",3,4,8],
+    ["hipThrust",3,12,15],["extTriceps",3,8,12],["planche",3,30,60]]},
+  {id:"2B", n:"Séance B", ex:[
+    ["splitBulgare",3,8,12],["pikeSol",3,6,10],["rowingTablePieds",3,8,12],
+    ["sdtRoumainUni",3,10,12],["curlSac",3,10,15],["molletsMarche",3,15,20],["deadBug",3,10,12]]}
+ ]},
+
+{id:3, n:"Intensification", s:[17,28], freq:4, format:"Haut / Bas",
+ jours:"Lundi · Mardi · Jeudi · Vendredi", rir:"1-2", vol:"12 à 16 séries/muscle",
+ mat:"Barre de traction · Élastiques · Sangles",
+ obj:"Quatre séances par semaine, plus courtes. Chaque groupe musculaire est stimulé deux fois. C'est le format qui produit le plus d'hypertrophie sur cette période.",
+ regle:"Séances de 45-55 min maximum. Si tu dépasses, réduis le temps de repos sur les exercices d'isolation, pas sur les gros mouvements.",
+ seances:[
+  {id:"3HA", n:"Haut A", ex:[
+    ["pompesDeclinees",4,8,12],["tractionsSupination",4,4,10],["dipsBanc",3,8,12],
+    ["rowingTablePieds",4,8,12],["curlSac",3,10,15],["facePull",3,15,20]]},
+  {id:"3BA", n:"Bas A", ex:[
+    ["splitBulgare",4,8,12],["hipThrustUni",4,10,12],["nordicAssiste",3,5,8],
+    ["squatLibre",3,15,20],["molletsUni",4,12,15]]},
+  {id:"3HB", n:"Haut B", ex:[
+    ["pikePiedsSureleves",4,6,10],["tractionsPronation",4,4,10],["pompesDiamant",3,8,12],
+    ["rowingUnBras",3,6,10],["elevLaterales",3,12,20],["plancheLaterale",3,20,40]]},
+  {id:"3BB", n:"Bas B", ex:[
+    ["fenteMarchee",4,10,12],["sdtRoumainUni",4,10,12],["stepUp",3,10,12],
+    ["gluteBridgeUni",3,12,15],["molletsMarche",4,15,20]]}
+ ]},
+
+{id:4, n:"Lestage", s:[29,40], freq:4, format:"Haut / Bas lesté",
+ jours:"Lundi · Mardi · Jeudi · Vendredi", rir:"1-2", vol:"14 à 18 séries/muscle",
+ mat:"Sac à dos chargé · Barre de traction · Élastiques",
+ obj:"Le sac à dos devient ta fonte. À partir d'ici, la progression redevient linéaire : +2,5 kg dès que tu atteins le haut de ta fourchette.",
+ regle:"Note le poids du sac à CHAQUE série dans l'app. Sans ce chiffre, tu ne sauras plus si tu progresses ou si tu tournes en rond.",
+ seances:[
+  {id:"4HA", n:"Haut A", ex:[
+    ["pompesLestees",4,8,12],["tractionsLestees",4,5,8],["dipsChaises",3,8,12],
+    ["rowingSacUnBras",4,8,12],["curlSac",4,10,15],["facePull",3,15,20]]},
+  {id:"4BA", n:"Bas A", ex:[
+    ["squatLeste",4,10,15],["hipThrustUni",4,12,15],["nordicAssiste",3,6,10],
+    ["splitBulgare",3,10,12],["molletsUni",4,15,18]]},
+  {id:"4HB", n:"Haut B", ex:[
+    ["pikePiedsSureleves",4,8,12],["tractionsPronation",4,6,10],["pompesArcher",3,5,8],
+    ["rowingTablePieds",4,10,15],["elevLaterales",4,12,20],["plancheLaterale",3,30,45]]},
+  {id:"4BB", n:"Bas B", ex:[
+    ["fenteMarchee",4,12,15],["sdtRoumainUni",4,12,12],["pistolAssiste",3,5,8],
+    ["gluteBridgeUni",3,15,18],["molletsMarche",4,18,22]]}
+ ]},
+
+{id:5, n:"Consolidation", s:[41,52], freq:4, format:"Haut / Bas avancé",
+ jours:"Lundi · Mardi · Jeudi · Vendredi", rir:"0-2", vol:"16 à 20 séries/muscle",
+ mat:"Sac chargé · Haltères d'occasion · Barre de traction",
+ obj:"Volume maximal et mouvements avancés. Tu termines l'année sur les variations que tu croyais impossibles au mois 1.",
+ regle:"Semaines 49 à 52 : deload, photos, mensurations, bilan complet. On décide alors de continuer la prise de masse ou de faire une mini-sèche de 6 semaines.",
+ seances:[
+  {id:"5HA", n:"Haut A", ex:[
+    ["pompesLestees",4,10,15],["tractionsLestees",5,5,8],["dipsChaises",4,10,15],
+    ["rowingSacUnBras",4,10,12],["curlSac",4,12,15],["extTriceps",3,12,15],["facePull",3,15,20]]},
+  {id:"5BA", n:"Bas A", ex:[
+    ["squatLeste",5,12,15],["hipThrustUni",4,15,18],["nordicAssiste",4,8,10],
+    ["pistolAssiste",3,6,8],["molletsUni",4,15,20]]},
+  {id:"5HB", n:"Haut B", ex:[
+    ["hspuMur",4,4,8],["tractionsSupination",4,8,12],["pompesArcher",4,6,10],
+    ["rowingUnBras",4,8,12],["elevLaterales",4,15,20],["hollowHold",3,30,45]]},
+  {id:"5BB", n:"Bas B", ex:[
+    ["splitBulgare",5,12,15],["sdtRoumainUni",4,12,15],["fenteMarchee",4,15,18],
+    ["gluteBridgeUni",4,15,20],["molletsMarche",5,20,25]]}
+ ]}
+];
+
+/* ============================================================
+   IMPRÉVUS — protocoles de rattrapage
+   ============================================================ */
+const IMPREVUS = [
+{id:"seanceRatee", n:"J'ai raté une séance", c:"amber",
+ quoi:["Décale simplement les séances suivantes d'un jour. Ne les empile pas.",
+       "Si tu ne peux pas décaler, saute-la et reprends au calendrier normal la semaine suivante.",
+       "Une séance ratée sur 12 dans le mois : impact réel proche de zéro.",
+       "Compense côté alimentation : ce jour-là, mange quand même tes calories complètes."],
+ eviter:["Faire deux séances le lendemain pour rattraper. Tu accumules la fatigue sans gagner de stimulus.",
+         "Réduire tes calories parce que tu n'as pas entraîné. La construction musculaire se fait pendant les 48 h qui suivent la séance précédente."]},
+
+{id:"semaineRatee", n:"J'ai raté une semaine entière", c:"amber",
+ quoi:["Ne reprends pas là où tu t'étais arrêté. Reprends à 70 % du volume habituel pendant une semaine.",
+       "Baisse d'une rep sur chaque fourchette, ou retire une série par exercice.",
+       "Tu retrouveras ton niveau en 7 à 10 jours. La force revient beaucoup plus vite qu'elle ne se construit.",
+       "Recale le calendrier : décale ton bloc d'une semaine dans les réglages."],
+ eviter:["Reprendre à 100 % le premier jour : courbatures massives, et une deuxième semaine perdue.",
+         "Considérer que le plan est fichu. Une semaine sur 52, c'est 2 %."]},
+
+{id:"malade", n:"Je suis malade", c:"rose",
+ quoi:["Règle du cou : symptômes AU-DESSUS du cou (nez qui coule, gorge) → séance allégée possible, moitié du volume.",
+       "Symptômes EN DESSOUS du cou (fièvre, courbatures générales, toux profonde) → repos complet, sans exception.",
+       "Continue à manger tes calories. C'est pendant la maladie que le corps a le plus besoin de protéines.",
+       "Si tu ne peux pas manger solide, passe tout en liquide : shakes, soupes enrichies au lait en poudre.",
+       "Reprends avec le protocole « semaine ratée » : 70 % du volume."],
+ eviter:["S'entraîner avec de la fièvre. Le risque cardiaque est réel et documenté.",
+         "Arrêter de manger. Tu peux perdre 2 kg en 5 jours de maladie, dont une partie de muscle."]},
+
+{id:"stagnation", n:"Mon poids stagne depuis 3 semaines", c:"amber",
+ quoi:["Vérifie d'abord ton adhérence alimentaire dans l'onglet Suivi. Si elle est sous 80 %, le problème n'est pas le plan.",
+       "Repèse tes aliments pendant 5 jours. L'œil dérive toujours vers le bas avec le temps.",
+       "Ajoute 250 kcal par jour : un shake, ou 40 g de beurre de cacahuète, ou 2 cuillères d'huile.",
+       "Vérifie tes heures de livraison : si elles ont augmenté, ta dépense a augmenté aussi.",
+       "Attends 14 jours avant de rejuger. Pas 4."],
+ eviter:["Ajouter 800 kcal d'un coup. Tu prendras du gras et tu ne sauras pas quel réglage a marché.",
+         "Changer de programme d'entraînement. La stagnation du poids est un problème alimentaire, jamais un problème d'exercices."]},
+
+{id:"douleur", n:"J'ai mal quelque part", c:"rose",
+ quoi:["Distingue la douleur MUSCULAIRE (diffuse, dans le ventre du muscle, apparaît 24-48 h après) de la douleur ARTICULAIRE (précise, dans le joint, apparaît pendant le mouvement).",
+       "Douleur musculaire : normal. Continue, éventuellement en réduisant l'amplitude.",
+       "Douleur articulaire vive : arrête CET exercice, pas la séance. Remplace-le par une variation qui ne provoque rien.",
+       "Épaule douloureuse aux dips → arrête les dips, garde les pompes. Genou douloureux aux fentes → passe au glute bridge et au hip thrust.",
+       "Si la douleur persiste plus de 10 jours ou t'empêche de dormir, consulte un médecin ou un kiné."],
+ eviter:["Pousser à travers une douleur articulaire. Trois semaines d'arrêt forcé coûtent bien plus que trois jours d'adaptation.",
+         "Arrêter tout l'entraînement à cause d'un seul mouvement qui pose problème."]},
+
+{id:"grosseSemaine", n:"Grosse semaine de livraison", c:"blue",
+ quoi:["Saisis tes heures dans l'app : elle ajoute automatiquement les calories brûlées à ta cible du jour.",
+       "Passe de 4 séances à 3, ou de 3 à 2. Priorité absolue aux séances Bas si tu dois choisir — non, en fait : priorité aux séances HAUT, tes jambes travaillent déjà sur le vélo.",
+       "Ne fais jamais une séance Bas le même jour qu'une tournée de plus de 4 h.",
+       "Prépare tes shakes et sandwichs AVANT de partir. Une tournée de 5 h sans manger, c'est 1 200 kcal perdues."],
+ eviter:["Maintenir 4 séances ET 25 h de livraison ET un boulot. Quelque chose va casser, et ce sera le sommeil.",
+         "Compter sur le fait de manger « après ». Tu rentreras à 23 h et tu iras te coucher."]},
+
+{id:"plusFaim", n:"Je n'arrive plus à manger", c:"violet",
+ quoi:["Bascule un repas solide en liquide. Un shake à 750 kcal passe en 3 minutes.",
+       "Supprime temporairement les légumes volumineux et les crudités : ils remplissent l'estomac pour 30 kcal.",
+       "Ne bois plus pendant les repas, uniquement entre.",
+       "Augmente la densité : huile dans les plats, lait entier partout, beurre de cacahuète sur tout.",
+       "Descends volontairement à ta cible basse pendant 4 jours, puis remonte. Une pause vaut mieux qu'un abandon.",
+       "Le gingembre frais ou un peu de citron avant le repas relance l'appétit chez certains. À tester."],
+ eviter:["Te forcer jusqu'à la nausée. Tu vas associer manger à une punition, et c'est très dur à défaire.",
+         "Sauter le repas suivant parce que tu es encore plein. Décale-le d'une heure plutôt que de l'annuler."]},
+
+{id:"budget", n:"Mois serré côté budget", c:"green",
+ quoi:["Le trio le moins cher : œufs (5 €/kg), pommes de terre (1,20 €/kg), avoine (2 €/kg). Tu tiens 3 000 kcal pour 4 €/jour.",
+       "Remplace la whey par du lait écrémé en poudre : 9 €/kg pour 35 g de protéines aux 100 g.",
+       "Remplace le poulet par des cuisses (5 €/kg au lieu de 8,50 €) et des lentilles.",
+       "Les conserves de maquereau et sardines coûtent 1 € et apportent 25 g de protéines.",
+       "Garde la créatine : 5 €/mois, c'est le seul complément qui vaut son prix.",
+       "Repère les recettes marquées à moins de 2 € dans l'onglet Repas."],
+ eviter:["Réduire les calories. Mieux vaut manger moins cher que manger moins.",
+         "Acheter un gainer commercial. C'est du sucre à 30 €/kg, ton shake maison est meilleur et 5 fois moins cher."]},
+
+{id:"sommeil", n:"Je manque de sommeil", c:"blue",
+ quoi:["Le sommeil passe avant l'entraînement. Toujours. Si tu dois choisir, supprime une séance.",
+       "En dessous de 6 h par nuit sur une semaine : réduis le volume de 30 % et passe à RIR 3.",
+       "Décale ta séance plutôt que de la faire à 23 h — l'excitation nerveuse repousse encore l'endormissement.",
+       "Sieste de 20 min après une tournée de nuit : réelle récupération, sans impact sur la nuit suivante.",
+       "Caféine coupée 8 h avant le coucher. Sur un travail de nuit, c'est la règle la plus difficile et la plus rentable."],
+ eviter:["Compenser par plus de café et plus de séances. Le cortisol monte, la sensibilité à l'insuline chute, tu ne prends plus rien.",
+         "Rattraper 3 nuits blanches avec une grasse matinée de 12 h : ça décale ton horloge pour toute la semaine."]},
+
+{id:"motivation", n:"Je n'ai plus envie", c:"violet",
+ quoi:["Regarde tes photos du mois 1 dans l'onglet Suivi. C'est le seul argument qui fonctionne vraiment.",
+       "Autorise-toi une séance à 50 % plutôt que zéro séance. La régularité compte plus que l'intensité.",
+       "Les mois 3 et 4 sont le point de décrochage classique : la nouveauté est passée, les résultats ne sont pas encore spectaculaires. C'est normal et ça passe.",
+       "Réduis l'objectif à une seule chose cette semaine : manger tes 4 repas. L'entraînement suivra.",
+       "Prends 5 jours off complets si nécessaire. C'est un deload, pas un échec."],
+ eviter:["Tout arrêter d'un coup en se disant qu'on reprendra « quand ça ira mieux ».",
+         "Se comparer à des gens qui s'entraînent depuis 5 ans avec une salle complète."]}
+];
+/* ============================================================
+   FIGURES — silhouettes SVG animées, dessinées à la volée.
+   Aucune image externe : tout est vectoriel et fonctionne hors ligne.
+   F(tête, cou, bassin, coude, poignet, genou, cheville, [membres opposés])
+   Repère : 100 × 78, sol à y = 70.
+   ============================================================ */
+const F = (h,n,p,e,w,k,a,e2,w2,k2,a2)=>({
+  h,n,p,e,w,k,a,
+  e2:e2||[e[0]+3,e[1]+1], w2:w2||[w[0]+3,w[1]+1],
+  k2:k2||[k[0]-4,k[1]+1], a2:a2||[a[0]-4,a[1]]
+});
+const R = (x,y,w,h)=>({t:"r",x,y,w,h});
+const L = (x1,y1,x2,y2)=>({t:"l",x1,y1,x2,y2});
+
+const FIGURES = {
+
+/* ---------- POUSSÉE HORIZONTALE ---------- */
+pompesInc:{ pr:[R(12,46,32,2), L(15,48,15,70), L(41,48,41,70)],
+  a:F([20,30],[28,33],[57,49],[28,40],[28,46],[73,58],[87,68]),
+  b:F([20,39],[28,42],[57,54],[37,44],[28,46],[73,61],[87,68])},
+
+pompes:{ a:F([20,45],[28,47],[57,57],[28,58],[28,69],[73,63],[87,68]),
+  b:F([20,56],[28,58],[57,63],[38,64],[28,69],[73,66],[87,68])},
+
+pompesDec:{ pr:[R(76,50,20,2), L(79,52,79,70), L(93,52,93,70)],
+  a:F([18,52],[26,53],[56,51],[26,61],[26,69],[70,49],[84,50]),
+  b:F([18,61],[26,62],[56,57],[36,66],[26,69],[70,53],[84,50])},
+
+pompesDia:{ a:F([20,45],[28,47],[57,57],[30,58],[32,69],[73,63],[87,68],[33,58],[34,69]),
+  b:F([20,57],[28,59],[57,64],[31,65],[32,69],[73,67],[87,68],[34,65],[34,69])},
+
+pompesArch:{ a:F([20,45],[28,47],[57,57],[18,58],[12,69],[73,63],[87,68],[42,58],[54,69]),
+  b:F([17,57],[25,59],[57,64],[16,65],[12,69],[73,67],[87,68],[41,64],[54,69])},
+
+/* ---------- POUSSÉE VERTICALE ---------- */
+pike:{ a:F([24,38],[30,42],[56,20],[27,54],[26,69],[72,42],[86,69]),
+  b:F([22,53],[28,55],[56,22],[35,61],[26,69],[72,44],[86,69])},
+
+pikeHaut:{ pr:[R(12,46,32,2), L(15,48,15,70), L(41,48,41,70)],
+  a:F([23,29],[30,32],[56,16],[27,39],[26,46],[72,38],[86,68]),
+  b:F([21,41],[28,44],[56,20],[35,47],[26,46],[72,42],[86,68])},
+
+hspu:{ pr:[L(56,4,56,70)],
+  a:F([40,44],[40,51],[42,30],[40,60],[40,69],[47,17],[53,9]),
+  b:F([34,65],[40,59],[42,37],[30,64],[40,69],[47,24],[53,15])},
+
+/* ---------- TIRAGE HORIZONTAL ---------- */
+rowTable:{ pr:[R(16,32,68,2), L(19,34,19,70), L(81,34,81,70)],
+  a:F([24,52],[32,52],[56,54],[32,43],[32,34],[72,56],[86,67]),
+  b:F([24,44],[32,44],[56,50],[41,40],[32,34],[72,54],[86,67])},
+
+rowPorte:{ pr:[L(88,2,88,70), R(80,38,8,4)],
+  a:F([34,24],[39,31],[47,47],[57,35],[72,39],[52,58],[57,70]),
+  b:F([43,21],[47,28],[51,45],[63,31],[72,39],[55,58],[59,70])},
+
+rowSac:{ pr:[R(14,42,26,2), L(17,44,17,70), L(37,44,37,70)],
+  a:F([24,34],[32,37],[62,41],[47,52],[47,62],[66,56],[70,70],[31,40],[28,42]),
+  b:F([24,34],[32,37],[62,41],[51,43],[51,49],[66,56],[70,70],[31,40],[28,42]),
+  pa:[R(42,62,10,6)], pb:[R(46,49,10,6)]},
+
+/* ---------- TIRAGE VERTICAL ---------- */
+traction:{ pr:[L(20,10,80,10)], sol:false,
+  a:F([40,28],[46,34],[47,52],[45,22],[45,11],[53,64],[57,74],[51,22],[51,11],[47,65],[51,75]),
+  b:F([39,19],[45,28],[46,46],[33,21],[45,11],[52,58],[56,68],[57,21],[45,11],[46,59],[50,69])},
+
+/* ---------- DOMINANTE GENOU ---------- */
+squat:{ a:F([50,11],[50,19],[50,40],[50,30],[50,41],[50,55],[50,70]),
+  b:F([46,26],[47,32],[53,50],[39,34],[30,32],[42,56],[50,70])},
+
+fente:{ a:F([50,11],[50,19],[50,40],[50,30],[50,41],[50,55],[50,70]),
+  b:F([50,20],[50,28],[50,46],[50,38],[50,49],[62,57],[62,70],[50,38],[50,49],[38,62],[30,70])},
+
+bulgare:{ pr:[R(20,48,20,2), L(23,50,23,70), L(37,50,37,70)],
+  a:F([54,17],[54,25],[54,44],[54,35],[54,46],[58,58],[58,70],[54,35],[54,46],[42,52],[32,48]),
+  b:F([54,27],[54,35],[54,52],[54,43],[54,54],[62,60],[58,70],[54,43],[54,54],[40,58],[32,48])},
+
+stepup:{ pr:[R(56,54,26,2), L(59,56,59,70), L(79,56,79,70)],
+  a:F([44,20],[44,28],[44,46],[44,38],[44,49],[44,58],[44,70],[44,38],[44,49],[56,52],[62,54]),
+  b:F([62,14],[62,22],[62,40],[62,32],[62,43],[62,47],[62,54],[62,32],[62,43],[74,44],[78,38])},
+
+pistol:{ a:F([46,11],[46,19],[46,40],[46,30],[46,41],[46,55],[46,70],[46,30],[46,41],[56,50],[66,48]),
+  b:F([42,30],[43,36],[49,54],[34,38],[26,36],[40,60],[48,70],[34,38],[26,36],[62,52],[78,50])},
+
+/* ---------- DOMINANTE HANCHE ---------- */
+bridge:{ a:F([22,60],[30,62],[56,66],[30,68],[42,69],[72,57],[80,69]),
+  b:F([22,60],[30,62],[56,51],[30,68],[42,69],[72,50],[80,69])},
+
+hipthrust:{ pr:[R(8,46,28,2), L(11,48,11,70), L(33,48,33,70)],
+  a:F([20,40],[28,45],[56,64],[28,52],[38,60],[72,53],[80,69]),
+  b:F([20,40],[28,45],[56,48],[28,52],[38,56],[72,46],[80,69])},
+
+rdl:{ a:F([46,11],[46,19],[46,40],[46,30],[46,41],[46,55],[46,70],[46,30],[46,41],[51,53],[54,65]),
+  b:F([24,30],[32,33],[56,39],[32,46],[32,56],[56,54],[56,70],[32,46],[32,56],[72,36],[86,32])},
+
+nordic:{ pr:[R(56,58,26,2), L(59,60,59,70)],
+  a:F([46,20],[46,28],[46,46],[46,38],[46,49],[46,58],[58,64]),
+  b:F([26,37],[32,41],[46,52],[26,47],[21,55],[46,58],[58,64])},
+
+/* ---------- MOLLETS ---------- */
+mollets:{ pr:[R(38,60,32,2), L(41,62,41,70), L(67,62,67,70)],
+  a:F([50,17],[50,25],[50,45],[50,35],[50,46],[50,58],[50,70]),
+  b:F([50,9],[50,17],[50,37],[50,27],[50,38],[50,50],[50,62])},
+
+/* ---------- GAINAGE ---------- */
+planche:{ a:F([20,49],[28,52],[57,60],[28,66],[15,68],[73,64],[87,68])},
+
+plancheLat:{ pr:[L(14,68,30,68)],
+  a:F([24,49],[32,55],[58,60],[29,68],[17,68],[72,64],[86,68],[33,60],[33,50],[74,66],[88,69])},
+
+hollow:{ a:F([33,52],[41,59],[58,66],[27,58],[13,55],[74,56],[88,47],[27,61],[13,58],[74,59],[88,50])},
+
+deadbug:{ a:F([22,58],[30,58],[56,62],[30,48],[30,38],[66,48],[66,38],[33,49],[33,39],[69,49],[69,39]),
+  b:F([22,58],[30,58],[56,62],[23,50],[13,46],[72,52],[86,56],[33,49],[33,39],[69,49],[69,39])},
+
+/* ---------- BRAS ---------- */
+dips:{ pr:[R(20,42,18,2), L(23,44,23,70), L(35,44,35,70), R(62,42,18,2), L(65,44,65,70), L(77,44,77,70)],
+  a:F([50,14],[50,22],[50,42],[45,33],[37,43],[62,50],[76,52],[57,33],[65,43],[63,53],[77,55]),
+  b:F([50,26],[50,34],[50,52],[41,41],[37,43],[64,58],[78,60],[59,41],[65,43],[65,61],[79,63])},
+
+dipsBanc:{ pr:[R(14,44,26,2), L(17,46,17,70), L(37,46,37,70)],
+  a:F([46,22],[46,30],[48,50],[37,39],[31,44],[66,54],[82,56]),
+  b:F([46,32],[46,40],[48,58],[30,50],[31,44],[66,58],[82,62])},
+
+curl:{ a:F([50,11],[50,19],[50,40],[50,30],[50,43],[50,55],[50,70]),
+  b:F([50,11],[50,19],[50,40],[50,30],[46,26],[50,55],[50,70]),
+  pa:[R(44,43,13,7)], pb:[R(40,25,13,7)]},
+
+extTri:{ a:F([20,45],[28,47],[57,57],[28,58],[30,69],[73,63],[87,68],[31,58],[32,69]),
+  b:F([22,60],[29,59],[57,64],[27,65],[30,69],[73,67],[87,68],[31,65],[32,69])},
+
+/* vue de face : les deux bras sont visibles */
+elevLat:{ a:F([50,11],[50,20],[50,40],[38,29],[33,39],[44,55],[44,70],[62,29],[67,39],[56,55],[56,70]),
+  b:F([50,11],[50,20],[50,40],[35,21],[24,21],[44,55],[44,70],[65,21],[76,21],[56,55],[56,70])},
+
+facePull:{ pr:[L(86,2,86,70), R(78,30,8,4)],
+  a:F([38,23],[41,30],[46,47],[57,31],[70,32],[50,58],[54,70],[57,35],[70,36]),
+  b:F([38,23],[41,30],[46,47],[56,22],[46,25],[50,58],[54,70],[56,38],[46,32])}
+};
+
+/* Correspondance exercice → figure */
+const FIG_EXO = {
+  pompesInclinees:"pompesInc", pompesSol:"pompes", pompesDeclinees:"pompesDec",
+  pompesDiamant:"pompesDia", pompesArcher:"pompesArch", pompesLestees:"pompes",
+  pikeIncline:"pikeHaut", pikeSol:"pike", pikePiedsSureleves:"pike", hspuMur:"hspu",
+  rowingServiette:"rowPorte", rowingTable:"rowTable", rowingTablePieds:"rowTable",
+  rowingUnBras:"rowTable", rowingSacUnBras:"rowSac",
+  tractionsNegatives:"traction", tractionsAssistees:"traction", tractionsPronation:"traction",
+  tractionsSupination:"traction", tractionsLestees:"traction",
+  squatChaise:"squat", squatLibre:"squat", squatLeste:"squat",
+  fenteArriere:"fente", fenteMarchee:"fente", splitBulgare:"bulgare",
+  stepUp:"stepup", pistolAssiste:"pistol",
+  gluteBridge:"bridge", gluteBridgeUni:"bridge", hipThrust:"hipthrust", hipThrustUni:"hipthrust",
+  sdtRoumainUni:"rdl", nordicAssiste:"nordic",
+  molletsMarche:"mollets", molletsUni:"mollets",
+  plancheGenoux:"planche", planche:"planche", plancheLaterale:"plancheLat",
+  hollowHold:"hollow", deadBug:"deadbug",
+  dipsChaises:"dips", dipsBanc:"dipsBanc", curlSac:"curl", extTriceps:"extTri",
+  elevLaterales:"elevLat", facePull:"facePull"
+};
+
+/* ---------- Rendu ---------- */
+const PT = p => p[0].toFixed(1)+","+p[1].toFixed(1);
+function formes(liste){
+  return (liste||[]).map(f => f.t==="r"
+    ? `<rect x="${f.x}" y="${f.y}" width="${f.w}" height="${f.h}" rx="1" class="f-prop"/>`
+    : `<line x1="${f.x1}" y1="${f.y1}" x2="${f.x2}" y2="${f.y2}" class="f-prop-l"/>`).join("");
+}
+function figureSVG(exoId, anim){
+  const fig = FIGURES[FIG_EXO[exoId]];
+  if(!fig) return "";
+  const A = fig.a, anime = anim && !!fig.b;
+  const uid = "f"+Math.random().toString(36).slice(2,8);
+  return `<svg class="fig${anime?" fig-anim":""}" ${anime?`data-fig="${FIG_EXO[exoId]}" id="${uid}"`:""} viewBox="0 0 100 78" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    ${fig.sol===false?"":'<line x1="4" y1="70" x2="96" y2="70" class="f-sol"/>'}
+    <g class="f-props">${formes(fig.pr)}</g>
+    <g class="f-mobile">${formes(fig.pa)}</g>
+    <g class="f-loin">
+      <polyline class="f-b2" points="${PT(A.n)} ${PT(A.e2)} ${PT(A.w2)}"/>
+      <polyline class="f-j2" points="${PT(A.p)} ${PT(A.k2)} ${PT(A.a2)}"/>
+    </g>
+    <line class="f-cou" x1="${PT(A.n).split(",")[0]}" y1="${A.n[1]}" x2="${A.h[0]}" y2="${A.h[1]}"/>
+    <line class="f-torse" x1="${A.n[0]}" y1="${A.n[1]}" x2="${A.p[0]}" y2="${A.p[1]}"/>
+    <polyline class="f-b1" points="${PT(A.n)} ${PT(A.e)} ${PT(A.w)}"/>
+    <polyline class="f-j1" points="${PT(A.p)} ${PT(A.k)} ${PT(A.a)}"/>
+    <circle class="f-tete" cx="${A.h[0]}" cy="${A.h[1]}" r="4.6"/>
+  </svg>`;
+}
+
+/* ---------- Animation ---------- */
+let FIG_RAF = null;
+const lerp = (a,b,t)=>[a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t];
+const doux  = t => t<.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2;
+
+function phaseFig(u){            /* 0→1 : descente, tenue, remontée, pause */
+  if(u < .40) return doux(u/.40);
+  if(u < .52) return 1;
+  if(u < .88) return 1 - doux((u-.52)/.36);
+  return 0;
+}
+function animerFigures(){
+  cancelAnimationFrame(FIG_RAF);
+  const cibles = [...document.querySelectorAll(".fig-anim")];
+  if(!cibles.length) return;
+  const t0 = performance.now();
+  const boucle = now => {
+    const u = ((now - t0) / 3200) % 1, t = phaseFig(u);
+    cibles.forEach(svg => {
+      const fig = FIGURES[svg.dataset.fig]; if(!fig || !fig.b) return;
+      const A = fig.a, B = fig.b, P = {};
+      ["h","n","p","e","w","k","a","e2","w2","k2","a2"].forEach(j => P[j] = lerp(A[j], B[j], t));
+      const q = s => svg.querySelector(s);
+      q(".f-b2").setAttribute("points", `${PT(P.n)} ${PT(P.e2)} ${PT(P.w2)}`);
+      q(".f-j2").setAttribute("points", `${PT(P.p)} ${PT(P.k2)} ${PT(P.a2)}`);
+      const cou = q(".f-cou");
+      cou.setAttribute("x1", P.n[0]); cou.setAttribute("y1", P.n[1]);
+      cou.setAttribute("x2", P.h[0]); cou.setAttribute("y2", P.h[1]);
+      const to = q(".f-torse");
+      to.setAttribute("x1", P.n[0]); to.setAttribute("y1", P.n[1]);
+      to.setAttribute("x2", P.p[0]); to.setAttribute("y2", P.p[1]);
+      q(".f-b1").setAttribute("points", `${PT(P.n)} ${PT(P.e)} ${PT(P.w)}`);
+      q(".f-j1").setAttribute("points", `${PT(P.p)} ${PT(P.k)} ${PT(P.a)}`);
+      const te = q(".f-tete");
+      te.setAttribute("cx", P.h[0]); te.setAttribute("cy", P.h[1]);
+      if(fig.pa && fig.pb){
+        const m = q(".f-mobile"); if(m){
+          m.innerHTML = formes(fig.pa.map((f,i)=>{
+            const g = fig.pb[i] || f;
+            return R(f.x+(g.x-f.x)*t, f.y+(g.y-f.y)*t, f.w, f.h);
+          }));
+        }
+      }
+    });
+    FIG_RAF = requestAnimationFrame(boucle);
+  };
+  if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches) FIG_RAF = requestAnimationFrame(boucle);
+}
+/* ============================================================
+   STOCKAGE — localStorage avec repli mémoire
+   (le repli sert uniquement à l'aperçu ; une fois le fichier
+   téléchargé ou publié, les données persistent normalement)
+   ============================================================ */
+const Store = {
+  _mem:{}, ok:false,
+  init(){ try{ localStorage.setItem("__t","1"); localStorage.removeItem("__t"); this.ok=true; }
+          catch(e){ this.ok=false; } return this.ok; },
+  get(k){ try{ return this.ok ? localStorage.getItem(k) : (this._mem[k] ?? null); }
+          catch(e){ return this._mem[k] ?? null; } },
+  set(k,v){ try{ if(this.ok) localStorage.setItem(k,v); else this._mem[k]=v; }
+            catch(e){ this._mem[k]=v; } },
+  del(k){ try{ if(this.ok) localStorage.removeItem(k); else delete this._mem[k]; }catch(e){} }
+};
+
+const CLE = "prise-de-masse-v1";
+
+const ETAT_VIDE = {
+  profil:{ prenom:"", age:21, taille:183, poidsDepart:59, dateDebut:null, sexe:"h" },
+  reglages:{ kcalLivraison:270, ratioProt:1.9, ratioLip:1.2, ajustement:0, decalageSem:0 },
+  poids:{},          // "2026-08-27": 59.4
+  mensurations:{},   // "2026-08-27": {bras, poitrine, taille, cuisse}
+  livraison:{},      // "2026-08-27": 4.5  (heures)
+  repas:{},          // "2026-08-27": ["porridge","rizPoulet"]
+  seances:{},        // "2026-08-27": {sid:"1A", ex:{squatChaise:[{r:10,rir:2,l:0}]}, fini:true}
+  journal:{},        // "2026-08-27": {sommeil:4, energie:3, appetit:3, motiv:4, courb:2}
+  recettesPerso:[],
+  menu:{},           // "lundi": {matin:"porridge", midi:"rizPoulet", ...}
+  coursesCochees:[],
+  notes:{}
+};
+
+let E = JSON.parse(JSON.stringify(ETAT_VIDE));
+
+function charger(){
+  Store.init();
+  const brut = Store.get(CLE);
+  if(brut){
+    try{
+      const d = JSON.parse(brut);
+      E = Object.assign(JSON.parse(JSON.stringify(ETAT_VIDE)), d);
+      E.profil   = Object.assign({}, ETAT_VIDE.profil, d.profil||{});
+      E.reglages = Object.assign({}, ETAT_VIDE.reglages, d.reglages||{});
+    }catch(e){ console.warn("État illisible, réinitialisation."); }
+  }
+  if(!E.profil.dateDebut) E.profil.dateDebut = iso(new Date());
+  return E;
+}
+function sauver(){ Store.set(CLE, JSON.stringify(E)); }
+
+/* ============================================================
+   DATES
+   ============================================================ */
+function iso(d){ const z=new Date(d.getTime()-d.getTimezoneOffset()*6e4); return z.toISOString().slice(0,10); }
+function aujourdhui(){ return iso(new Date()); }
+function dPlus(dateStr,n){ const d=new Date(dateStr+"T12:00:00"); d.setDate(d.getDate()+n); return iso(d); }
+function joursEntre(a,b){ return Math.round((new Date(b+"T12:00:00")-new Date(a+"T12:00:00"))/864e5); }
+function jourSemaine(dateStr){ return new Date(dateStr+"T12:00:00").getDay(); }
+const JOURS_FR = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"];
+const MOIS_FR  = ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
+function dateCourte(dateStr){ const d=new Date(dateStr+"T12:00:00"); return d.getDate()+" "+MOIS_FR[d.getMonth()]; }
+
+function numSemaine(dateStr){
+  const n = joursEntre(E.profil.dateDebut, dateStr||aujourdhui());
+  return Math.max(1, Math.floor(n/7) + 1 - (E.reglages.decalageSem||0));
+}
+function estDeload(sem){ return DELOADS.includes(sem); }
+
+/* ============================================================
+   CALCULS ÉNERGÉTIQUES
+   ============================================================ */
+function poidsActuel(){
+  const m = moyenneMobile(aujourdhui(), 7);
+  return m !== null ? m : E.profil.poidsDepart;
+}
+function metabolismeBase(){
+  const p = poidsActuel(), t = E.profil.taille, a = E.profil.age;
+  return Math.round(10*p + 6.25*t - 5*a + (E.profil.sexe==="h" ? 5 : -161));
+}
+function maintien(){ return Math.round(metabolismeBase() * 1.4 * 1.10); }
+
+function surplusPhase(sem){
+  if(sem <= 2) return 0;
+  if(sem <= 4) return 150;
+  return 350;
+}
+function kcalLivraisonJour(dateStr){
+  const h = E.livraison[dateStr] || 0;
+  return Math.round(h * (E.reglages.kcalLivraison||270));
+}
+function cibleKcal(dateStr){
+  const d = dateStr || aujourdhui();
+  return maintien() + surplusPhase(numSemaine(d)) + (E.reglages.ajustement||0) + kcalLivraisonJour(d);
+}
+function cibleMacros(dateStr){
+  const kcal = cibleKcal(dateStr), p = poidsActuel();
+  const prot = Math.round(p * E.reglages.ratioProt);
+  const lip  = Math.round(p * E.reglages.ratioLip);
+  const gluc = Math.max(0, Math.round((kcal - prot*4 - lip*9)/4));
+  return {kcal, prot, lip, gluc};
+}
+function gainCible(){
+  const p = poidsActuel();
+  return {min:Math.round(p*2.5), max:Math.round(p*5)}; // grammes/semaine (0,25 % à 0,5 %)
+}
+
+/* ============================================================
+   POIDS — moyenne mobile 7 jours
+   ============================================================ */
+function moyenneMobile(dateStr, fenetre){
+  const vals=[];
+  for(let i=0;i<fenetre;i++){
+    const v = E.poids[dPlus(dateStr,-i)];
+    if(typeof v === "number") vals.push(v);
+  }
+  if(!vals.length) return null;
+  return Math.round(vals.reduce((a,b)=>a+b,0)/vals.length*10)/10;
+}
+function serieMoyenneMobile(nbJours){
+  const out=[], fin=aujourdhui();
+  for(let i=nbJours-1;i>=0;i--){
+    const d = dPlus(fin,-i);
+    out.push({d, v:moyenneMobile(d,7), brut:E.poids[d] ?? null});
+  }
+  return out;
+}
+function nbPesees(){ return Object.keys(E.poids).length; }
+
+/* ============================================================
+   RECETTES — macros et coût calculés depuis la base aliments
+   ============================================================ */
+function toutesRecettes(){ return RECETTES.concat(E.recettesPerso||[]); }
+function trouverRecette(id){ return toutesRecettes().find(r=>r.id===id) || null; }
+
+function macrosRecette(r){
+  let k=0,p=0,g=0,l=0,cout=0;
+  (r.ing||[]).forEach(([id,gr])=>{
+    const a = ALIMENTS[id]; if(!a) return;
+    k += a.k*gr/100; p += a.p*gr/100; g += a.g*gr/100; l += a.l*gr/100;
+    cout += a.prix*gr/1000;
+  });
+  return {kcal:Math.round(k), prot:Math.round(p), gluc:Math.round(g), lip:Math.round(l), cout:Math.round(cout*100)/100};
+}
+function kcalJour(dateStr){
+  return (E.repas[dateStr]||[]).reduce((s,id)=>{
+    const r = trouverRecette(id); return s + (r ? macrosRecette(r).kcal : 0);
+  },0);
+}
+function macrosJour(dateStr){
+  const t={kcal:0,prot:0,gluc:0,lip:0,cout:0};
+  (E.repas[dateStr]||[]).forEach(id=>{
+    const r = trouverRecette(id); if(!r) return;
+    const m = macrosRecette(r);
+    t.kcal+=m.kcal; t.prot+=m.prot; t.gluc+=m.gluc; t.lip+=m.lip; t.cout+=m.cout;
+  });
+  t.cout = Math.round(t.cout*100)/100;
+  return t;
+}
+
+/* ============================================================
+   SÉANCES
+   ============================================================ */
+function blocPourSemaine(sem){
+  return BLOCS.find(b => sem >= b.s[0] && sem <= b.s[1]) || BLOCS[BLOCS.length-1];
+}
+function seancePrevue(dateStr){
+  const d = dateStr || aujourdhui();
+  const sem = numSemaine(d), bloc = blocPourSemaine(sem), jour = jourSemaine(d);
+  if(bloc.freq === 4){
+    const map = {1:0, 2:1, 4:2, 5:3};
+    if(!(jour in map)) return null;
+    return {bloc, seance:bloc.seances[map[jour]], deload:estDeload(sem), sem};
+  }
+  const map = {1:0, 3:1, 5:2};
+  if(!(jour in map)) return null;
+  const idx = (sem-1)*3 + map[jour];
+  return {bloc, seance:bloc.seances[idx%2], deload:estDeload(sem), sem};
+}
+function seanceFaite(dateStr){ const s=E.seances[dateStr]; return !!(s && s.fini); }
+
+function seriesEffectives(exDef, deload){
+  return deload ? Math.max(1, Math.ceil(exDef[1]/2)) : exDef[1];
+}
+function meilleurePerf(exoId){
+  let best = null;
+  Object.entries(E.seances).forEach(([d,s])=>{
+    const series = (s.ex||{})[exoId]; if(!series || !series.length) return;
+    series.forEach(se=>{
+      const score = (se.l||0)*3 + (se.r||0);
+      if(!best || score > best.score) best = {score, r:se.r, l:se.l||0, d};
+    });
+  });
+  return best;
+}
+function derniereSeanceExo(exoId){
+  const dates = Object.keys(E.seances).filter(d => (E.seances[d].ex||{})[exoId]).sort();
+  if(!dates.length) return null;
+  const d = dates[dates.length-1];
+  return {date:d, series:E.seances[d].ex[exoId]};
+}
+
+/* ============================================================
+   ADHÉRENCE
+   ============================================================ */
+function adherence(nbJours){
+  const fin = aujourdhui();
+  let seancesPrevues=0, seancesFaites=0, joursRepas=0, joursOk=0, bio=[], heuresLivr=0;
+  for(let i=0;i<nbJours;i++){
+    const d = dPlus(fin,-i);
+    if(joursEntre(E.profil.dateDebut, d) < 0) continue;
+    if(seancePrevue(d)){ seancesPrevues++; if(seanceFaite(d)) seancesFaites++; }
+    if(i>0 || (E.repas[d]||[]).length){
+      joursRepas++;
+      if(kcalJour(d) >= cibleKcal(d)*0.9) joursOk++;
+    }
+    const j = E.journal[d];
+    if(j) bio.push((j.sommeil+j.energie+j.appetit+j.motiv)/4);
+    heuresLivr += E.livraison[d]||0;
+  }
+  return {
+    seancesPrevues, seancesFaites,
+    tauxSeances: seancesPrevues ? seancesFaites/seancesPrevues : null,
+    joursRepas, joursOk,
+    tauxRepas: joursRepas ? joursOk/joursRepas : null,
+    bioMoyen: bio.length ? bio.reduce((a,b)=>a+b,0)/bio.length : null,
+    bioN: bio.length,
+    heuresLivr: Math.round(heuresLivr*10)/10
+  };
+}
+
+/* ============================================================
+   MOTEUR D'ANALYSE — relecture toutes les 2 semaines
+   Retourne une liste de constats classés par priorité.
+   type : "alerte" | "action" | "ok" | "info"
+   ============================================================ */
+function analyser(){
+  const out = [];
+  const fin = aujourdhui();
+  const sem = numSemaine(fin);
+  const a14 = adherence(14);
+  const maNow = moyenneMobile(fin, 7);
+  const maAvant = moyenneMobile(dPlus(fin,-14), 7);
+  const cible = gainCible();
+
+  /* --- Données insuffisantes --- */
+  if(nbPesees() < 6 || maNow === null){
+    out.push({type:"info", t:"Pas encore assez de données",
+      x:"Il me faut au moins 6 pesées, idéalement réparties sur 2 semaines, avant de pouvoir juger quoi que ce soit. Pèse-toi le matin à jeun, en sous-vêtements, avant de boire. Un chiffre isolé ne veut rien dire — c'est la moyenne sur 7 jours qui compte."});
+    return out;
+  }
+
+  /* --- Deload en cours --- */
+  if(estDeload(sem)){
+    out.push({type:"info", t:"Semaine "+sem+" : deload",
+      x:"Fais la moitié des séries prévues et arrête-toi à RIR 4. Tu vas te sentir frais et avoir l'impression de perdre ton temps — c'est exactement l'effet recherché. La fatigue accumulée se vide pendant que les adaptations se consolident. Les calories, elles, ne bougent pas."});
+  }
+
+  /* --- Signal de surcharge (priorité haute) --- */
+  if(a14.bioMoyen !== null && a14.bioN >= 5 && a14.bioMoyen < 2.4){
+    out.push({type:"alerte", t:"Signal de surcharge",
+      x:"Ton biofeedback moyen est à "+a14.bioMoyen.toFixed(1)+"/5 sur les 14 derniers jours. Combiné à ton rythme (travail + livraison), c'est le profil classique d'une fatigue qui s'accumule. Réduis le volume de 30 % cette semaine et passe à RIR 3-4. Si le sommeil est en cause, supprime une séance plutôt que de rogner sur les nuits."});
+  }
+
+  /* --- Exécution avant réglage --- */
+  let executionFaible = false;
+  if(a14.tauxRepas !== null && a14.joursRepas >= 7 && a14.tauxRepas < 0.7){
+    executionFaible = true;
+    out.push({type:"action", t:"L'exécution avant le réglage",
+      x:"Tu as atteint ta cible calorique sur "+a14.joursOk+" des "+a14.joursRepas+" derniers jours suivis, soit "+Math.round(a14.tauxRepas*100)+" %. Augmenter les calories maintenant ne servirait à rien : le problème n'est pas la cible, c'est l'écart entre la cible et l'assiette. Objectif de la quinzaine : passer à 85 % avant tout autre changement. Commence par sécuriser le shake, c'est le repas le plus facile à ne jamais rater."});
+  }
+  if(a14.tauxSeances !== null && a14.seancesPrevues >= 4 && a14.tauxSeances < 0.6){
+    out.push({type:"action", t:"Séances trop irrégulières",
+      x:"Tu as fait "+a14.seancesFaites+" séances sur "+a14.seancesPrevues+" prévues. En dessous de 60 %, aucun programme ne fonctionne. Baisse l'ambition plutôt que d'abandonner : passe à 2 séances Full Body par semaine, mais fais-les. Deux séances tenues battent quatre séances théoriques."});
+  }
+
+  /* --- Rythme de prise de poids --- */
+  if(maAvant !== null){
+    const deltaSem = Math.round((maNow - maAvant)/2*1000); // g/semaine
+    const txt = (deltaSem>=0?"+":"")+deltaSem+" g/semaine";
+
+    if(!executionFaible && deltaSem < cible.min*0.6){
+      out.push({type:"action", t:"Rythme trop lent — "+txt, kcal:250,
+        x:"Ta cible est de "+cible.min+" à "+cible.max+" g par semaine, tu es à "+deltaSem+" g. Ajoute 250 kcal par jour. Le plus simple : un shake supplémentaire, ou 40 g de beurre de cacahuète, ou deux cuillères à soupe d'huile réparties dans les plats. Vérifie aussi tes heures de livraison sur la période : "+a14.heuresLivr+" h en 14 jours, soit environ "+Math.round(a14.heuresLivr*(E.reglages.kcalLivraison||270)/14)+" kcal/jour de dépense supplémentaire."});
+    }
+    else if(!executionFaible && deltaSem >= cible.min*0.6 && deltaSem <= cible.max*1.15){
+      out.push({type:"ok", t:"Rythme idéal — "+txt,
+        x:"Tu es dans la fenêtre visée ("+cible.min+" à "+cible.max+" g/semaine). Ne change absolument rien : ni les calories, ni le programme. La discipline ici consiste à résister à l'envie d'accélérer. Reviens dans 14 jours."});
+    }
+    else if(deltaSem > cible.max*1.15){
+      out.push({type:"action", t:"Rythme trop rapide — "+txt, kcal:-200,
+        x:"Au-delà de "+cible.max+" g par semaine, la part qui s'ajoute est majoritairement du gras. Retire 200 kcal par jour. Si c'est la première quinzaine au-dessus, tu peux aussi attendre 14 jours de plus avant d'agir : une seule mesure peut être trompée par la rétention d'eau ou le transit."});
+    }
+  }
+
+  /* --- Répartition du gain : muscle ou gras --- */
+  const dates = Object.keys(E.mensurations).sort();
+  if(dates.length >= 2){
+    const p = E.mensurations[dates[0]], d = E.mensurations[dates[dates.length-1]];
+    if(p.taille && d.taille && p.bras && d.bras){
+      const dTaille = d.taille - p.taille, dBras = d.bras - p.bras;
+      if(dTaille >= 3 && dBras <= 0.5){
+        out.push({type:"action", t:"Le gain part surtout en gras", kcal:-200,
+          x:"Ton tour de taille a pris "+dTaille.toFixed(1)+" cm pendant que ton tour de bras prenait "+dBras.toFixed(1)+" cm. La répartition n'est pas bonne. Réduis le surplus de 200 kcal et vérifie que tu atteins bien tes protéines chaque jour — c'est le levier le plus direct sur la répartition du gain."});
+      } else if(dBras >= 1.5){
+        out.push({type:"ok", t:"Bonne répartition du gain",
+          x:"Tour de bras : +"+dBras.toFixed(1)+" cm. Tour de taille : +"+dTaille.toFixed(1)+" cm. C'est le rapport que l'on cherche. Le muscle se construit plus vite que le tissu adipeux, ce qui veut dire que le surplus est bien calibré."});
+      }
+    }
+  }
+
+  /* --- Charge de livraison --- */
+  if(a14.heuresLivr >= 20){
+    const kcalJ = Math.round(a14.heuresLivr*(E.reglages.kcalLivraison||270)/14);
+    out.push({type:"info", t:a14.heuresLivr+" h de livraison en 14 jours",
+      x:"Cela représente environ "+kcalJ+" kcal par jour de dépense supplémentaire, déjà ajoutés automatiquement à ta cible quotidienne. Deux points d'attention : ne place jamais une séance Bas le jour d'une tournée de plus de 4 h, et prépare tes shakes AVANT de partir — une tournée de 5 h sans manger, c'est plus de 1 000 kcal qui manquent à l'appel."});
+  }
+
+  /* --- Progression des charges --- */
+  const bloc = blocPourSemaine(sem);
+  if(!executionFaible && a14.seancesFaites >= 4){
+    let progresse = 0, testes = 0;
+    bloc.seances.forEach(s => s.ex.forEach(e => {
+      const best = meilleurePerf(e[0]); if(!best) return;
+      testes++;
+      if(joursEntre(best.d, fin) <= 14) progresse++;
+    }));
+    if(testes >= 4 && progresse === 0){
+      out.push({type:"action", t:"Aucun record depuis 2 semaines",
+        x:"Tes meilleures performances datent toutes d'il y a plus de 14 jours. Si ton poids monte correctement et que tu dors, c'est probablement la proximité de l'échec qui est en cause : vérifie que tes séries s'arrêtent bien à 1-2 répétitions de l'échec réel, pas à la fatigue confortable. Sinon, passe à la variation supérieure de l'exercice concerné."});
+    }
+  }
+
+  if(!out.length){
+    out.push({type:"ok", t:"Rien à signaler",
+      x:"Aucun signal négatif sur les 14 derniers jours. Continue exactement pareil."});
+  }
+  return out;
+}
+
+/* ============================================================
+   LISTE DE COURSES — agrégée depuis le menu de la semaine
+   ============================================================ */
+const JOURS_MENU = ["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"];
+const MOMENTS = ["matin","midi","soir","shake","collation"];
+
+function listeCourses(){
+  const total = {};
+  JOURS_MENU.forEach(j=>{
+    const m = E.menu[j] || {};
+    MOMENTS.forEach(mo=>{
+      const id = m[mo]; if(!id) return;
+      const r = trouverRecette(id); if(!r) return;
+      (r.ing||[]).forEach(([ai,gr])=>{ total[ai] = (total[ai]||0) + gr; });
+    });
+  });
+  const parRayon = {};
+  Object.entries(total).forEach(([ai,gr])=>{
+    const a = ALIMENTS[ai]; if(!a) return;
+    (parRayon[a.r] = parRayon[a.r] || []).push({
+      id:ai, nom:a.n, g:Math.round(gr), cout:Math.round(a.prix*gr/1000*100)/100
+    });
+  });
+  Object.values(parRayon).forEach(l=>l.sort((x,y)=>y.cout-x.cout));
+  const budget = Object.values(parRayon).flat().reduce((s,i)=>s+i.cout,0);
+  return {parRayon, budget:Math.round(budget*100)/100};
+}
+function menuKcalJour(j){
+  const m = E.menu[j]||{}; let k=0;
+  MOMENTS.forEach(mo=>{ const r = m[mo] && trouverRecette(m[mo]); if(r) k += macrosRecette(r).kcal; });
+  return k;
+}
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+const ONGLETS = [
+  {id:"jour",    n:"Auj.",    ic:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/><path d="M9.5 20v-6h5v6"/>'},
+  {id:"seance",  n:"Séance",  ic:'<path d="M6.5 8v8M17.5 8v8M3.5 10v4M20.5 10v4M6.5 12h11"/>'},
+  {id:"repas",   n:"Repas",   ic:'<path d="M6 3v8a2.5 2.5 0 0 0 5 0V3M8.5 11v10M17 3c-1.5 1.5-2 3.5-2 5.5V13h3.5V3z"/><path d="M17 13v8"/>'},
+  {id:"courses", n:"Courses", ic:'<path d="M3 4h2l2.2 10.5a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/>'},
+  {id:"suivi",   n:"Suivi",   ic:'<path d="M3 20h18"/><path d="M6 20v-6M11 20V8M16 20v-9M21 20V5"/>'}
+];
+let ONGLET = "jour";
+
+function majNav(){
+  document.getElementById("nav").innerHTML = ONGLETS.map(o=>
+    `<button class="${o.id===ONGLET?"on":""}" onclick="aller('${o.id}')">
+      <svg viewBox="0 0 24 24">${o.ic}</svg><span>${o.n}</span></button>`).join("");
+}
+function aller(id){ ONGLET=id; rendre(); window.scrollTo(0,0); }
+
+function rendre(){
+  const sem = numSemaine(), bloc = blocPourSemaine(sem);
+  document.getElementById("hdr-sem").textContent =
+    `Semaine ${sem} sur 52 · Bloc ${bloc.id} ${bloc.n}${estDeload(sem)?" · deload":""}`;
+  const v = document.getElementById("vue");
+  v.innerHTML = ({jour:vueJour, seance:vueSeance, repas:vueRepas, courses:vueCourses, suivi:vueSuivi})[ONGLET]();
+  majNav();
+  document.querySelectorAll("[data-p]").forEach(el=>el.style.setProperty("--p", el.dataset.p));
+  animerFigures();
+}
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg; t.classList.add("on");
+  clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove("on"), 2000);
+}
+function esc(s){ return String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+
+/* ============================================================
+   FEUILLE MODALE
+   ============================================================ */
+function feuille(html){
+  document.getElementById("panneau").innerHTML = '<div class="poignee"></div>' + html;
+  document.getElementById("feuille").classList.add("on");
+  document.body.style.overflow = "hidden";
+  animerFigures();
+}
+function fermerFeuille(){
+  document.getElementById("feuille").classList.remove("on");
+  document.body.style.overflow = "";
+}
+
+/* ============================================================
+   VUE — AUJOURD'HUI
+   ============================================================ */
+function vueJour(){
+  const d = aujourdhui(), sem = numSemaine(d);
+  const m = macrosJour(d), c = cibleMacros(d);
+  const pct = Math.min(1, m.kcal / c.kcal);
+  const reste = Math.max(0, c.kcal - m.kcal);
+  const sp = seancePrevue(d);
+  const faite = seanceFaite(d);
+  const ma = moyenneMobile(d, 7);
+  const hLivr = E.livraison[d] || 0;
+
+  /* Phrase du jour — la seule chose à lire si tu es pressé */
+  let phrase, couleur;
+  if(reste === 0 && (faite || !sp)) { phrase = "Journée bouclée. Rien à faire de plus."; couleur="green"; }
+  else if(reste > 0 && sp && !faite) { phrase = `Il te reste <b class="num amb">${reste} kcal</b> et une séance.`; couleur="amber"; }
+  else if(reste > 0)                 { phrase = `Il te reste <b class="num amb">${reste} kcal</b> à manger.`; couleur="amber"; }
+  else                               { phrase = `Calories atteintes. Reste la séance <b class="amb">${sp.seance.n}</b>.`; couleur="amber"; }
+
+  const macro = (n, val, cible, c1, c2) => `
+    <div class="macro">
+      <div class="macro-tete"><span class="n">${n}</span>
+        <span class="v num" style="color:${val>=cible*.9?c1:"var(--txt-2)"}">${val} <span class="t3">/ ${cible} g</span></span></div>
+      <div class="jauge"><i style="width:${Math.min(100,val/cible*100)}%;background:linear-gradient(90deg,${c2},${c1})"></i></div>
+    </div>`;
+
+  return `
+  <div class="carte ${couleur}">
+    <div class="eyebrow">${JOURS_FR[jourSemaine(d)]} ${dateCourte(d)}</div>
+    <h2 style="margin:7px 0 15px;font-weight:750;line-height:1.28">${phrase}</h2>
+    <div class="anneau-bloc">
+      <div class="anneau" data-p="${pct.toFixed(3)}">
+        <div class="anneau-txt"><div class="g">${m.kcal}</div><div class="p">sur ${c.kcal}</div></div>
+      </div>
+      <div style="flex:1;min-width:0">
+        ${macro("Protéines", m.prot, c.prot, "var(--vrt-2)", "var(--vrt-4)")}
+        ${macro("Glucides",  m.gluc, c.gluc, "var(--amb-2)", "var(--amb-4)")}
+        ${macro("Lipides",   m.lip,  c.lip,  "var(--blu-2)", "var(--blu-4)")}
+      </div>
+    </div>
+    ${hLivr ? `<div class="mini" style="margin-top:12px;padding-top:11px;border-top:1px solid var(--bord)">
+      <span class="blu">↑ ${kcalLivraisonJour(d)} kcal</span> ajoutées pour ${hLivr} h de livraison aujourd'hui.</div>` : ""}
+  </div>
+
+  <div class="grille3" style="margin-bottom:12px">
+    <button class="btn" onclick="ouvrirPoids()" style="flex-direction:column;gap:2px;padding:12px 4px">
+      <span class="num" style="font-size:17px;font-weight:700">${ma ? ma.toFixed(1) : "—"}</span>
+      <span class="eyebrow">kg moy. 7 j</span></button>
+    <button class="btn" onclick="ouvrirLivraison()" style="flex-direction:column;gap:2px;padding:12px 4px">
+      <span class="num" style="font-size:17px;font-weight:700">${hLivr || "—"}</span>
+      <span class="eyebrow">h livraison</span></button>
+    <button class="btn" onclick="ouvrirJournal()" style="flex-direction:column;gap:2px;padding:12px 4px">
+      <span class="num" style="font-size:17px;font-weight:700">${E.journal[d] ? "✓" : "—"}</span>
+      <span class="eyebrow">ressenti</span></button>
+  </div>
+
+  ${sp ? `
+  <div class="carte amber">
+    <div class="carte-tete">
+      <div><div class="eyebrow">Séance du jour</div><h3 style="margin-top:5px">${sp.seance.n} · Bloc ${sp.bloc.id}</h3></div>
+      ${faite ? '<span class="pillule green">✓ faite</span>' : sp.deload ? '<span class="pillule blue">deload</span>' : ''}
+    </div>
+    <div class="mini" style="margin-bottom:12px">${sp.seance.ex.length} exercices · ${sp.bloc.format} · RIR ${sp.deload ? "4" : sp.bloc.rir}</div>
+    <button class="btn ${faite?"fant":"plein"} large" onclick="aller('seance')">${faite ? "Revoir la séance" : "Commencer la séance"}</button>
+  </div>` : `
+  <div class="carte blue">
+    <div class="eyebrow">Séance du jour</div>
+    <h3 style="margin:6px 0 8px">Repos</h3>
+    <p class="sub" style="margin:0">Pas de séance prévue aujourd'hui. C'est pendant ces journées que le muscle se construit réellement — mange tes calories complètes, elles comptent autant que les jours d'entraînement.</p>
+  </div>`}
+
+  <div class="carte violet">
+    <div class="carte-tete">
+      <div><div class="eyebrow">Repas validés</div><h3 style="margin-top:5px">${(E.repas[d]||[]).length} aujourd'hui</h3></div>
+      <button class="btn mini" onclick="aller('repas')">Ajouter</button>
+    </div>
+    ${(E.repas[d]||[]).length ? (E.repas[d]||[]).map((id,i)=>{
+      const r = trouverRecette(id); if(!r) return "";
+      const mm = macrosRecette(r);
+      return `<div class="ligne">
+        <div class="puce violet">${mm.kcal>=600?"◆":"◇"}</div>
+        <div class="corps"><div class="titre">${esc(r.n)}</div>
+          <div class="det">${mm.kcal} kcal · ${mm.prot} g prot · ${mm.cout.toFixed(2)} €</div></div>
+        <button class="btn mini fant" onclick="retirerRepas(${i})">✕</button></div>`;
+    }).join("") : '<div class="vide-etat"><div class="g">◇</div><div class="mini">Aucun repas validé.<br>Chaque repas non validé est un trou dans les données de l\'analyse.</div></div>'}
+  </div>
+
+  <div class="carte">
+    <div class="carte-tete"><div class="eyebrow">L'année · semaine ${sem} sur 52</div></div>
+    <div class="barre-compacte">${barreCompacte()}</div>
+    <div class="mini" style="margin-top:9px">Chaque barre est une semaine. La hauteur suit ton poids, la couleur suit ton assiduité.</div>
+  </div>`;
+}
+
+/* ============================================================
+   LA BARRE — signature : 52 semaines empilées
+   ============================================================ */
+function etatSemaine(s){
+  const semNow = numSemaine();
+  if(s > semNow) return "futur";
+  const debut = dPlus(E.profil.dateDebut, (s-1)*7);
+  let prevues=0, faites=0, joursOk=0, joursSuivis=0;
+  for(let i=0;i<7;i++){
+    const d = dPlus(debut,i);
+    if(seancePrevue(d)){ prevues++; if(seanceFaite(d)) faites++; }
+    if((E.repas[d]||[]).length){ joursSuivis++; if(kcalJour(d) >= cibleKcal(d)*0.9) joursOk++; }
+  }
+  if(!prevues && !joursSuivis) return "vide";
+  const tS = prevues ? faites/prevues : 1;
+  const tR = joursSuivis ? joursOk/Math.max(joursSuivis,5) : 0;
+  const score = (tS + tR)/2;
+  if(estDeload(s)) return score >= .5 ? "deload" : "vide";
+  if(score >= .75) return "plein";
+  if(score >= .3)  return "partiel";
+  return "vide";
+}
+function largeurSemaine(s){
+  const dep = E.profil.poidsDepart;
+  const obj = dep + 11;
+  const debut = dPlus(E.profil.dateDebut, (s-1)*7 + 6);
+  let p = null;
+  for(let i=0;i<7 && p===null;i++) p = moyenneMobile(dPlus(debut,-i), 7);
+  if(p === null) return 22;
+  return Math.max(22, Math.min(100, 22 + (p - dep)/(obj - dep)*78));
+}
+function barreAn(){
+  const semNow = numSemaine();
+  let h = "";
+  for(let s=1;s<=52;s++){
+    h += `<div class="sem ${etatSemaine(s)} ${s===semNow?"now":""}" style="width:${largeurSemaine(s)}%" title="Semaine ${s}"></div>`;
+  }
+  return h;
+}
+function barreCompacte(){
+  const semNow = numSemaine();
+  let h = "";
+  for(let s=1;s<=52;s++){
+    const e = etatSemaine(s);
+    const col = {plein:"linear-gradient(180deg,var(--vrt-2),var(--vrt-4))",
+                 partiel:"linear-gradient(180deg,var(--amb-2),var(--amb-4))",
+                 deload:"linear-gradient(180deg,var(--blu-2),var(--blu-4))",
+                 vide:"var(--nuit-3)", futur:"var(--nuit-2)"}[e];
+    const ht = e==="futur" ? 20 : Math.max(24, largeurSemaine(s));
+    h += `<i style="height:${ht}%;background:${col};${s===semNow?"box-shadow:0 0 8px var(--amb-o);outline:1px solid var(--amb-3)":""}"></i>`;
+  }
+  return h;
+}
+
+/* ============================================================
+   VUE — SÉANCE
+   ============================================================ */
+function vueSeance(){
+  const d = aujourdhui(), sp = seancePrevue(d), sem = numSemaine(d);
+  const bloc = blocPourSemaine(sem);
+  let h = "";
+
+  if(sp){
+    const st = E.seances[d] || {sid:sp.seance.id, ex:{}, fini:false};
+    const total = sp.seance.ex.length;
+    const finis = sp.seance.ex.filter(e => ((st.ex||{})[e[0]]||[]).some(x=>x && x.ok)).length;
+
+    h += `<div class="carte amber">
+      <div class="carte-tete">
+        <div><div class="eyebrow">Bloc ${bloc.id} · ${bloc.n} · semaine ${sem}</div>
+          <h2 style="margin-top:6px">${sp.seance.n}</h2></div>
+        ${sp.deload ? '<span class="pillule blue">deload</span>' : `<span class="pillule amber">RIR ${bloc.rir}</span>`}
+      </div>
+      <div class="jauge" style="height:6px"><i style="width:${finis/total*100}%;background:linear-gradient(90deg,var(--amb-4),var(--amb-2))"></i></div>
+      <div class="mini" style="margin-top:7px">${finis} sur ${total} exercices terminés${sp.deload ? " · deload : moitié des séries, RIR 4" : ""}</div>
+    </div>`;
+
+    sp.seance.ex.forEach(e=>{
+      const ex = EXOS[e[0]]; if(!ex) return;
+      const nS = seriesEffectives(e, sp.deload);
+      const saisies = (st.ex||{})[e[0]] || [];
+      const best = meilleurePerf(e[0]);
+      const der = derniereSeanceExo(e[0]);
+      const pat = PATRONS[ex.pat];
+      h += `<div class="carte ${pat.c}">
+        <div class="carte-tete" style="align-items:flex-start">
+          ${FIG_EXO[e[0]] ? `<div class="fig-boite mini fg-${pat.c}" onclick="ouvrirExo('${e[0]}')">${figureSVG(e[0], false)}</div>` : ""}
+          <div style="min-width:0;flex:1">
+            <div class="eyebrow">${pat.n}</div>
+            <h3 style="margin-top:5px">${esc(ex.n)}</h3>
+            <div class="mini" style="margin-top:3px">${nS} × ${e[2]}${e[3]!==e[2]?"-"+e[3]:""} ${ex.tempo==="iso"?"s":"reps"} · repos ${ex.repos} s${ex.tempo!=="iso"?" · tempo "+ex.tempo:""}</div>
+          </div>
+          <button class="btn mini fant" onclick="ouvrirExo('${e[0]}')">?</button>
+        </div>
+        ${der ? `<div class="mini" style="margin-bottom:9px">Dernière fois (${dateCourte(der.date)}) : <span class="num">${der.series.map(s=>s.r+(s.l?"@"+s.l+"kg":"")).join(" · ")}</span></div>` : ""}
+        <div class="entete-serie"><span></span><span>${ex.tempo==="iso"?"Sec.":"Reps"}</span><span>RIR</span><span>Lest kg</span><span></span></div>
+        ${Array.from({length:nS}, (_,i)=>{
+          const s = saisies[i] || {};
+          return `<div class="serie">
+            <div class="idx">${i+1}</div>
+            <input type="number" inputmode="numeric" value="${s.r??""}" placeholder="${e[2]}" onchange="majSerie('${e[0]}',${i},'r',this.value)">
+            <input type="number" inputmode="numeric" value="${s.rir??""}" placeholder="${sp.deload?4:2}" onchange="majSerie('${e[0]}',${i},'rir',this.value)">
+            <input type="number" inputmode="decimal" value="${s.l??""}" placeholder="0" onchange="majSerie('${e[0]}',${i},'l',this.value)">
+            <button class="ok ${s.ok?"on":""}" onclick="validerSerie('${e[0]}',${i},${ex.repos})">✓</button>
+          </div>`;
+        }).join("")}
+        ${best ? `<div class="mini" style="margin-top:9px">Record : <span class="num amb">${best.r} reps${best.l?" à "+best.l+" kg":""}</span> le ${dateCourte(best.d)}</div>` : ""}
+      </div>`;
+    });
+
+    h += `<button class="btn ${st.fini?"fant":"vert"} large" style="margin-bottom:12px" onclick="finirSeance()">
+      ${st.fini ? "✓ Séance terminée" : "Terminer la séance"}</button>`;
+  } else {
+    h += `<div class="carte blue">
+      <div class="eyebrow">${JOURS_FR[jourSemaine(d)]}</div>
+      <h2 style="margin:6px 0 9px">Journée de repos</h2>
+      <p class="sub" style="margin:0">Prochaine séance : ${prochaineSeanceTexte()}. Le muscle se construit dans les 48 h qui suivent l'entraînement, pas pendant. Cette journée fait partie du programme.</p>
+    </div>`;
+  }
+
+  /* Bloc en cours */
+  h += `<div class="carte">
+    <div class="eyebrow">Bloc ${bloc.id} sur 5 · semaines ${bloc.s[0]} à ${bloc.s[1]}</div>
+    <h3 style="margin:6px 0 9px">${bloc.n}</h3>
+    <p class="sub">${bloc.obj}</p>
+    <div class="sep"></div>
+    <div class="mini" style="margin-bottom:5px"><span class="t3">Format</span> · ${bloc.format}, ${bloc.freq}×/semaine</div>
+    <div class="mini" style="margin-bottom:5px"><span class="t3">Jours</span> · ${bloc.jours}</div>
+    <div class="mini" style="margin-bottom:5px"><span class="t3">Volume</span> · ${bloc.vol}</div>
+    <div class="mini" style="margin-bottom:11px"><span class="t3">Matériel</span> · ${bloc.mat}</div>
+    <div style="background:var(--amb-o);border-radius:10px;padding:11px">
+      <div class="eyebrow amb" style="margin-bottom:5px">Règle du bloc</div>
+      <div class="sub" style="margin:0;color:var(--txt)">${bloc.regle}</div>
+    </div>
+  </div>`;
+
+  /* Feuille de route */
+  h += `<div class="carte"><div class="eyebrow" style="margin-bottom:11px">Les 5 blocs de l'année</div>`;
+  BLOCS.forEach(b=>{
+    const actif = b.id === bloc.id, passe = sem > b.s[1];
+    h += `<div class="ligne" onclick="ouvrirBloc(${b.id})">
+      <div class="puce ${actif?"amber":passe?"green":"blue"}">${passe?"✓":b.id}</div>
+      <div class="corps"><div class="titre" style="${actif?"color:var(--amb-1)":passe?"color:var(--txt-3)":""}">${b.n}</div>
+        <div class="det">S${b.s[0]}–${b.s[1]} · ${b.format} · ${b.freq}×/sem</div></div>
+      <span class="t3">›</span></div>`;
+  });
+  h += `</div>`;
+
+  /* Galerie des mouvements */
+  h += `<div class="carte">
+    <div class="carte-tete">
+      <div><div class="eyebrow">Bibliothèque</div><h3 style="margin-top:5px">Tous les mouvements</h3></div>
+      <span class="pillule gris">${Object.keys(EXOS).length}</span>
+    </div>
+    <p class="sub">Chaque exercice est dessiné en mouvement : position de départ, position d'arrivée, et l'aller-retour en boucle. Touche une figure pour l'exécution détaillée et les erreurs à éviter.</p>
+    <button class="btn fant large" onclick="ouvrirGalerie()">Ouvrir la bibliothèque</button>
+  </div>`;
+
+  /* Imprévus */
+  h += `<div class="carte rose">
+    <div class="eyebrow" style="margin-bottom:4px">Quand ça ne se passe pas comme prévu</div>
+    <h3 style="margin-bottom:9px">Imprévus</h3>
+    <p class="sub">Un plan de 52 semaines rencontre forcément des semaines cassées. Ce qui compte, c'est le protocole de reprise.</p>
+    <div class="chips" style="padding-bottom:0">
+      ${IMPREVUS.map(i=>`<button class="chip" onclick="ouvrirImprevu('${i.id}')">${i.n}</button>`).join("")}
+    </div></div>`;
+
+  return h;
+}
+function prochaineSeanceTexte(){
+  for(let i=1;i<=7;i++){
+    const d = dPlus(aujourdhui(), i), sp = seancePrevue(d);
+    if(sp) return `${JOURS_FR[jourSemaine(d)].toLowerCase()} (${sp.seance.n})`;
+  }
+  return "à définir";
+}
+
+function majSerie(exo, i, champ, val){
+  const d = aujourdhui();
+  const s = E.seances[d] || (E.seances[d] = {sid:(seancePrevue(d)||{seance:{}}).seance.id, ex:{}, fini:false});
+  s.ex[exo] = s.ex[exo] || [];
+  s.ex[exo][i] = s.ex[exo][i] || {};
+  s.ex[exo][i][champ] = val === "" ? undefined : parseFloat(val);
+  sauver();
+}
+function validerSerie(exo, i, repos){
+  const d = aujourdhui();
+  const s = E.seances[d] || (E.seances[d] = {sid:(seancePrevue(d)||{seance:{}}).seance.id, ex:{}, fini:false});
+  s.ex[exo] = s.ex[exo] || [];
+  s.ex[exo][i] = s.ex[exo][i] || {};
+  s.ex[exo][i].ok = !s.ex[exo][i].ok;
+  sauver();
+  if(s.ex[exo][i].ok) minDemarrer(repos, "Repos");
+  rendre();
+}
+function finirSeance(){
+  const d = aujourdhui();
+  const s = E.seances[d] || (E.seances[d] = {sid:(seancePrevue(d)||{seance:{}}).seance.id, ex:{}, fini:false});
+  s.fini = !s.fini; sauver(); rendre();
+  toast(s.fini ? "Séance validée" : "Séance rouverte");
+}
+
+/* ============================================================
+   VUE — REPAS
+   ============================================================ */
+let FILTRE_REPAS = "matin";
+function vueRepas(){
+  const liste = toutesRecettes().filter(r =>
+    FILTRE_REPAS === "perso" ? (E.recettesPerso||[]).some(p=>p.id===r.id) : r.m === FILTRE_REPAS);
+  const c = cibleMacros();
+  const noms = {matin:"Matin", midi:"Midi", soir:"Soir", shake:"Shakes", collation:"Collations", perso:"Mes recettes"};
+
+  return `
+  <div class="carte violet">
+    <div class="eyebrow">Ta cible du jour</div>
+    <h2 style="margin:6px 0 5px" class="num">${c.kcal} kcal</h2>
+    <div class="mini">${c.prot} g de protéines · ${c.gluc} g de glucides · ${c.lip} g de lipides</div>
+    <div class="sep"></div>
+    <p class="sub" style="margin:0">Touche une recette pour voir les étapes et les grammages. Le bouton « J'ai mangé ça » l'ajoute à ta journée et alimente l'analyse.</p>
+  </div>
+
+  <div class="chips">
+    ${Object.entries(noms).map(([k,v])=>
+      `<button class="chip ${FILTRE_REPAS===k?"on v":""}" onclick="FILTRE_REPAS='${k}';rendre()">${v}</button>`).join("")}
+  </div>
+
+  <button class="btn fant large" style="margin-bottom:12px" onclick="ouvrirAjoutRecette()">+ Créer une recette</button>
+
+  ${liste.length ? liste.map(r=>{
+    const m = macrosRecette(r);
+    const pasMix = r.mix === false;
+    return `<div class="carte violet" onclick="ouvrirRecette('${r.id}')" style="cursor:pointer">
+      <div class="carte-tete">
+        <div style="min-width:0"><h3>${esc(r.n)}</h3>
+          <div class="mini" style="margin-top:3px">${r.t} min${pasMix?" · sans mixeur":""}${m.cout<2?" · moins de 2 €":""}</div></div>
+        <div style="text-align:right;flex:none">
+          <div class="num" style="font-size:19px;font-weight:700;color:var(--vio-1)">${m.kcal}</div>
+          <div class="eyebrow">kcal</div></div>
+      </div>
+      <div class="grille3">
+        <div><div class="eyebrow">Prot.</div><div class="num vrt" style="font-weight:650">${m.prot} g</div></div>
+        <div><div class="eyebrow">Gluc.</div><div class="num amb" style="font-weight:650">${m.gluc} g</div></div>
+        <div><div class="eyebrow">Coût</div><div class="num blu" style="font-weight:650">${m.cout.toFixed(2)} €</div></div>
+      </div>
+    </div>`;
+  }).join("") : `<div class="vide-etat"><div class="g">◇</div><div class="mini">Aucune recette ici.<br>Utilise « Créer une recette » pour en ajouter.</div></div>`}`;
+}
+
+function ouvrirRecette(id){
+  const r = trouverRecette(id); if(!r) return;
+  const m = macrosRecette(r);
+  const perso = (E.recettesPerso||[]).some(p=>p.id===id);
+  feuille(`
+    <div class="eyebrow">${({matin:"Petit-déjeuner",midi:"Déjeuner",soir:"Dîner",shake:"Shake",collation:"Collation"})[r.m]||"Recette"} · ${r.t} min</div>
+    <h2 style="margin:7px 0 13px">${esc(r.n)}</h2>
+    <div class="grille2" style="gap:9px;margin-bottom:15px">
+      <div class="carte violet" style="margin:0;padding:11px">
+        <div class="eyebrow">Calories</div><div class="num" style="font-size:21px;font-weight:700">${m.kcal}</div></div>
+      <div class="carte green" style="margin:0;padding:11px">
+        <div class="eyebrow">Protéines</div><div class="num" style="font-size:21px;font-weight:700">${m.prot} g</div></div>
+    </div>
+    <div class="mini" style="margin-bottom:15px">Glucides ${m.gluc} g · Lipides ${m.lip} g · Coût estimé ${m.cout.toFixed(2)} €${r.mix===false?" · aucun mixeur nécessaire":""}</div>
+
+    <div class="eyebrow" style="margin-bottom:8px">Ingrédients</div>
+    ${(r.ing||[]).map(([ai,g])=>{
+      const a = ALIMENTS[ai]; if(!a) return "";
+      return `<div class="ligne" style="cursor:default">
+        <div class="corps"><div class="titre" style="font-size:13.5px">${esc(a.n)}</div></div>
+        <span class="num amb" style="font-weight:650">${g} g</span></div>`;
+    }).join("")}
+
+    <div class="eyebrow" style="margin:17px 0 8px">Préparation</div>
+    ${(r.et||[]).map((e,i)=>`<div class="ligne" style="cursor:default;align-items:flex-start">
+      <div class="puce violet" style="margin-top:1px">${i+1}</div>
+      <div class="corps"><div class="sub" style="margin:0;color:var(--txt)">${esc(e)}</div></div></div>`).join("")}
+
+    ${r.as ? `<div style="background:var(--amb-o);border-radius:11px;padding:13px;margin-top:15px">
+      <div class="eyebrow amb" style="margin-bottom:5px">À retenir</div>
+      <div class="sub" style="margin:0;color:var(--txt)">${esc(r.as)}</div></div>` : ""}
+
+    <div class="btn-rangee" style="margin-top:17px">
+      <button class="btn vert" style="flex:1" onclick="mangerRecette('${r.id}')">J'ai mangé ça</button>
+      ${perso ? `<button class="btn fant" onclick="supprimerRecette('${r.id}')">Supprimer</button>` : ""}
+    </div>`);
+}
+function mangerRecette(id){
+  const d = aujourdhui();
+  E.repas[d] = E.repas[d] || [];
+  E.repas[d].push(id);
+  sauver(); fermerFeuille(); rendre();
+  const r = trouverRecette(id);
+  const reste = Math.max(0, cibleKcal(d) - kcalJour(d));
+  toast(reste ? `+${macrosRecette(r).kcal} kcal · reste ${reste}` : "Cible atteinte");
+}
+function retirerRepas(i){
+  const d = aujourdhui();
+  (E.repas[d]||[]).splice(i,1); sauver(); rendre();
+}
+function supprimerRecette(id){
+  E.recettesPerso = (E.recettesPerso||[]).filter(r=>r.id!==id);
+  sauver(); fermerFeuille(); rendre(); toast("Recette supprimée");
+}
+
+function ouvrirAjoutRecette(){
+  const parRayon = {};
+  Object.entries(ALIMENTS).forEach(([id,a])=>{ (parRayon[a.r]=parRayon[a.r]||[]).push([id,a]); });
+  feuille(`
+    <h2 style="margin-bottom:5px">Créer une recette</h2>
+    <p class="sub">Choisis les aliments et les grammages. Les calories, les macros et le coût se calculent tout seuls.</p>
+    <label><span>Nom de la recette</span><input id="nr-nom" placeholder="Riz sauté du dimanche" style="font-family:var(--sans)"></label>
+    <div class="grille2">
+      <label><span>Moment</span><select id="nr-moment">
+        <option value="matin">Matin</option><option value="midi" selected>Midi</option>
+        <option value="soir">Soir</option><option value="shake">Shake</option>
+        <option value="collation">Collation</option></select></label>
+      <label><span>Minutes</span><input type="number" inputmode="numeric" id="nr-temps" value="20"></label>
+    </div>
+    <label><span>Étapes (une par ligne)</span><textarea id="nr-etapes" rows="3" style="font-family:var(--sans);font-size:14px" placeholder="Faire revenir l'oignon&#10;Ajouter le riz"></textarea></label>
+    <div class="eyebrow" style="margin:15px 0 8px">Ingrédients — saisis les grammes</div>
+    <div style="max-height:320px;overflow-y:auto;border:1px solid var(--bord);border-radius:11px;padding:11px">
+    ${Object.entries(parRayon).map(([ray,items])=>`
+      <div class="eyebrow" style="margin:9px 0 6px">${ray}</div>
+      ${items.map(([id,a])=>`<div class="serie" style="grid-template-columns:1fr 74px">
+        <div class="mini" style="color:var(--txt)">${esc(a.n)}</div>
+        <input type="number" inputmode="numeric" data-al="${id}" placeholder="0 g" style="padding:6px;font-size:13px"></div>`).join("")}
+    `).join("")}
+    </div>
+    <button class="btn vert large" style="margin-top:15px" onclick="enregistrerRecette()">Enregistrer la recette</button>`);
+}
+function enregistrerRecette(){
+  const nom = document.getElementById("nr-nom").value.trim();
+  if(!nom) return toast("Il manque le nom");
+  const ing = [];
+  document.querySelectorAll("[data-al]").forEach(i=>{
+    const g = parseFloat(i.value);
+    if(g > 0) ing.push([i.dataset.al, g]);
+  });
+  if(!ing.length) return toast("Il manque les ingrédients");
+  const et = document.getElementById("nr-etapes").value.split("\n").map(s=>s.trim()).filter(Boolean);
+  E.recettesPerso = E.recettesPerso || [];
+  E.recettesPerso.push({
+    id:"p"+Date.now(), n:nom, m:document.getElementById("nr-moment").value,
+    t:parseInt(document.getElementById("nr-temps").value)||15, mix:false, ing, et,
+    as:"Recette que tu as ajoutée toi-même."
+  });
+  sauver(); fermerFeuille(); FILTRE_REPAS="perso"; rendre(); toast("Recette ajoutée");
+}
+
+/* ============================================================
+   VUE — COURSES
+   ============================================================ */
+function vueCourses(){
+  const l = listeCourses();
+  const nbRepas = JOURS_MENU.reduce((s,j)=>s+MOMENTS.filter(m=>(E.menu[j]||{})[m]).length,0);
+  const kcalSem = JOURS_MENU.reduce((s,j)=>s+menuKcalJour(j),0);
+  const cibleSem = cibleKcal()*7;
+
+  return `
+  <div class="carte green">
+    <div class="carte-tete">
+      <div><div class="eyebrow">Semaine planifiée</div>
+        <h2 style="margin-top:6px" class="num">${l.budget.toFixed(2)} €</h2></div>
+      <div style="text-align:right">
+        <div class="num" style="font-size:17px;font-weight:700;color:${kcalSem>=cibleSem*.9?"var(--vrt-2)":"var(--amb-2)"}">${Math.round(kcalSem/7)}</div>
+        <div class="eyebrow">kcal/jour moy.</div></div>
+    </div>
+    <div class="jauge" style="height:6px"><i style="width:${Math.min(100,kcalSem/cibleSem*100)}%;background:linear-gradient(90deg,var(--vrt-4),var(--vrt-2))"></i></div>
+    <div class="mini" style="margin-top:8px">${nbRepas} repas planifiés sur 35 · cible ${cibleKcal()} kcal/jour</div>
+    ${nbRepas>0 && kcalSem < cibleSem*.9 ? `<div class="mini amb" style="margin-top:7px">Ton menu est ${Math.round(cibleSem-kcalSem)} kcal sous ta cible hebdomadaire. Ajoute un shake ou une collation.</div>`:""}
+    ${nbRepas>0 && kcalSem > cibleSem*1.12 ? `<div class="mini blu" style="margin-top:7px">Ton menu dépasse ta cible de ${Math.round(kcalSem-cibleSem)} kcal sur la semaine. Ce n'est pas un problème en soi — mais si la balance monte trop vite, c'est ici qu'il faudra retirer une collation.</div>`:""}
+  </div>
+
+  <div class="carte">
+    <div class="carte-tete"><div class="eyebrow">Menu de la semaine</div>
+      <button class="btn mini fant" onclick="viderMenu()">Vider</button></div>
+    <div class="mini" style="margin-bottom:11px">Touche une case pour choisir une recette.</div>
+    ${JOURS_MENU.map(j=>{
+      const m = E.menu[j]||{}, k = menuKcalJour(j);
+      return `<div style="margin-bottom:11px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px">
+          <span class="eyebrow">${j}</span>
+          <span class="num mini" style="color:${k>=cibleKcal()*.9?"var(--vrt-2)":"var(--txt-3)"}">${k} kcal</span></div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px">
+          ${MOMENTS.map(mo=>{
+            const r = m[mo] && trouverRecette(m[mo]);
+            return `<button class="btn mini ${r?"":"fant"}" style="padding:9px 3px;flex-direction:column;gap:2px;min-height:52px;overflow:hidden;${r?"background:var(--vio-o);border-color:var(--vio-3)":""}"
+              onclick="choisirRecette('${j}','${mo}')">
+              <span class="eyebrow" style="font-size:7.5px">${mo.slice(0,5)}</span>
+              <span style="font-size:9.5px;line-height:1.15;font-weight:600;color:${r?"var(--vio-1)":"var(--txt-3)"}">${r?esc(r.n).split(" ").slice(0,2).join(" "):"+"}</span>
+            </button>`;
+          }).join("")}
+        </div></div>`;
+    }).join("")}
+  </div>
+
+  <div class="carte green">
+    <div class="carte-tete"><div class="eyebrow">Liste de courses agrégée</div>
+      ${E.coursesCochees.length ? `<button class="btn mini fant" onclick="decocherCourses()">Décocher</button>`:""}</div>
+    ${Object.keys(l.parRayon).length ? Object.entries(l.parRayon).map(([ray,items])=>`
+      <div class="eyebrow" style="margin:13px 0 5px">${ray}</div>
+      ${items.map(i=>{
+        const on = E.coursesCochees.includes(i.id);
+        return `<div class="ligne ${on?"fait":""}" onclick="cocherCourse('${i.id}')">
+          <div class="coche ${on?"on":""}">✓</div>
+          <div class="corps"><div class="titre">${esc(i.nom)}</div>
+            <div class="det">${i.g >= 1000 ? (i.g/1000).toFixed(2)+" kg" : i.g+" g"} · ${i.cout.toFixed(2)} €</div></div></div>`;
+      }).join("")}`).join("") :
+      `<div class="vide-etat"><div class="g">◇</div><div class="mini">Planifie d'abord tes repas ci-dessus.<br>La liste se construit toute seule à partir du menu.</div></div>`}
+    ${Object.keys(l.parRayon).length ? `<div class="sep"></div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span class="eyebrow">Total estimé</span>
+        <span class="num" style="font-size:20px;font-weight:700;color:var(--vrt-2)">${l.budget.toFixed(2)} €</span></div>
+      <div class="mini" style="margin-top:6px">Prix indicatifs marque distributeur. Compte 10 à 15 % de moins chez Lidl ou Aldi.</div>`:""}
+  </div>`;
+}
+function choisirRecette(jour, moment){
+  const liste = toutesRecettes().filter(r => moment==="shake" ? r.m==="shake" : moment==="collation" ? r.m==="collation" : r.m===moment);
+  const autres = toutesRecettes().filter(r => !liste.includes(r));
+  const carte = r => { const m = macrosRecette(r);
+    return `<div class="ligne" onclick="poserRecette('${jour}','${moment}','${r.id}')">
+      <div class="puce violet">${m.kcal>=600?"◆":"◇"}</div>
+      <div class="corps"><div class="titre">${esc(r.n)}</div>
+        <div class="det">${m.kcal} kcal · ${m.prot} g prot · ${m.cout.toFixed(2)} €</div></div></div>`;};
+  feuille(`
+    <div class="eyebrow">${jour} · ${moment}</div>
+    <h2 style="margin:7px 0 13px">Choisir une recette</h2>
+    ${(E.menu[jour]||{})[moment] ? `<button class="btn fant large" style="margin-bottom:13px" onclick="poserRecette('${jour}','${moment}','')">Retirer ce repas</button>`:""}
+    ${liste.map(carte).join("")}
+    <div class="eyebrow" style="margin:17px 0 4px">Autres moments</div>
+    ${autres.map(carte).join("")}`);
+}
+function poserRecette(jour, moment, id){
+  E.menu[jour] = E.menu[jour] || {};
+  if(id) E.menu[jour][moment] = id; else delete E.menu[jour][moment];
+  E.coursesCochees = []; sauver(); fermerFeuille(); rendre();
+}
+function cocherCourse(id){
+  const i = E.coursesCochees.indexOf(id);
+  if(i>=0) E.coursesCochees.splice(i,1); else E.coursesCochees.push(id);
+  sauver(); rendre();
+}
+function decocherCourses(){ E.coursesCochees=[]; sauver(); rendre(); }
+function viderMenu(){ E.menu={}; E.coursesCochees=[]; sauver(); rendre(); toast("Menu vidé"); }
+
+/* ============================================================
+   VUE — SUIVI
+   ============================================================ */
+function vueSuivi(){
+  const constats = analyser();
+  const a14 = adherence(14);
+  const ma = moyenneMobile(aujourdhui(), 7);
+  const cible = gainCible();
+  const dep = E.profil.poidsDepart;
+  const dates = Object.keys(E.mensurations).sort();
+
+  const icone = {ok:"✓", action:"→", alerte:"!", info:"i"};
+  return `
+  <div class="carte amber">
+    <div class="carte-tete">
+      <div><div class="eyebrow">Poids · moyenne 7 jours</div>
+        <h2 style="margin-top:6px" class="num">${ma ? ma.toFixed(1)+" kg" : "—"}</h2></div>
+      <div style="text-align:right">
+        <div class="num ${ma&&ma>dep?"vrt":"t3"}" style="font-size:16px;font-weight:700">${ma ? (ma-dep>=0?"+":"")+(ma-dep).toFixed(1) : "—"} kg</div>
+        <div class="eyebrow">depuis le départ</div></div>
+    </div>
+    ${courbePoids()}
+    <div class="mini" style="margin-top:9px">Cible de progression : ${cible.min} à ${cible.max} g par semaine. La bande verte est la zone visée.</div>
+    <div class="btn-rangee" style="margin-top:12px">
+      <button class="btn plein" style="flex:1" onclick="ouvrirPoids()">Saisir mon poids</button>
+      <button class="btn fant" onclick="ouvrirMensurations()">Mensurations</button>
+    </div>
+  </div>
+
+  <div class="carte">
+    <div class="eyebrow" style="margin-bottom:4px">Analyse des 14 derniers jours</div>
+    <h3 style="margin-bottom:13px">Ce que disent tes chiffres</h3>
+    ${constats.map(c=>`<div class="constat ${c.type}">
+      <h4><span class="pillule ${({ok:"green",action:"amber",alerte:"rose",info:"blue"})[c.type]}">${icone[c.type]}</span> ${esc(c.t)}</h4>
+      <p>${esc(c.x)}</p>
+      ${c.kcal ? `<button class="btn mini plein" onclick="appliquerAjustement(${c.kcal})">Appliquer ${c.kcal>0?"+":""}${c.kcal} kcal/jour</button>`:""}
+    </div>`).join("")}
+    ${E.reglages.ajustement ? `<div class="sep"></div><div class="mini">Ajustement en cours : <span class="num amb">${E.reglages.ajustement>0?"+":""}${E.reglages.ajustement} kcal/jour</span> · <a href="#" onclick="appliquerAjustement(${-E.reglages.ajustement});return false" style="color:var(--blu-2)">annuler</a></div>`:""}
+  </div>
+
+  <div class="carte blue">
+    <div class="eyebrow" style="margin-bottom:11px">Assiduité sur 14 jours</div>
+    <div class="grille3">
+      <div><div class="num" style="font-size:21px;font-weight:700;color:${a14.tauxSeances>=.75?"var(--vrt-2)":"var(--amb-2)"}">${a14.tauxSeances!==null?Math.round(a14.tauxSeances*100)+"%":"—"}</div>
+        <div class="eyebrow">séances</div><div class="mini">${a14.seancesFaites}/${a14.seancesPrevues}</div></div>
+      <div><div class="num" style="font-size:21px;font-weight:700;color:${a14.tauxRepas>=.8?"var(--vrt-2)":"var(--amb-2)"}">${a14.tauxRepas!==null?Math.round(a14.tauxRepas*100)+"%":"—"}</div>
+        <div class="eyebrow">calories</div><div class="mini">${a14.joursOk}/${a14.joursRepas} j</div></div>
+      <div><div class="num blu" style="font-size:21px;font-weight:700">${a14.heuresLivr}</div>
+        <div class="eyebrow">h livraison</div><div class="mini">≈ ${Math.round(a14.heuresLivr*(E.reglages.kcalLivraison||270)/14)} kcal/j</div></div>
+    </div>
+  </div>
+
+  <div class="carte">
+    <div class="carte-tete"><div class="eyebrow">Les 52 semaines</div>
+      <span class="mini">semaine ${numSemaine()}</span></div>
+    <div class="barre-an">${barreAn()}</div>
+    <div class="barre-legende">
+      <span class="lg"><b style="background:linear-gradient(90deg,var(--vrt-4),var(--vrt-2))"></b>semaine tenue</span>
+      <span class="lg"><b style="background:linear-gradient(90deg,var(--amb-4),var(--amb-2))"></b>partielle</span>
+      <span class="lg"><b style="background:linear-gradient(90deg,var(--blu-4),var(--blu-2))"></b>deload</span>
+      <span class="lg"><b style="background:var(--nuit-3)"></b>manquée</span>
+    </div>
+    <div class="mini" style="margin-top:10px">La largeur de chaque barre suit ton poids. Elle part de ton point de départ et s'élargit jusqu'à l'objectif des 12 mois. C'est littéralement une barre que tu construis, semaine après semaine.</div>
+  </div>
+
+  ${dates.length ? `<div class="carte green">
+    <div class="eyebrow" style="margin-bottom:11px">Mensurations</div>
+    ${["bras","poitrine","taille","cuisse"].map(k=>{
+      const p = E.mensurations[dates[0]][k], d = E.mensurations[dates[dates.length-1]][k];
+      if(!p||!d) return "";
+      const diff = d-p;
+      const bon = k==="taille" ? diff<2 : diff>0;
+      return `<div class="ligne" style="cursor:default">
+        <div class="corps"><div class="titre" style="text-transform:capitalize">${k}</div>
+          <div class="det">${p} → ${d} cm</div></div>
+        <span class="num" style="font-weight:700;color:${bon?"var(--vrt-2)":"var(--amb-2)"}">${diff>=0?"+":""}${diff.toFixed(1)}</span></div>`;
+    }).join("")}
+  </div>`:""}
+
+  <div class="carte">
+    <div class="eyebrow" style="margin-bottom:9px">Sauvegarde</div>
+    <p class="sub">Tes données sont stockées uniquement sur cet appareil. Exporte-les régulièrement — c'est ton seul filet en cas de changement de téléphone.</p>
+    <div class="btn-rangee">
+      <button class="btn" style="flex:1" onclick="exporter()">Exporter</button>
+      <button class="btn fant" style="flex:1" onclick="importer()">Importer</button>
+    </div>
+  </div>`;
+}
+
+function courbePoids(){
+  const s = serieMoyenneMobile(60).filter(p => p.v !== null || p.brut !== null);
+  if(s.length < 2) return `<div class="vide-etat" style="padding:24px 10px"><div class="mini">Pèse-toi 6 fois pour voir apparaître ta courbe.</div></div>`;
+  const W = 320, H = 92, P = 5;
+  const vals = s.map(p=>p.v ?? p.brut).filter(v=>v!==null);
+  const dep = E.profil.poidsDepart;
+  let mn = Math.min(...vals, dep) - .6, mx = Math.max(...vals, dep) + .6;
+  if(mx - mn < 2){ const c=(mx+mn)/2; mn=c-1; mx=c+1; }
+  const X = i => P + i/(s.length-1)*(W-2*P);
+  const Y = v => H - P - (v-mn)/(mx-mn)*(H-2*P);
+
+  const pts = s.map((p,i)=>p.v!==null ? [X(i), Y(p.v)] : null).filter(Boolean);
+  const ligne = pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" ");
+  const aire = pts.length ? ligne+` L${pts[pts.length-1][0].toFixed(1)} ${H-P} L${pts[0][0].toFixed(1)} ${H-P} Z` : "";
+  const dots = s.map((p,i)=>p.brut!==null ? `<circle cx="${X(i).toFixed(1)}" cy="${Y(p.brut).toFixed(1)}" r="1.5" fill="var(--txt-3)"/>` : "").join("");
+
+  /* bande cible : +0,25 %/sem à +0,5 %/sem depuis le départ */
+  const nJ = s.length;
+  const bas = dep + dep*0.0025*(nJ/7), haut = dep + dep*0.005*(nJ/7);
+  const bande = (Y(dep) > Y(haut)) ?
+    `<path d="M${X(0)} ${Y(dep)} L${X(nJ-1)} ${Y(bas)} L${X(nJ-1)} ${Y(haut)} L${X(0)} ${Y(dep)} Z" fill="var(--vrt-o)"/>` : "";
+
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block" preserveAspectRatio="none">
+    <defs><linearGradient id="gp" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="var(--amb-2)" stop-opacity=".26"/>
+      <stop offset="100%" stop-color="var(--amb-2)" stop-opacity="0"/></linearGradient></defs>
+    ${bande}
+    <line x1="${P}" y1="${Y(dep).toFixed(1)}" x2="${W-P}" y2="${Y(dep).toFixed(1)}" stroke="var(--bord-2)" stroke-width=".7" stroke-dasharray="3 3"/>
+    ${aire?`<path d="${aire}" fill="url(#gp)"/>`:""}
+    <path d="${ligne}" fill="none" stroke="var(--amb-2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+    ${dots}
+  </svg>`;
+}
+function appliquerAjustement(k){
+  E.reglages.ajustement = (E.reglages.ajustement||0) + k;
+  sauver(); rendre();
+  toast(`Cible ajustée : ${cibleKcal()} kcal`);
+}
+
+/* ============================================================
+   FEUILLES — saisies
+   ============================================================ */
+function ouvrirPoids(){
+  const d = aujourdhui();
+  feuille(`
+    <h2 style="margin-bottom:5px">Poids du matin</h2>
+    <p class="sub">À jeun, après les toilettes, en sous-vêtements. Le chiffre du jour ne veut rien dire tout seul — c'est la moyenne sur 7 jours qui compte, et elle a besoin d'au moins 4 pesées par semaine.</p>
+    <label><span>Poids en kg</span><input type="number" inputmode="decimal" step="0.1" id="p-val" value="${E.poids[d]??""}" placeholder="${poidsActuel().toFixed(1)}"></label>
+    <button class="btn plein large" onclick="enregistrerPoids()">Enregistrer</button>
+    ${Object.keys(E.poids).length ? `<div class="eyebrow" style="margin:19px 0 6px">7 dernières pesées</div>
+      ${Object.keys(E.poids).sort().reverse().slice(0,7).map(k=>
+        `<div class="ligne" style="cursor:default"><div class="corps"><div class="titre">${dateCourte(k)}</div></div>
+         <span class="num amb" style="font-weight:650">${E.poids[k].toFixed(1)} kg</span></div>`).join("")}`:""}`);
+}
+function enregistrerPoids(){
+  const v = parseFloat(document.getElementById("p-val").value);
+  if(!v || v<25 || v>250) return toast("Poids invalide");
+  E.poids[aujourdhui()] = v; sauver(); fermerFeuille(); rendre(); toast("Poids enregistré");
+}
+
+function ouvrirLivraison(){
+  const d = aujourdhui();
+  feuille(`
+    <h2 style="margin-bottom:5px">Heures de livraison</h2>
+    <p class="sub">Le vélo à assistance brûle environ ${E.reglages.kcalLivraison} kcal par heure à ton poids : arrêts, redémarrages, escaliers, portage. Ces calories s'ajoutent automatiquement à ta cible du jour — sinon tu manges au maintien sans le savoir.</p>
+    <label><span>Heures aujourd'hui</span><input type="number" inputmode="decimal" step="0.5" id="l-val" value="${E.livraison[d]??""}" placeholder="0"></label>
+    <div class="btn-rangee" style="margin-bottom:15px">
+      ${[2,3,4,5,6,8].map(h=>`<button class="btn mini fant" onclick="document.getElementById('l-val').value=${h}">${h} h</button>`).join("")}
+    </div>
+    <button class="btn bleu large" onclick="enregistrerLivraison()">Enregistrer</button>
+    <div style="background:var(--blu-o);border-radius:11px;padding:13px;margin-top:15px">
+      <div class="eyebrow blu" style="margin-bottom:5px">Règle</div>
+      <div class="sub" style="margin:0;color:var(--txt)">Ne place jamais une séance Bas le jour d'une tournée de plus de 4 h. Tes jambes travaillent déjà. Et prépare shake et sandwich AVANT de partir : une tournée de 5 h sans manger, c'est plus de 1 000 kcal qui ne seront jamais rattrapées.</div></div>`);
+}
+function enregistrerLivraison(){
+  const v = parseFloat(document.getElementById("l-val").value)||0;
+  E.livraison[aujourdhui()] = v; sauver(); fermerFeuille(); rendre();
+  toast(v ? `+${Math.round(v*E.reglages.kcalLivraison)} kcal ajoutées` : "Enregistré");
+}
+
+function ouvrirJournal(){
+  const d = aujourdhui(), j = E.journal[d] || {};
+  const champ = (k,lab,aide) => `
+    <div style="margin-bottom:15px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px">
+        <span class="eyebrow">${lab}</span><span class="mini">${aide}</span></div>
+      <div style="display:flex;gap:5px">
+        ${[1,2,3,4,5].map(n=>`<button class="btn mini ${j[k]===n?"plein":"fant"}" style="flex:1" data-j="${k}" data-v="${n}" onclick="noterJournal('${k}',${n},this)">${n}</button>`).join("")}
+      </div></div>`;
+  feuille(`
+    <h2 style="margin-bottom:5px">Ressenti du jour</h2>
+    <p class="sub">Trente secondes chaque soir. Deux semaines de notes basses déclenchent une alerte de surcharge dans l'analyse — c'est le signal qui te permet de lever le pied avant de casser, plutôt qu'après.</p>
+    ${champ("sommeil","Sommeil","1 = très mauvais · 5 = excellent")}
+    ${champ("energie","Énergie","1 = vidé · 5 = en forme")}
+    ${champ("appetit","Appétit","1 = dégoût · 5 = affamé")}
+    ${champ("motiv","Motivation","1 = nulle · 5 = à fond")}
+    ${champ("courb","Courbatures","1 = aucune · 5 = invalidantes")}
+    <button class="btn vert large" style="margin-top:6px" onclick="fermerFeuille();rendre();toast('Ressenti enregistré')">Terminé</button>`);
+}
+function noterJournal(k,n,btn){
+  const d = aujourdhui();
+  E.journal[d] = E.journal[d] || {};
+  E.journal[d][k] = n; sauver();
+  document.querySelectorAll(`[data-j="${k}"]`).forEach(b=>{
+    b.className = "btn mini " + (parseInt(b.dataset.v)===n ? "plein" : "fant");
+    b.style.flex = "1";
+  });
+}
+
+function ouvrirMensurations(){
+  const d = aujourdhui(), m = E.mensurations[d] || {};
+  feuille(`
+    <h2 style="margin-bottom:5px">Mensurations</h2>
+    <p class="sub">Une fois par mois, même heure, mêmes conditions. Ce sont elles qui distinguent un gain de muscle d'un gain de gras — la balance seule ne fait pas la différence.</p>
+    <div class="grille2">
+      <label><span>Bras contracté (cm)</span><input type="number" inputmode="decimal" step="0.5" id="m-bras" value="${m.bras??""}"></label>
+      <label><span>Poitrine (cm)</span><input type="number" inputmode="decimal" step="0.5" id="m-poitrine" value="${m.poitrine??""}"></label>
+      <label><span>Taille au nombril (cm)</span><input type="number" inputmode="decimal" step="0.5" id="m-taille" value="${m.taille??""}"></label>
+      <label><span>Cuisse (cm)</span><input type="number" inputmode="decimal" step="0.5" id="m-cuisse" value="${m.cuisse??""}"></label>
+    </div>
+    <button class="btn vert large" onclick="enregistrerMensurations()">Enregistrer</button>
+    <div style="background:var(--vrt-o);border-radius:11px;padding:13px;margin-top:15px">
+      <div class="eyebrow vrt" style="margin-bottom:5px">Prends aussi tes photos</div>
+      <div class="sub" style="margin:0;color:var(--txt)">Quatre photos — face, dos, profil gauche, profil droit — même lieu, même lumière, même heure. Range-les dans un album dédié de ta galerie. Sur 12 mois, ce sera ta preuve de progression la plus fiable, bien devant la balance.</div></div>`);
+}
+function enregistrerMensurations(){
+  const g = id => parseFloat(document.getElementById(id).value) || undefined;
+  E.mensurations[aujourdhui()] = {bras:g("m-bras"), poitrine:g("m-poitrine"), taille:g("m-taille"), cuisse:g("m-cuisse")};
+  sauver(); fermerFeuille(); rendre(); toast("Mensurations enregistrées");
+}
+
+/* ============================================================
+   FEUILLES — contenu
+   ============================================================ */
+function ouvrirExo(id){
+  const ex = EXOS[id]; if(!ex) return;
+  const pat = PATRONS[ex.pat];
+  const best = meilleurePerf(id);
+  feuille(`
+    <div class="eyebrow">${pat.n} · niveau ${ex.niv} sur 3</div>
+    <h2 style="margin:7px 0 5px">${esc(ex.n)}</h2>
+    <div class="mini" style="margin-bottom:13px">${ex.mus.join(" · ")}${ex.mat && ex.mat.length ? " · "+ex.mat.join(", ") : " · aucun matériel"}</div>
+    ${FIG_EXO[id] ? `<div class="fig-boite fg-${pat.c}" style="margin-bottom:15px">
+      <span class="etiq">${FIGURES[FIG_EXO[id]].b ? "Mouvement complet" : "Position à tenir"}</span>
+      ${figureSVG(id, true)}</div>` : ""}
+
+    ${ex.tempo!=="iso" ? `<button class="btn plein large" style="margin-bottom:15px" onclick="lancerTempo('${ex.tempo}')">Lancer le guide de tempo ${ex.tempo}</button>`:""}
+
+    <div class="eyebrow" style="margin-bottom:8px">Exécution</div>
+    ${ex.exec.map((e,i)=>`<div class="ligne" style="cursor:default;align-items:flex-start">
+      <div class="puce ${pat.c}" style="margin-top:1px">${i+1}</div>
+      <div class="corps"><div class="sub" style="margin:0;color:var(--txt)">${esc(e)}</div></div></div>`).join("")}
+
+    <div class="eyebrow" style="margin:19px 0 8px">Erreurs fréquentes</div>
+    <ul class="notes ros">${ex.err.map(e=>`<li>${esc(e)}</li>`).join("")}</ul>
+
+    ${ex.note ? `<div style="background:var(--amb-o);border-radius:11px;padding:13px;margin-top:15px">
+      <div class="sub" style="margin:0;color:var(--txt)">${esc(ex.note)}</div></div>`:""}
+
+    <div class="sep"></div>
+    <div class="grille2" style="gap:9px">
+      ${ex.reg ? `<button class="btn fant" onclick="ouvrirExo('${ex.reg}')" style="flex-direction:column;gap:2px;padding:12px 8px">
+        <span class="eyebrow">Plus facile</span><span style="font-size:12px">${esc(EXOS[ex.reg].n)}</span></button>`:"<div></div>"}
+      ${ex.prog ? `<button class="btn fant" onclick="ouvrirExo('${ex.prog}')" style="flex-direction:column;gap:2px;padding:12px 8px">
+        <span class="eyebrow">Plus dur</span><span style="font-size:12px">${esc(EXOS[ex.prog].n)}</span></button>`:"<div></div>"}
+    </div>
+    ${best ? `<div class="mini" style="margin-top:13px">Ton record : <span class="num amb">${best.r} reps${best.l?" à "+best.l+" kg":""}</span> le ${dateCourte(best.d)}</div>`:""}`);
+}
+
+function ouvrirGalerie(){
+  const groupes = {};
+  Object.entries(EXOS).forEach(([id,x])=>{ (groupes[x.pat]=groupes[x.pat]||[]).push([id,x]); });
+  feuille(`
+    <div class="eyebrow">Bibliothèque</div>
+    <h2 style="margin:7px 0 11px">Les ${Object.keys(EXOS).length} mouvements</h2>
+    <p class="sub">Rangés par patron de mouvement. Un programme équilibré touche à tous les patrons chaque semaine.</p>
+    ${Object.entries(groupes).map(([pat,liste])=>`
+      <div class="eyebrow ${({amber:"amb",green:"vrt",blue:"blu",violet:"vio"})[PATRONS[pat].c]}" style="margin:19px 0 9px">${PATRONS[pat].n} · ${liste.length}</div>
+      <div class="galerie">
+        ${liste.map(([id,x])=>`<div class="case" onclick="ouvrirExo('${id}')">
+          <div class="fig-boite fg-${PATRONS[pat].c}">${figureSVG(id,false)}</div>
+          <div class="nom">${esc(x.n)}</div></div>`).join("")}
+      </div>`).join("")}`);
+}
+
+function ouvrirBloc(id){
+  const b = BLOCS.find(x=>x.id===id); if(!b) return;
+  feuille(`
+    <div class="eyebrow">Bloc ${b.id} sur 5 · semaines ${b.s[0]} à ${b.s[1]}</div>
+    <h2 style="margin:7px 0 11px">${b.n}</h2>
+    <p class="sub">${b.obj}</p>
+    <div style="background:var(--amb-o);border-radius:11px;padding:13px;margin:15px 0">
+      <div class="eyebrow amb" style="margin-bottom:5px">Règle du bloc</div>
+      <div class="sub" style="margin:0;color:var(--txt)">${b.regle}</div></div>
+    ${b.seances.map(s=>`
+      <div class="eyebrow" style="margin:17px 0 6px">${s.n}</div>
+      ${s.ex.map(e=>{
+        const ex = EXOS[e[0]]; if(!ex) return "";
+        return `<div class="ligne" onclick="ouvrirExo('${e[0]}')">
+          ${FIG_EXO[e[0]] ? `<div class="fig-boite mini fg-${PATRONS[ex.pat].c}" style="width:52px">${figureSVG(e[0], false)}</div>` : `<div class="puce ${PATRONS[ex.pat].c}">${e[1]}×</div>`}
+          <div class="corps"><div class="titre">${esc(ex.n)}</div>
+            <div class="det">${e[2]}${e[3]!==e[2]?"-"+e[3]:""} ${ex.tempo==="iso"?"s":"reps"} · repos ${ex.repos} s</div></div>
+          <span class="t3">›</span></div>`;
+      }).join("")}`).join("")}`);
+}
+
+function ouvrirImprevu(id){
+  const i = IMPREVUS.find(x=>x.id===id); if(!i) return;
+  feuille(`
+    <div class="eyebrow">Protocole</div>
+    <h2 style="margin:7px 0 15px">${esc(i.n)}</h2>
+    <div class="eyebrow vrt" style="margin-bottom:8px">Ce que tu fais</div>
+    <ul class="notes vrt">${i.quoi.map(q=>`<li>${esc(q)}</li>`).join("")}</ul>
+    <div class="eyebrow ros" style="margin:19px 0 8px">Ce que tu évites</div>
+    <ul class="notes ros">${i.eviter.map(q=>`<li>${esc(q)}</li>`).join("")}</ul>
+    <button class="btn fant large" style="margin-top:19px" onclick="fermerFeuille()">Compris</button>`);
+}
+
+/* ============================================================
+   RÉGLAGES
+   ============================================================ */
+function ouvrirReglages(){
+  const p = E.profil, r = E.reglages, c = cibleMacros();
+  feuille(`
+    <h2 style="margin-bottom:5px">Réglages</h2>
+    <p class="sub">Tes calories se recalculent automatiquement à partir de ta moyenne de poids sur 7 jours. Tu n'as rien à recalculer à la main.</p>
+
+    <div class="carte amber" style="margin:15px 0">
+      <div class="eyebrow">Ta cible actuelle</div>
+      <h2 style="margin:6px 0 5px" class="num">${c.kcal} kcal</h2>
+      <div class="mini">Métabolisme de base ${metabolismeBase()} · maintien ${maintien()} · surplus de phase +${surplusPhase(numSemaine())}${r.ajustement?` · ajustement ${r.ajustement>0?"+":""}${r.ajustement}`:""}</div>
+      <div class="mini" style="margin-top:5px">${c.prot} g de protéines · ${c.gluc} g de glucides · ${c.lip} g de lipides</div>
+    </div>
+
+    <div class="grille2">
+      <label><span>Âge</span><input type="number" inputmode="numeric" id="r-age" value="${p.age}"></label>
+      <label><span>Taille (cm)</span><input type="number" inputmode="numeric" id="r-taille" value="${p.taille}"></label>
+      <label><span>Poids de départ (kg)</span><input type="number" inputmode="decimal" step="0.1" id="r-dep" value="${p.poidsDepart}"></label>
+      <label><span>Début du plan</span><input type="date" id="r-date" value="${p.dateDebut}"></label>
+      <label><span>Protéines g/kg</span><input type="number" inputmode="decimal" step="0.1" id="r-prot" value="${r.ratioProt}"></label>
+      <label><span>Lipides g/kg</span><input type="number" inputmode="decimal" step="0.1" id="r-lip" value="${r.ratioLip}"></label>
+    </div>
+    <label><span>Calories brûlées par heure de livraison</span>
+      <input type="number" inputmode="numeric" id="r-livr" value="${r.kcalLivraison}"></label>
+    <div class="mini" style="margin-top:-8px;margin-bottom:15px">Estimation par défaut pour un vélo à assistance électrique à ton poids. Monte vers 320 si tu roules vite ou par temps froid, descends vers 220 si tes tournées sont surtout de l'attente.</div>
+
+    <button class="btn plein large" onclick="enregistrerReglages()">Enregistrer</button>
+    <div class="sep"></div>
+    <div class="btn-rangee">
+      <button class="btn fant" style="flex:1" onclick="exporter()">Exporter</button>
+      <button class="btn fant" style="flex:1" onclick="importer()">Importer</button>
+    </div>
+    <button class="btn fant large" style="margin-top:9px;color:var(--ros-2)" onclick="toutEffacer()">Tout effacer</button>
+    <div class="mini" style="margin-top:15px;padding-top:13px;border-top:1px solid var(--bord)">
+      Cette application est un outil de suivi personnel, pas un avis médical. Avec un IMC sous 18,5, une consultation et une prise de sang restent la première étape : elles écartent les causes qui rendraient une année d'efforts inutile.
+    </div>`);
+}
+function enregistrerReglages(){
+  const v = id => parseFloat(document.getElementById(id).value);
+  E.profil.age = v("r-age") || E.profil.age;
+  E.profil.taille = v("r-taille") || E.profil.taille;
+  E.profil.poidsDepart = v("r-dep") || E.profil.poidsDepart;
+  E.profil.dateDebut = document.getElementById("r-date").value || E.profil.dateDebut;
+  E.reglages.ratioProt = v("r-prot") || E.reglages.ratioProt;
+  E.reglages.ratioLip = v("r-lip") || E.reglages.ratioLip;
+  E.reglages.kcalLivraison = v("r-livr") || E.reglages.kcalLivraison;
+  sauver(); fermerFeuille(); rendre(); toast("Réglages enregistrés");
+}
+function toutEffacer(){
+  if(!confirm("Effacer définitivement toutes tes données ? Cette action est irréversible.")) return;
+  Store.del(CLE);
+  E = JSON.parse(JSON.stringify(ETAT_VIDE));
+  E.profil.dateDebut = aujourdhui();
+  sauver(); fermerFeuille(); rendre();
+}
+function exporter(){
+  const blob = new Blob([JSON.stringify(E,null,2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `charge-sauvegarde-${aujourdhui()}.json`;
+  a.click(); URL.revokeObjectURL(a.href);
+  toast("Sauvegarde téléchargée");
+}
+function importer(){
+  const i = document.createElement("input");
+  i.type = "file"; i.accept = "application/json,.json";
+  i.onchange = () => {
+    const f = i.files[0]; if(!f) return;
+    const rd = new FileReader();
+    rd.onload = () => {
+      try{
+        const d = JSON.parse(rd.result);
+        if(!d.profil) throw new Error("format");
+        E = Object.assign(JSON.parse(JSON.stringify(ETAT_VIDE)), d);
+        E.profil = Object.assign({}, ETAT_VIDE.profil, d.profil||{});
+        E.reglages = Object.assign({}, ETAT_VIDE.reglages, d.reglages||{});
+        sauver(); fermerFeuille(); rendre(); toast("Sauvegarde restaurée");
+      }catch(e){ toast("Fichier illisible"); }
+    };
+    rd.readAsText(f);
+  };
+  i.click();
+}
+
+/* ============================================================
+   MINUTEUR DE REPOS ET GUIDE DE TEMPO
+   ============================================================ */
+let MIN = {t:0, total:0, h:null, wake:null};
+async function verrouEcran(on){
+  try{
+    if(on && "wakeLock" in navigator && !MIN.wake) MIN.wake = await navigator.wakeLock.request("screen");
+    else if(!on && MIN.wake){ MIN.wake.release(); MIN.wake = null; }
+  }catch(e){}
+}
+function minDemarrer(sec, titre){
+  MIN.t = sec; MIN.total = sec;
+  document.getElementById("min-titre").textContent = titre || "Repos";
+  document.getElementById("min-l").textContent = "restant";
+  document.getElementById("minuteur").classList.add("on");
+  document.getElementById("cadran").style.display = "";
+  document.getElementById("cadran").innerHTML =
+    '<div class="cadran-txt"><div class="t" id="min-t"></div><div class="l" id="min-l">restant</div></div>';
+  verrouEcran(true);
+  majMin();
+  clearInterval(MIN.h);
+  MIN.h = setInterval(()=>{
+    MIN.t--; majMin();
+    if(MIN.t <= 0) finMin();
+  }, 1000);
+}
+function majMin(){
+  const m = Math.floor(Math.max(0,MIN.t)/60), s = Math.max(0,MIN.t)%60;
+  const el = document.getElementById("min-t");
+  if(el) el.textContent = `${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
+  const c = document.getElementById("cadran");
+  if(c) c.style.setProperty("--p", (MIN.total ? Math.max(0,MIN.t)/MIN.total : 0).toFixed(3));
+}
+function finMin(){
+  clearInterval(MIN.h);
+  bip();
+  if(navigator.vibrate) navigator.vibrate([180,90,180]);
+  const l = document.getElementById("min-l");
+  if(l) l.textContent = "série suivante";
+  setTimeout(minStop, 1600);
+}
+function minStop(){
+  clearInterval(MIN.h);
+  document.getElementById("minuteur").classList.remove("on");
+  verrouEcran(false);
+}
+function minAjouter(n){
+  MIN.t = Math.max(1, MIN.t + n);
+  MIN.total = Math.max(MIN.total, MIN.t);
+  majMin();
+}
+function bip(){
+  try{
+    const A = new (window.AudioContext||window.webkitAudioContext)();
+    [0,.16,.32].forEach((d,i)=>{
+      const o = A.createOscillator(), g = A.createGain();
+      o.connect(g); g.connect(A.destination);
+      o.frequency.value = i===2 ? 1046 : 784; o.type = "sine";
+      g.gain.setValueAtTime(0, A.currentTime+d);
+      g.gain.linearRampToValueAtTime(.2, A.currentTime+d+.015);
+      g.gain.exponentialRampToValueAtTime(.001, A.currentTime+d+.13);
+      o.start(A.currentTime+d); o.stop(A.currentTime+d+.14);
+    });
+  }catch(e){}
+}
+
+/* Guide de tempo : 3-1-X = 3 s descente, 1 s pause, remontée explosive */
+function lancerTempo(tempo){
+  const [ec, pa] = tempo.split("-");
+  const exc = parseFloat(ec)||3, pau = parseFloat(pa)||1;
+  fermerFeuille();
+  const z = document.getElementById("minuteur");
+  z.classList.add("on");
+  document.getElementById("min-titre").textContent = `Tempo ${tempo}`;
+  const c = document.getElementById("cadran");
+  c.style.display = "none";
+  let bulle = document.getElementById("tempo-bulle");
+  if(!bulle){
+    bulle = document.createElement("div");
+    bulle.className = "tempo-bulle"; bulle.id = "tempo-bulle";
+    c.parentNode.insertBefore(bulle, c.nextSibling);
+  }
+  bulle.style.display = "grid";
+  verrouEcran(true);
+  clearInterval(MIN.h);
+  let phase = 0, t = 0;
+  const seq = [
+    {n:"Descends", d:exc, s0:1, s1:.62},
+    {n:"Tiens",    d:pau, s0:.62, s1:.62},
+    {n:"Pousse",   d:1,   s0:.62, s1:1},
+    {n:"Prêt",     d:.6,  s0:1, s1:1}
+  ];
+  MIN.h = setInterval(()=>{
+    const p = seq[phase];
+    t += .1;
+    const k = Math.min(1, t/p.d);
+    bulle.style.transform = `scale(${(p.s0 + (p.s1-p.s0)*k).toFixed(3)})`;
+    bulle.textContent = p.n;
+    bulle.style.borderColor = phase===0 ? "var(--blu-3)" : phase===1 ? "var(--amb-3)" : phase===2 ? "var(--vrt-3)" : "var(--bord)";
+    if(t >= p.d){
+      t = 0; phase = (phase+1) % seq.length;
+      if(phase === 0 && navigator.vibrate) navigator.vibrate(28);
+    }
+  }, 100);
+  const stop = () => {
+    clearInterval(MIN.h);
+    bulle.style.display = "none";
+    c.style.display = "";
+    z.classList.remove("on");
+    verrouEcran(false);
+  };
+  window._stopTempo = stop;
+}
+const _minStopOrig = minStop;
+minStop = function(){ if(window._stopTempo){ window._stopTempo(); window._stopTempo = null; return; } _minStopOrig(); };
+
+/* ============================================================
+   DÉMARRAGE
+   ============================================================ */
+charger();
+rendre();
+if(!Store.ok){
+  setTimeout(()=>toast("Aperçu : les données ne seront pas conservées"), 900);
+}
+if("serviceWorker" in navigator){
+  window.addEventListener("load", ()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+}
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden && MIN.wake === null && MIN.h) verrouEcran(true); });
+</script>
+</body>
+</html>
