@@ -46,8 +46,8 @@ Tout fonctionne hors ligne, sans compte et sans serveur.
 | Onglet | Contenu |
 |---|---|
 | **Auj.** | Calories restantes, macros, séance du jour, poids, heures de livraison, ressenti |
-| **Séance** | Séance guidée, saisie reps/RIR/lest, minuteur de repos, guide de tempo, bibliothèque des 47 mouvements, protocoles d'imprévu |
-| **Repas** | 27 recettes avec grammages, étapes et coût ; création de tes propres recettes |
+| **Séance** | Séance guidée, saisie reps/RIR/lest, minuteur de repos, guide de tempo, bibliothèque des 47 mouvements animés, remplacement d'exercice, protocoles d'imprévu |
+| **Repas** | 27 recettes avec grammages, étapes et coût ; création et import de recettes |
 | **Courses** | Menu de la semaine, liste agrégée par rayon, budget calculé |
 | **Suivi** | Courbe de poids en moyenne 7 jours, mensurations, assiduité, analyse bihebdomadaire, les 52 semaines |
 
@@ -70,7 +70,48 @@ d'augmenter les calories et dit pourquoi.
 
 ---
 
+## Ajouter des recettes et des exercices (packs)
+
+L'application sait importer des **packs** : des fiches écrites par une IA, qui
+**s'ajoutent** à ta bibliothèque sans rien effacer.
+
+1. Onglet **Repas** → *Importer un pack*, ou **Séance** → *Tous les mouvements* → *Importer des exercices*.
+2. Touche **Copier la consigne pour l'IA**. Elle contient déjà le format exact, la
+   liste des identifiants d'aliments, celle des figures d'exercice, et ton profil.
+3. Colle-la dans une conversation avec une IA et ajoute ta demande :
+   *« 8 dîners de moins de 20 minutes et moins de 2 € »*,
+   *« 5 variantes de tractions pour progresser vers la traction lestée »*.
+4. Recolle sa réponse dans le champ, touche **Vérifier le pack**.
+5. Si tout est valide, la liste des fiches s'affiche → **Ajouter à ma bibliothèque**.
+
+En cas d'erreur, les messages sont écrits pour être renvoyés tels quels à l'IA :
+ingrédient inconnu, patron de mouvement invalide, grammages incohérents. Elle
+corrige et tu réessaies.
+
+Les doublons de nom sont détectés et ignorés — réimporter deux fois le même pack
+ne crée pas de copies.
+
+Un pack peut aussi déclarer ses propres **aliments** si un ingrédient manque à la
+base, et ses propres **figures** en réutilisant l'une des 32 animations existantes.
+
+Le bouton *Exporter ma bibliothèque en pack* transforme tes ajouts personnels en
+un fichier repartageable.
+
+### Remplacer un exercice
+Dans une fiche exercice, la section **Remplacer dans le programme** propose tous
+les mouvements du même patron, y compris ceux que tu as importés. Utile si une
+douleur t'empêche un exercice : le remplacement s'applique à toutes les séances
+jusqu'à ce que tu remettes l'original.
+
+---
+
 ## Sauvegarde
+
+Ne confonds pas les deux boutons :
+
+- **Importer un pack** *ajoute* des fiches. Aucun risque.
+- **Restaurer** (réglages) *remplace* l'intégralité de tes données par le fichier.
+  Une confirmation est demandée avant.
 
 Les données sont stockées uniquement dans le navigateur de ton téléphone.
 **Exporte-les une fois par mois** depuis l'onglet Suivi ou les réglages : un
